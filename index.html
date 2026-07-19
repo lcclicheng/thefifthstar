@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fifth Star — for the UK high street</title>
+<meta name="description" content="Fifth Star writes your Google review replies in your own voice — so local customers trust you and find you first. Try 3 free drafts for your own business.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2314120d'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-style='italic' font-size='20' fill='%23b5852f' text-anchor='middle'%3EF%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15120c; --ink-2:#3a3328; --muted:#7a7060; --line:#e4ddd0;
+    --paper:#f7f3ea; --paper-2:#fffdf8; --cream:#efe7d6;
+    --accent:#b5852f; --gold:#e0a82e; --dark:#16130d; --dark-2:#221d14;
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);background:var(--paper);color:var(--ink);
+    line-height:1.7;-webkit-font-smoothing:antialiased;font-size:16px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  .measure{max-width:46rem}
+  a{color:inherit}
+
+  /* header */
+  header{position:sticky;top:0;z-index:30;background:rgba(247,243,234,.86);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:66px;}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-weight:800;
+    font-size:21px;letter-spacing:-.02em;color:var(--ink);text-decoration:none;}
+  .mono{width:30px;height:30px;border-radius:7px;background:var(--dark);color:var(--accent);
+    display:grid;place-items:center;font-family:Georgia,serif;font-style:italic;font-size:18px;font-weight:700;}
+  .nav .links a{color:var(--ink-2);text-decoration:none;font-size:14px;margin-left:28px;}
+  .nav .cta{margin-left:28px;background:var(--accent);color:#fff;padding:9px 17px;border-radius:8px;
+    font-weight:600;font-size:14px;text-decoration:none;}
+
+  /* hero (dark, dramatic) */
+  .hero{position:relative;background:var(--dark);color:var(--paper);overflow:hidden;}
+  .hero .wrap{position:relative;z-index:2;padding:84px 24px 76px;}
+  .watermark{position:absolute;inset:0;z-index:1;opacity:.05;pointer-events:none;aria-hidden:true;
+    background-image:radial-gradient(circle at 18% 30%, #fff 1.4px, transparent 1.6px),
+      radial-gradient(circle at 70% 65%, #fff 1.4px, transparent 1.6px),
+      radial-gradient(circle at 45% 85%, #fff 1.4px, transparent 1.6px);
+    background-size:240px 240px,300px 300px,200px 200px;}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:20px;}
+  h1{font-family:var(--serif);font-weight:800;font-size:clamp(40px,6.4vw,68px);line-height:1.02;
+    letter-spacing:-.02em;margin:0 0 22px;max-width:16ch;color:#fff;}
+  .grad{background:linear-gradient(100deg,var(--gold),#f3d28a,var(--gold));-webkit-background-clip:text;
+    background-clip:text;color:transparent;background-size:200% auto;animation:shine 5s linear infinite;}
+  .lede{font-size:19px;color:#d9d2c4;max-width:48ch;margin:0 0 30px;}
+  .lede b{color:#fff;font-weight:600;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .btn{display:inline-block;background:var(--accent);color:#fff;padding:15px 26px;border-radius:10px;
+    font-weight:700;font-size:16px;text-decoration:none;border:1px solid var(--accent);}
+  .btn.ghost{background:transparent;color:var(--paper);border:1px solid #4a4233;}
+  .micro{margin-top:16px;font-size:13px;color:#8f8775;}
+
+  /* signature stars */
+  .sig{display:flex;align-items:center;gap:8px;margin:0 0 30px;}
+  .sig svg{width:38px;height:38px;display:block}
+  .star-out{fill:none;stroke:#6f6552;stroke-width:1.6}
+  .star-on{fill:var(--gold);stroke:var(--gold);stroke-width:1}
+  .star-glow{position:relative}
+  .star-glow .halo{position:absolute;left:50%;top:50%;width:84px;height:84px;transform:translate(-50%,-50%);
+    border-radius:50%;background:radial-gradient(circle,var(--gold) 0%,transparent 62%);
+    opacity:.5;filter:blur(6px);animation:breathe 6s ease-in-out infinite;pointer-events:none;z-index:-1;}
+
+  /* free sample band */
+  .band{background:var(--cream);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .band .wrap{padding:34px 24px;display:flex;gap:26px;align-items:center;flex-wrap:wrap;justify-content:space-between;}
+  .band h3{font-family:var(--serif);font-size:24px;margin:0 0 6px;letter-spacing:-.01em;}
+  .band p{margin:0;color:var(--ink-2);font-size:15px;max-width:60ch;}
+
+  section{padding:60px 0;border-top:1px solid var(--line);}
+  .rule{height:1px;background:var(--line);border:0;margin:0}
+  h2{font-family:var(--serif);font-size:clamp(28px,3.6vw,38px);letter-spacing:-.02em;margin:0 0 8px;}
+  .sub{color:var(--muted);margin:0 0 36px;font-size:16px;max-width:50ch;}
+  .kicker{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);}
+  .step{padding:26px 26px 30px;border-right:1px solid var(--line);}
+  .step:last-child{border-right:0}
+  .step .n{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--accent);}
+  .step h4{font-family:var(--serif);font-size:20px;margin:8px 0 8px;letter-spacing:-.01em;}
+  .step p{margin:0;color:var(--ink-2);font-size:14.5px;}
+
+  /* pricing */
+  .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .tier{border:1px solid var(--line);border-radius:14px;background:var(--paper-2);padding:24px 22px;display:flex;flex-direction:column;}
+  .tier.feat{border-color:var(--accent);box-shadow:0 10px 30px -18px rgba(181,133,47,.55);}
+  .tier .nm{font-weight:700;font-size:15px;color:var(--ink);}
+  .tier .pr{font-family:var(--serif);font-size:34px;font-weight:800;letter-spacing:-.02em;margin:12px 0 2px;}
+  .tier .pr small{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--muted);}
+  .tier ul{list-style:none;padding:0;margin:16px 0 0;font-size:13.5px;color:var(--ink-2);}
+  .tier li{padding:7px 0;border-top:1px solid var(--line);}
+  .tier .tag{font-size:11px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+  .tier.feat .tag{color:var(--accent)}
+
+  /* why */
+  .why{display:grid;grid-template-columns:repeat(2,1fr);gap:0 30px;}
+  .why div{padding:18px 0 18px 18px;border-left:2px solid var(--accent);margin-bottom:4px;}
+  .why b{display:block;font-family:var(--serif);font-size:18px;margin-bottom:3px;letter-spacing:-.01em;}
+  .why span{color:var(--ink-2);font-size:14.5px;}
+
+  /* local note */
+  .local{background:var(--dark);color:var(--paper);}
+  .local .wrap{padding:46px 24px;}
+  .local .kicker{color:var(--gold)}
+  .local h2{color:#fff}
+  .local p{color:#cfc7b6;max-width:54ch;font-size:16px;}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 54px;color:var(--muted);font-size:13px;}
+  .comp{background:var(--paper-2);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-top:14px;
+    color:var(--ink-2);font-size:12.5px;line-height:1.55;}
+
+  @keyframes shine{to{background-position:200% center}}
+  @keyframes breathe{0%,100%{opacity:.35;transform:translate(-50%,-50%) scale(.9)}50%{opacity:.7;transform:translate(-50%,-50%) scale(1.12)}}
+  @media(prefers-reduced-motion:reduce){.grad{animation:none}.star-glow .halo{animation:none}}
+  @media(max-width:820px){.steps,.tiers,.why{grid-template-columns:1fr}.step{border-right:0;border-top:1px solid var(--line)}.step:first-child{border-top:0}.nav .links{display:none}h1{font-size:40px}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#"><span class="mono">F</span>Fifth Star</a>
+    <nav class="links">
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#why">Why us</a>
+    </nav>
+    <a class="cta" href="#sample">Get free drafts</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" style="padding:0">
+  <div class="watermark" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="eyebrow">For the UK high street</div>
+    <h1>Lift your business to its <span class="grad">fifth star.</span></h1>
+
+    <div class="sig" aria-label="Five stars, the fifth one lit">
+      <svg viewBox="0 0 20 20" class="star-out"><path class="star-out" d="M10 1.6l2.6 5.3 5.8.9-4.2 4.1 1 5.8L10 14.9 4.8 17.7l1-5.8L1.6 7.8l5.8-.9z"/></svg>
+      <svg viewBox="0 0 20 20" class="star-out"><path class="star-out" d="M10 1.6l2.6 5.3 5.8.9-4.2 4.1 1 5.8L10 14.9 4.8 17.7l1-5.8L1.6 7.8l5.8-.9z"/></svg>
+      <svg viewBox="0 0 20 20" class="star-out"><path class="star-out" d="M10 1.6l2.6 5.3 5.8.9-4.2 4.1 1 5.8L10 14.9 4.8 17.7l1-5.8L1.6 7.8l5.8-.9z"/></svg>
+      <svg viewBox="0 0 20 20" class="star-out"><path class="star-out" d="M10 1.6l2.6 5.3 5.8.9-4.2 4.1 1 5.8L10 14.9 4.8 17.7l1-5.8L1.6 7.8l5.8-.9z"/></svg>
+      <span class="star-glow"><span class="halo"></span>
+        <svg viewBox="0 0 20 20" class="star-on"><path class="star-on" d="M10 1.6l2.6 5.3 5.8.9-4.2 4.1 1 5.8L10 14.9 4.8 17.7l1-5.8L1.6 7.8l5.8-.9z"/></svg>
+      </span>
+    </div>
+
+    <p class="lede">Most local businesses never reply to their Google reviews — and quietly lose both new customers and their place in local search. <b>Fifth Star writes your replies in your own voice.</b> You read, tweak if you like, and post.</p>
+    <div class="hero-cta">
+      <a class="btn" href="#sample">Get 3 free drafts</a>
+      <a class="btn ghost" href="#how">See how it works</a>
+    </div>
+    <p class="micro">No account. No card. We'll draft replies for your own latest reviews — free to keep.</p>
+  </div>
+</section>
+
+<!-- FREE SAMPLE BAND -->
+<div class="band" id="sample">
+  <div class="wrap">
+    <div>
+      <h3>We'll write 3 reply drafts for your Google reviews — free.</h3>
+      <p>One each for a recent 5-star, a 3-star, and a 4-star — in a polite British tone that sounds like you, not a bot. Copy, paste, post.</p>
+    </div>
+    <a class="btn" href="mailto:hello@thefifthstar.co.uk?subject=Free%20review%20reply%20samples">Claim my free drafts</a>
+  </div>
+</div>
+
+<!-- HOW -->
+<section id="how">
+  <div class="wrap">
+    <div class="kicker">How it works</div>
+    <h2>Three steps. A minute a week.</h2>
+    <p class="sub">From an unanswered review to a reply you're happy to post.</p>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><h4>Hand over your reviews</h4><p>Link your Google Business Profile (read-only) or just paste your recent reviews. You keep the account.</p></div>
+      <div class="step"><div class="n">02</div><h4>We draft in your voice</h4><p>Replies written to sound like the person behind the counter — warm for praise, calm and straight for a complaint.</p></div>
+      <div class="step"><div class="n">03</div><h4>You post them</h4><p>Tweak a word if you like, then publish from your own profile. A short weekly note shows what customers are saying.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="kicker">Pricing</div>
+    <h2>Start free. Stay because it works.</h2>
+    <p class="sub">No contract. Pause any time — we earn the renewal by results.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tag">Free sample</div>
+        <div class="nm" style="margin-top:6px">Free drafts</div>
+        <div class="pr">£0</div>
+        <ul><li>3 reply drafts for your reviews</li><li>No account, no card</li><li>Yours to keep</li></ul>
+      </div>
+      <div class="tier feat">
+        <div class="tag">Most popular</div>
+        <div class="nm" style="margin-top:6px">Starter</div>
+        <div class="pr">£29<small> /mo</small></div>
+        <ul><li>Weekly reply drafts</li><li>New-review alerts</li><li>Your tone, remembered</li><li>Pause any time</li></ul>
+      </div>
+      <div class="tier">
+        <div class="tag">Growing venues</div>
+        <div class="nm" style="margin-top:6px">Pro</div>
+        <div class="pr">£79<small> /mo</small></div>
+        <ul><li>Self-serve dashboard</li><li>Weekly reputation note</li><li>Review-request links</li><li>Local search check</li></ul>
+      </div>
+      <div class="tier">
+        <div class="tag">Upsell</div>
+        <div class="nm" style="margin-top:6px">Website</div>
+        <div class="pr">£590<small> +</small></div>
+        <ul><li>A proper site, built for you</li><li>Fast, mobile, Google-friendly</li><li>No monthly hosting fee</li><li>Optional AI receptionist</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why">
+  <div class="wrap">
+    <div class="kicker">Why Fifth Star</div>
+    <h2>Built for the high street, not a dashboard.</h2>
+    <p class="sub">We're a small UK team that does one thing well.</p>
+    <div class="why">
+      <div><b>Your voice, not a bot</b><span>Replies read like the owner wrote them — because you still post them. No fake personas, no automation risk.</span></div>
+      <div><b>Local from day one</b><span>Tuned for British phrasing and how UK diners, clients and trades actually review.</span></div>
+      <div><b>Plain and private</b><span>Clear terms on any review data we touch. You decide what's processed. GDPR-aware by default.</span></div>
+      <div><b>No lock-in</b><span>Monthly plans you can pause. We keep you by doing the work, not by trapping you.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCAL NOTE -->
+<section class="local" style="padding:0">
+  <div class="wrap">
+    <div class="kicker">Starting in Manchester</div>
+    <h2>One city, done properly.</h2>
+    <p>We're starting where we can do the best work — Manchester independents first. When your neighbour's reply lands and a new customer walks in because of it, that's the whole idea. Then we take it to the next city, the same way.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Fifth Star — review replies for UK local businesses. Working brand; pricing and scope subject to launch tuning.</div>
+    <div class="comp"><b>Compliance note:</b> Reply drafts are generated for the business owner to review and publish from their own Google Business Profile. Fifth Star is a drafting tool, not an automated posting service, to respect Google's terms and avoid account risk. Drafts are AI-assisted and may be labelled as such where appropriate; review data is processed under a clear GDPR basis agreed at sign-up.</div>
+  </div>
+</footer>
+
+</body>
+</html>
