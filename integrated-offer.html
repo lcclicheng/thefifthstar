@@ -173,6 +173,16 @@ a{color:inherit;text-decoration:none}
 @media(max-width:900px){.tiers{grid-template-columns:repeat(2,1fr)}.tier.feat{transform:none}.tier.feat::after{top:-.7rem}}
 @media(max-width:480px){.tiers{grid-template-columns:1fr}}
 
+/* === Pay-when-happy pledge === */
+.pledge-pill{display:inline-flex;align-items:center;gap:.5rem;margin:1.1rem 0 0;padding:.5rem 1rem;border-radius:9999px;border:1px solid var(--gold);background:var(--glass);color:var(--ink);font-size:.9rem;font-weight:600}
+.pledge-pill .tick{color:var(--gold);font-weight:700}
+.pledge-banner{max-width:52rem;margin:2.2rem auto 0;padding:2rem 2.2rem;border-radius:1.2rem;background:var(--glass);border:1.5px solid var(--gold);text-align:center;position:relative}
+.pledge-banner .eyebrow{display:block;margin-bottom:.6rem}
+.pledge-banner h3{font-size:1.7rem;margin-bottom:.6rem}
+.pledge-banner p{color:var(--mute);font-size:1.05rem;max-width:40rem;margin:0 auto}
+.pledge-banner p strong{color:var(--ink)}
+@media(max-width:600px){.pledge-banner{padding:1.6rem 1.3rem}.pledge-banner h3{font-size:1.4rem}}
+
 /* === Why + diagram === */
 .why{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;max-width:60rem}
 .why .b{padding:1.5rem;border-radius:1rem}
@@ -264,6 +274,7 @@ a{color:inherit;text-decoration:none}
       <a class="btn btn-gold" href="mailto:hello@thefifthstar.co.uk?subject=My%20free%20review%20replies">Get my 3 free replies →</a>
       <a class="btn btn-ghost" href="#website">See the website offer</a>
     </div>
+    <div class="pledge-pill"><span class="tick">✓</span> I do the work first — you only pay once you're happy with it.</div>
     <!-- TRUST (Hero): stars + honest status + badges. Replace status copy once real ratings exist. -->
     <div class="trust-row">
       <div class="trust-top">
@@ -282,29 +293,26 @@ a{color:inherit;text-decoration:none}
   </div>
 </header>
 
-<!-- SOCIAL PROOF -->
-<!-- PLACEHOLDER: these 3 testimonials are structural placeholders. Swap with REAL client quotes (name + business + city, with permission) before going live. Do NOT publish fabricated praise. -->
+<!-- FOUNDING CLIENTS — honest zero-client framing. Replaces testimonials until REAL client quotes exist (name + business + city, with permission). Do NOT publish fabricated praise. -->
 <section class="section alt">
   <div class="wrap">
     <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
-      <span class="eyebrow">What owners say</span>
-      <h2>They sound like you.</h2>
+      <span class="eyebrow">Founding clients</span>
+      <h2>I'm taking on my first handful of businesses.</h2>
+      <p class="lead" style="margin:0 auto">No wall of five-star quotes yet — I'd rather be straight with you than fake it. Here's what coming on board early actually gets you.</p>
     </div>
     <div class="testi">
       <div class="testi-card glass-card reveal">
-        <span class="stars" aria-hidden="true">★★★★★</span>
-        <p class="quote">"Fast. Professional. Exactly how I'd reply if I had the time."</p>
-        <span class="who">— Independent salon, Leeds · placeholder</span>
+        <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:.55rem">You get me, personally</h3>
+        <p class="quote" style="font-style:normal">While the list is short, you're never a ticket in a queue. I read every review and write every reply myself — first-name terms, same-day answers.</p>
       </div>
       <div class="testi-card glass-card reveal">
-        <span class="stars" aria-hidden="true">★★★★★</span>
-        <p class="quote">"Took the scary two-star review off my plate in minutes. I'd been avoiding it for a month."</p>
-        <span class="who">— Café owner, Glasgow · placeholder</span>
+        <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:.55rem">Founding price, kept for good</h3>
+        <p class="quote" style="font-style:normal">Come on early and you lock in today's rate — for good. As the work fills up the price will move; yours won't.</p>
       </div>
       <div class="testi-card glass-card reveal">
-        <span class="stars" aria-hidden="true">★★★★★</span>
-        <p class="quote">"Now my best review sits on the homepage. Customers actually mention it to me."</p>
-        <span class="who">— Trades, Liverpool · placeholder</span>
+        <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:.55rem">Your story, told properly</h3>
+        <p class="quote" style="font-style:normal">With your blessing, you become one of the first names on this page — a real result from a real business, not a stock quote.</p>
       </div>
     </div>
   </div>
@@ -440,14 +448,13 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
-<!-- CASE STUDY -->
-<!-- PLACEHOLDER: illustrative example of the closed loop. Replace the review/reply text with a REAL anonymised client example before launch. -->
+<!-- HOW IT WORKS — illustrative worked example (not a real client yet). Replace with a REAL anonymised client story once one exists. Honest framing: labelled as a worked example, not a past result. -->
 <section class="section alt">
   <div class="wrap">
     <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
-      <span class="eyebrow">One recent example</span>
+      <span class="eyebrow">How it works</span>
       <h2>From a review, to a reply, to the homepage.</h2>
-      <p class="lead" style="margin:0 auto">How the loop actually closes — illustrated. (Swap in a real client story when you have one.)</p>
+      <p class="lead" style="margin:0 auto">A worked example — this is exactly what the loop looks like, step by step.</p>
     </div>
     <div class="case">
       <div class="stepc glass-card reveal">
@@ -534,7 +541,7 @@ a{color:inherit;text-decoration:none}
       <div class="tier feat reveal">
         <div class="t-name">Website · Build</div>
         <div class="t-price">£590</div>
-        <ul><li>Static site</li><li>Free hosting</li><li>First month edits</li></ul>
+        <ul><li>Static site</li><li>Free hosting</li><li>First month edits</li><li>Pay only when you're happy</li></ul>
         <div class="t-cta">One-off · the payoff</div>
       </div>
       <div class="tier glass-card reveal">
@@ -545,6 +552,13 @@ a{color:inherit;text-decoration:none}
       </div>
     </div>
     <p class="lead reveal" style="text-align:center;margin:1.8rem auto 0;max-width:40rem">First year with a site: <strong style="color:var(--ink)">£590 + £390 = £980</strong> — less than one freelancer invoice, and the reputation side pays for itself in kept customers.</p>
+
+    <!-- PAY-WHEN-HAPPY PLEDGE (prominent) -->
+    <div class="pledge-banner reveal">
+      <span class="eyebrow">No risk, no catch</span>
+      <h3>You don't pay until you're happy.</h3>
+      <p>Here's how I work: <strong>I build your site first, then show it to you.</strong> Only when you look at it and think "yes, that's my business" do we talk about the £590. If it's not right, you owe me nothing — and I'll take the preview down, no hard feelings. The free review replies come first regardless.</p>
+    </div>
 
     <!-- INLINE CTA after pricing -->
     <div class="cta-band glass-card reveal">
@@ -590,9 +604,8 @@ a{color:inherit;text-decoration:none}
 <section class="section alt">
   <div class="wrap">
     <div class="founder glass-card reveal">
-      <!-- Replace the monogram with a real photo (e.g. <img src="ethan.jpg" alt="Ethan Li">) when available. -->
-      <div class="ava" aria-hidden="true">
-        <span class="sig-mark"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg></span>
+      <div class="ava">
+        <img src="ethan.jpg" alt="Ethan Li" style="width:100%;height:100%;object-fit:cover;border-radius:9999px">
       </div>
       <div>
         <h3>Hi, I'm Ethan.</h3>
@@ -640,7 +653,7 @@ a{color:inherit;text-decoration:none}
       <span class="g"><span class="tick">✓</span> No signup</span>
       <span class="g"><span class="tick">✓</span> No credit card</span>
       <span class="g"><span class="tick">✓</span> No obligation</span>
-      <span class="g"><span class="tick">✓</span> Replies within 48 hours</span>
+      <span class="g"><span class="tick">✓</span> Site built first — pay only when you're happy</span>
     </div>
   </div>
 </section>
