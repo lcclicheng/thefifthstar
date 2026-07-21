@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FifthStar — Reputation & Website, one partner</title>
+<meta name="description" content="Turn your Google reviews into a website that wins the next customer. Free review replies first, then a fast Google-friendly site. One partner, one monthly relationship." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<style>
+/* === Theme (adaptive: dark default, light via prefers-color-scheme) === */
+:root{
+  --bg:#0c0a08;
+  --ink:#f2ece1;
+  --mute:#a89e8c;
+  --gold:#d8b36a;
+  --gold-soft:color-mix(in srgb,var(--gold) 40%,transparent);
+  --line:color-mix(in srgb,var(--gold) 16%,transparent);
+  --glass:color-mix(in srgb,var(--gold) 6%,transparent);
+  --maxw:68rem;
+}
+@media (prefers-color-scheme:light){
+  :root{
+    --bg:#faf8f3;
+    --ink:#1f1a12;
+    --mute:#6b6354;
+    --gold:#9a7416;
+    --gold-soft:color-mix(in srgb,var(--gold) 22%,transparent);
+    --line:color-mix(in srgb,var(--gold) 28%,transparent);
+    --glass:color-mix(in srgb,var(--gold) 9%,transparent);
+  }
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:"Inter",system-ui,sans-serif;line-height:1.7;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+::selection{background:color-mix(in srgb,var(--gold) 32%,transparent);color:var(--ink)}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:700;line-height:1.08;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+.measure{max-width:44rem}
+.measure-lg{max-width:56rem}
+.lead{font-size:1.18rem;line-height:1.6;color:var(--mute)}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.5rem}
+.eyebrow{font-family:"Inter",sans-serif;font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;color:var(--gold)}
+
+/* === Shared visual techniques (from generate.mjs VISUAL_CSS) === */
+.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.particle{position:absolute;width:2px;height:2px;border-radius:9999px;background:var(--gold);opacity:0;animation:drift 20s linear infinite}
+.particle:nth-child(1){left:10%;top:18%;animation-delay:0s;animation-duration:17s}
+.particle:nth-child(2){left:24%;top:62%;animation-delay:3s;animation-duration:21s}
+.particle:nth-child(3){left:38%;top:30%;animation-delay:5s;animation-duration:16s}
+.particle:nth-child(4){left:55%;top:72%;animation-delay:7s;animation-duration:23s}
+.particle:nth-child(5){left:70%;top:14%;animation-delay:2s;animation-duration:19s}
+.particle:nth-child(6){left:82%;top:52%;animation-delay:6s;animation-duration:20s}
+.particle:nth-child(7){left:14%;top:82%;animation-delay:9s;animation-duration:18s}
+.particle:nth-child(8){left:60%;top:40%;animation-delay:4s;animation-duration:22s}
+.particle:nth-child(9){left:34%;top:8%;animation-delay:8s;animation-duration:15s}
+.particle:nth-child(10){left:90%;top:24%;animation-delay:1s;animation-duration:24s}
+@keyframes drift{0%{opacity:0;transform:translateY(0) translateX(0)}10%{opacity:.55}90%{opacity:.55}100%{opacity:0;transform:translateY(-90vh) translateX(40px)}}
+.breathe-ring{position:absolute;width:22rem;height:22rem;border-radius:9999px;border:1px solid var(--gold-soft);animation:breathe 6s ease-in-out infinite}
+.breathe-ring.delay{animation-delay:3s}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.35);opacity:.1}}
+.gradient-text{background:linear-gradient(100deg,var(--ink),var(--gold),var(--ink));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shiny 6s linear infinite}
+@keyframes shiny{0%{background-position:-200% center}100%{background-position:200% center}}
+.glass-card{background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:1rem}
+.sig-mark{display:inline-flex;color:var(--gold)}
+.sig-mark svg{width:100%;height:100%;display:block}
+.sig-watermark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.sig-wm-motif{width:min(70vw,34rem);height:min(70vw,34rem);color:var(--gold);opacity:.05}
+
+/* === Layout === */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:4rem}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:"Playfair Display",serif;font-weight:700;font-size:1.15rem}
+.brand .sig-mark{width:1.5rem;height:1.5rem}
+.nav-cta{font-size:.85rem;font-weight:600;color:var(--bg);background:var(--gold);padding:.5rem .95rem;border-radius:.6rem;letter-spacing:.01em}
+.nav-cta:hover{filter:brightness(1.08)}
+
+.hero{position:relative;overflow:hidden;padding:5.5rem 0 4.5rem}
+.hero .breathe-ring{left:50%;top:30%;transform:translateX(-50%)}
+.hero-copy{position:relative;z-index:2;max-width:54rem}
+.hero h1{font-size:clamp(2.3rem,5.4vw,4rem);margin:1.1rem 0 1.4rem}
+.hero .lead{max-width:40rem}
+.cta-row{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem;padding:.85rem 1.4rem;border-radius:.7rem;transition:filter .2s,transform .2s}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn-gold{background:var(--gold);color:var(--bg)}
+.btn-ghost{border:1px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--gold)}
+
+.section{padding:4.5rem 0;position:relative}
+.section.alt{background:color-mix(in srgb,var(--gold) 4%,transparent)}
+.sec-head{max-width:46rem;margin-bottom:2.6rem}
+.sec-head h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin:.8rem 0 .9rem}
+
+/* two-column leaks */
+.leaks{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.leak{padding:1.8rem;border-radius:1rem}
+.leak h3{font-size:1.25rem;margin-bottom:.6rem;color:var(--gold)}
+.leak p{color:var(--mute)}
+@media(max-width:720px){.leaks{grid-template-columns:1fr}}
+
+/* ladder */
+.ladder{display:flex;flex-direction:column;gap:0;max-width:50rem;margin:0 auto}
+.step{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;padding:1.5rem 0;position:relative}
+.step:not(:last-child)::before{content:'';position:absolute;left:1.05rem;top:3.4rem;bottom:-1.4rem;width:1px;background:var(--line)}
+.step .node{width:2.2rem;height:2.2rem;border-radius:9999px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--gold);background:var(--bg);z-index:1;flex:none}
+.step .price{font-family:"Playfair Display",serif;font-size:1.35rem;font-weight:700;color:var(--gold)}
+.step h3{font-size:1.15rem;margin:.1rem 0 .35rem}
+.step p{color:var(--mute);max-width:34rem}
+.tag{display:inline-block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--gold);border:1px solid var(--line);padding:.2rem .55rem;border-radius:.4rem;margin-bottom:.5rem}
+
+/* pillars */
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.pillar{padding:2rem;border-radius:1.1rem}
+.pillar h3{font-size:1.4rem;margin-bottom:.3rem}
+.pillar .sub{color:var(--gold);font-weight:600;font-size:.85rem;letter-spacing:.04em;margin-bottom:1.1rem}
+.pillar ul{list-style:none;display:flex;flex-direction:column;gap:.7rem}
+.pillar li{display:flex;gap:.7rem;color:var(--mute);font-size:.96rem}
+.pillar li::before{content:'';flex:none;width:.55rem;height:.55rem;border-radius:9999px;background:var(--gold);margin-top:.55rem;opacity:.8}
+@media(max-width:720px){.pillars{grid-template-columns:1fr}}
+.integ-note{margin-top:1.6rem;padding:1.4rem 1.6rem;border-left:3px solid var(--gold);background:var(--glass);border-radius:.6rem;color:var(--mute)}
+.integ-note strong{color:var(--ink)}
+
+/* pricing */
+.tiers{display:grid;grid-template-columns:repeat(5,1fr);gap:.9rem}
+.tier{padding:1.4rem 1.1rem;border-radius:1rem;display:flex;flex-direction:column}
+.tier.feat{background:var(--glass);border-color:var(--gold)}
+.tier .t-name{font-weight:600;font-size:.9rem;letter-spacing:.04em}
+.tier .t-price{font-family:"Playfair Display",serif;font-size:1.7rem;font-weight:700;color:var(--gold);margin:.4rem 0}
+.tier .t-price small{font-size:.8rem;color:var(--mute);font-family:"Inter",sans-serif;font-weight:400}
+.tier ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin:.6rem 0 1rem;font-size:.85rem;color:var(--mute)}
+.tier li::before{content:'·';color:var(--gold);margin-right:.4rem}
+.tier .t-cta{margin-top:auto;font-size:.82rem;font-weight:600;color:var(--gold)}
+@media(max-width:900px){.tiers{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.tiers{grid-template-columns:1fr}}
+
+/* why */
+.why{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;max-width:60rem}
+.why .b{padding:1.5rem;border-radius:1rem}
+.why h3{font-size:1.1rem;color:var(--gold);margin-bottom:.4rem}
+.why p{color:var(--mute);font-size:.95rem}
+@media(max-width:720px){.why{grid-template-columns:1fr}}
+
+/* faq */
+.faq{max-width:52rem;display:flex;flex-direction:column;gap:.8rem}
+.q{padding:1.2rem 1.4rem;border-radius:.9rem}
+.q h3{font-size:1.05rem;margin-bottom:.35rem}
+.q p{color:var(--mute);font-size:.94rem}
+
+/* final cta */
+.final{position:relative;overflow:hidden;text-align:center;padding:5rem 0}
+.final h2{font-size:clamp(1.9rem,4vw,3rem);max-width:30rem;margin:0 auto 1rem}
+.final .lead{margin:0 auto 2rem;max-width:34rem}
+.foot{padding:2.4rem 0;border-top:1px solid var(--line);color:var(--mute);font-size:.85rem;text-align:center}
+.foot a{color:var(--gold)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .particle,.breathe-ring,.gradient-text,.reveal{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap nav-in">
+    <div class="brand">
+      <span class="sig-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg>
+      </span>
+      FifthStar
+    </div>
+    <a class="nav-cta" href="#start">Get free replies</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="particles" aria-hidden="true">
+    <span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span>
+    <span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span><span class="particle"></span>
+  </div>
+  <div class="breathe-ring" aria-hidden="true"></div>
+  <div class="breathe-ring delay" aria-hidden="true" style="left:auto;right:8%;top:18%"></div>
+  <div class="sig-watermark" aria-hidden="true"><span class="sig-wm-motif"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg></span></div>
+  <div class="wrap hero-copy">
+    <span class="eyebrow">Reputation &amp; Website — one partner</span>
+    <h1>Turn your Google reviews into a <span class="gradient-text">website that wins the next customer</span>.</h1>
+    <p class="lead">Most local businesses lose customers in two quiet places: reviews nobody replies to, and a site that doesn't show up. We fix both — starting with your reputation, for free, then building the site that carries it.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="#start">Get my free review replies →</a>
+      <a class="btn btn-ghost" href="#website">See the website offer</a>
+    </div>
+  </div>
+</header>
+
+<!-- TWO LEAKS -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The quiet leak</span>
+      <h2>You're losing customers in two places at once.</h2>
+      <p class="lead">They look connected to you. To a customer on Google, they're one decision.</p>
+    </div>
+    <div class="leaks">
+      <div class="leak glass-card reveal">
+        <h3>1 · The unreplied review</h3>
+        <p>Every review left hanging is a silent "we don't care" to the next person browsing. The bad one stings most — and it's the one most owners avoid.</p>
+      </div>
+      <div class="leak glass-card reveal">
+        <h3>2 · The site that doesn't close</h3>
+        <p>A slow, missing, or dated website loses the very click your good reviews just earned. Reputation brings them; the site is supposed to catch them.</p>
+      </div>
+    </div>
+    <p class="lead reveal" style="margin-top:1.8rem;max-width:46rem">Here's the thing: they're the same story. <strong style="color:var(--ink)">Reputation earns the click. The site closes it.</strong> Most vendors sell you one and forget the other. We run both.</p>
+  </div>
+</section>
+
+<!-- THE LADDER -->
+<section class="section" id="start">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">How it works</span>
+      <h2>Start free. Pay only when it's working.</h2>
+      <p class="lead" style="margin:0 auto">No cold pitch for a £590 site. We earn the right to build it first.</p>
+    </div>
+    <div class="ladder">
+      <div class="step reveal">
+        <div class="node">0</div>
+        <div>
+          <span class="tag">Free · no signup</span>
+          <div class="price">£0</div>
+          <h3>Three review replies, written for you</h3>
+          <p>We read your latest Google reviews — including the awkward one — and hand you three ready-to-paste replies in a polite British tone. You copy, you post, from your own account.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="node">1</div>
+        <div>
+          <span class="tag">Starter</span>
+          <div class="price">£29<small> / month</small></div>
+          <h3>Every new review gets a reply draft</h3>
+          <p>New review lands → you get a draft + an alert the same day. You stay in control; we just kill the blank-page dread. Cancels anytime.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="node">2</div>
+        <div>
+          <span class="tag">Pro</span>
+          <div class="price">£79<small> / month</small></div>
+          <h3>The reputation engine</h3>
+          <p>A simple dashboard, a weekly report ("what customers praised, what they moaned about"), review-request links for happy customers, and a local SEO check-up.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="node">3</div>
+        <div>
+          <span class="tag">Website · one-off</span>
+          <div class="price">£590</div>
+          <h3>A fast, Google-friendly website</h3>
+          <p>Once you trust us (and we've seen your customers), we build a clean static site that loads on a phone and shows up on Google. First month of edits is on us — tell us what to change, we change it.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="node">4</div>
+        <div>
+          <span class="tag">Care · yearly</span>
+          <div class="price">£390<small> / year</small></div>
+          <h3>We keep it alive</h3>
+          <p>Uptime monitoring, priority fixes, small changes included, and a hand with domain renewal. By now your reputation and your site are one tidy relationship.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="section alt" id="website">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Two pillars, one relationship</span>
+      <h2>What each side actually includes.</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar glass-card reveal">
+        <h3>Your reputation</h3>
+        <div class="sub">FifthStar</div>
+        <ul>
+          <li>Free sample: 3 hand-written review replies</li>
+          <li>Starter: every new review → draft + alert</li>
+          <li>Pro: dashboard, weekly report, review links, SEO check</li>
+          <li>Replies drafted in your tone; you post from your account</li>
+          <li>GDPR-aware — only public review text is used</li>
+        </ul>
+      </div>
+      <div class="pillar glass-card reveal">
+        <h3>Your website</h3>
+        <div class="sub">Build (£590) + Care (£390/yr)</div>
+        <ul>
+          <li>A clean static site, built on a proven template engine</li>
+          <li>Hosted free on GitHub Pages — no monthly server bill</li>
+          <li>SEO basics: sitemap, og tags, privacy page</li>
+          <li>A package: welcome email, how-to card, invoice</li>
+          <li>First month of edits included; Care covers the rest</li>
+        </ul>
+      </div>
+    </div>
+    <div class="integ-note reveal">
+      <strong>The bit most people miss:</strong> your best review becomes a homepage quote. Your site quietly asks happy customers for the next review. One person runs both — so the voice stays the same from the reply to the homepage.
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">Pricing</span>
+      <h2>One ladder, no surprises.</h2>
+    </div>
+    <div class="tiers">
+      <div class="tier glass-card reveal">
+        <div class="t-name">Free sample</div>
+        <div class="t-price">£0</div>
+        <ul><li>3 review replies</li><li>No card</li><li>No signup</li></ul>
+        <div class="t-cta">Start here →</div>
+      </div>
+      <div class="tier glass-card reveal">
+        <div class="t-name">Starter</div>
+        <div class="t-price">£29<small>/mo</small></div>
+        <ul><li>Reply drafts</li><li>New-review alerts</li><li>Cancel anytime</li></ul>
+        <div class="t-cta">Most popular entry</div>
+      </div>
+      <div class="tier glass-card reveal">
+        <div class="t-name">Pro</div>
+        <div class="t-price">£79<small>/mo</small></div>
+        <ul><li>Dashboard</li><li>Weekly report</li><li>Review links + SEO</li></ul>
+        <div class="t-cta">For busy owners</div>
+      </div>
+      <div class="tier feat reveal">
+        <div class="t-name">Website · Build</div>
+        <div class="t-price">£590</div>
+        <ul><li>Static site</li><li>Free hosting</li><li>First month edits</li></ul>
+        <div class="t-cta">One-off</div>
+      </div>
+      <div class="tier glass-card reveal">
+        <div class="t-name">Care</div>
+        <div class="t-price">£390<small>/yr</small></div>
+        <ul><li>Monitoring</li><li>Priority fixes</li><li>Small changes</li></ul>
+        <div class="t-cta">Yearly</div>
+      </div>
+    </div>
+    <p class="lead reveal" style="text-align:center;margin:1.8rem auto 0;max-width:40rem">First year with a site: <strong style="color:var(--ink)">£590 + £390 = £980</strong> — less than one freelancer invoice, and the reputation side pays for itself in kept customers.</p>
+  </div>
+</section>
+
+<!-- WHY ONE PARTNER -->
+<section class="section alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why one partner, not two</span>
+      <h2>Cheaper, calmer, and it actually compounds.</h2>
+    </div>
+    <div class="why">
+      <div class="b glass-card reveal"><h3>No agency markup</h3><p>A rep manager and a web agency would each bill you. One person doing both means you pay for the work, not the overhead.</p></div>
+      <div class="b glass-card reveal"><h3>One consistent voice</h3><p>The tone in your review replies matches the tone on your homepage. Customers feel one business, not three vendors.</p></div>
+      <div class="b glass-card reveal"><h3>They reinforce each other</h3><p>Good reviews feed the site; the site collects more reviews. Each side makes the other stronger over time.</p></div>
+      <div class="b glass-card reveal"><h3>One name to call</h3><p>Ethan. Not a ticket queue. You send a message, the same person who wrote your replies fixes your site.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Straight answers</span>
+      <h2>Things owners ask first.</h2>
+    </div>
+    <div class="faq">
+      <div class="q glass-card reveal"><h3>Do you post replies for me?</h3><p>No. Replies go from your own Google account — that's both the Google rule and the safe way. We write them; you approve with one paste.</p></div>
+      <div class="q glass-card reveal"><h3>Is it really free to start?</h3><p>Yes. Three replies, no card, no account. If it's useful, we talk about the next step — only when you're ready.</p></div>
+      <div class="q glass-card reveal"><h3>What if I only want the website?</h3><p>Then A + B stands on its own. The reputation side is the warm-up, not a requirement — but most owners find it's the part they didn't know they needed.</p></div>
+      <div class="q glass-card reveal"><h3>Who actually writes the replies?</h3><p>An AI draft in your tone, written by someone who's read your reviews. You stay in control and can tweak any line before posting.</p></div>
+      <div class="q glass-card reveal"><h3>What about my data?</h3><p>We only use review text that's already public on Google. You stay in control of your account the whole time. GDPR-aware by design.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="sig-watermark" aria-hidden="true"><span class="sig-wm-motif"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg></span></div>
+  <div class="wrap reveal" style="position:relative;z-index:2">
+    <span class="eyebrow">Start small</span>
+    <h2>Begin with your free replies. The site can wait.</h2>
+    <p class="lead">Send me your Google Business Profile and I'll return three replies within a day or two — no cost, no catch.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn btn-gold" href="mailto:hello@thefifthstar.co.uk?subject=My%20free%20review%20replies">Email me your reviews →</a>
+      <a class="btn btn-ghost" href="mailto:hello@thefifthstar.co.uk?subject=Website%20enquiry">Ask about a site</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    FifthStar — reputation &amp; website, one partner. Questions? <a href="mailto:hello@thefifthstar.co.uk">hello@thefifthstar.co.uk</a><br/>
+    Run by Ethan Li · Lift your business to its fifth star.
+  </div>
+</footer>
+
+<script>
+(function(){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function(e){e.classList.add('in')}); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, {threshold:0.12});
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+</body>
+</html>
