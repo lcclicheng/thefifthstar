@@ -25,7 +25,7 @@
     --bg:#faf8f3;
     --ink:#1f1a12;
     --mute:#6b6354;
-    --gold:#9a7416;
+    --gold:#8a6712;
     --gold-soft:color-mix(in srgb,var(--gold) 22%,transparent);
     --line:color-mix(in srgb,var(--gold) 28%,transparent);
     --glass:color-mix(in srgb,var(--gold) 9%,transparent);
@@ -78,7 +78,7 @@ a{color:inherit;text-decoration:none}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:4rem}
 .brand{display:flex;align-items:center;gap:.6rem;font-family:"Playfair Display",serif;font-weight:700;font-size:1.15rem}
 .brand .sig-mark{width:1.5rem;height:1.5rem}
-.nav-cta{font-size:.85rem;font-weight:600;color:var(--bg);background:var(--gold);padding:.5rem .95rem;border-radius:.6rem;letter-spacing:.01em}
+.nav-cta{font-size:.85rem;font-weight:600;color:var(--bg);background:var(--gold);padding:.5rem .95rem;border-radius:.6rem;letter-spacing:.01em;display:inline-flex;align-items:center;min-height:2.75rem}
 .nav-cta:hover{filter:brightness(1.08)}
 
 .hero{position:relative;overflow:hidden;padding:5.5rem 0 4.5rem}
@@ -191,7 +191,7 @@ a{color:inherit;text-decoration:none}
 @media(max-width:720px){.why{grid-template-columns:1fr}}
 .diagram{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;max-width:64rem;margin:2.4rem auto 0}
 .diagram .old{padding:1.8rem;border-radius:1.1rem}
-.diagram .old h4{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:1rem;font-family:"Inter",sans-serif;font-weight:600}
+.diagram .old h3{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-bottom:1rem;font-family:"Inter",sans-serif;font-weight:600}
 .diagram .old .row{padding:.75rem 0;border-bottom:1px solid var(--line);color:var(--mute);font-size:.92rem}
 .diagram .old .row:last-child{border-bottom:0}
 .diagram .new{padding:1.8rem;border-radius:1.1rem;background:var(--glass);border:1.5px solid var(--gold)}
@@ -251,8 +251,25 @@ a{color:inherit;text-decoration:none}
 .cap-field input:focus{outline:none;border-color:var(--gold)}
 .cap-field input::placeholder{color:var(--mute)}
 .cap-submit{margin-top:.3rem;justify-content:center}
-.cap-note{font-size:.78rem;color:var(--mute);text-align:center;margin-top:.2rem}
+  .cap-note{font-size:.78rem;color:var(--mute);text-align:center;margin-top:.2rem}
+
+  /* GSAP hero pre-paint hide: only applied when motion is allowed (class set by an inline
+     head script BEFORE paint). End state is forced via .fromTo autoAlpha:1, so content is
+     never left hidden — if JS/GSAP is missing or disabled, the class is never added and the
+     hero stays fully visible. */
+  html.gsap-hero .hero .eyebrow,
+  html.gsap-hero .hero h1,
+  html.gsap-hero .hero .lead,
+  html.gsap-hero .hero .cta-row,
+  html.gsap-hero .hero .trust-top,
+  html.gsap-hero .hero .badges{opacity:0}
 </style>
+<script>
+  /* Set the pre-paint hero-hide class ONLY when motion is allowed. Runs before <body> paints,
+     so there is no flash of fully-visible-then-hidden content. If JS is off, this never runs
+     and the hero is visible (progressive enhancement). */
+  try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('gsap-hero'); } catch (e) {}
+</script>
 </head>
 <body>
 
@@ -692,7 +709,7 @@ a{color:inherit;text-decoration:none}
     <!-- DIAGRAM: the usual way vs FifthStar -->
     <div class="diagram">
       <div class="old glass-card reveal">
-        <h4>The usual way — three vendors</h4>
+        <h3>The usual way — three vendors</h3>
         <div class="row">Agency A → writes your review replies</div>
         <div class="row">Agency B → builds your website</div>
         <div class="row">Agency C → runs your local SEO</div>
@@ -806,6 +823,55 @@ a{color:inherit;text-decoration:none}
     window.location.href = 'mailto:hello@thefifthstar.site?subject='
       + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   });
+})();
+</script>
+
+<!-- GSAP motion (additive to the .reveal system; respects reduced-motion; never hides content if it fails) -->
+<!-- GSAP self-hosted (vendored into ./vendor/): zero third-party request, GDPR-clean, no CDN downtime risk, still zero-server. -->
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/SplitText.min.js"></script>
+<script>
+(function(){
+  var root = document.documentElement;
+  function bail(){ root.classList.remove('gsap-hero'); }   // any non-animated exit -> reveal hero
+  if (!window.gsap || !window.ScrollTrigger) { bail(); return; }   // GSAP missing -> leave content visible
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { bail(); return; }                            // honour OS setting; .reveal CSS keeps things visible
+  try {
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+    var EASE = "power3.out";
+    // Hero entrance — explicit fromTo so the pre-paint (CSS) hidden state always resolves to visible
+    var tl = gsap.timeline({ defaults: { ease: EASE, duration: 0.9 }, onComplete: bail });
+    tl.fromTo(".hero .eyebrow",   { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 })
+      .fromTo(".hero h1",         { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.5")
+      .fromTo(".hero .lead",      { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.6")
+      .fromTo(".hero .cta-row",   { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.6")
+      .fromTo(".hero .trust-top", { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.7")
+      .fromTo(".hero .badges",    { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.7");
+    // SplitText on section headlines (h2 carries no .reveal, so no property clash with parent fade)
+    SplitText.create("section h2", {
+      type: "words,chars", mask: "chars", autoSplit: true,
+      onSplit: function (self) {
+        return gsap.from(self.chars, {
+          yPercent: 110, opacity: 0, duration: 0.6, ease: EASE, stagger: 0.012,
+          scrollTrigger: { trigger: self.element, start: "top 90%" }
+        });
+      }
+    });
+    // Decorative: gentle parallax drift on the signature watermarks (additive only, no FOUC)
+    gsap.utils.toArray(".sig-watermark").forEach(function(wm){
+      var trig = wm.closest("section, header, .final") || wm;
+      gsap.to(wm, { yPercent: -18, opacity: 0.09, ease: "none",
+        scrollTrigger: { trigger: trig, start: "top bottom", end: "bottom top", scrub: true } });
+    });
+    // Refresh after layout settles AND after web fonts load (fixes SplitText reflow jump on h2)
+    window.addEventListener("load", function(){ ScrollTrigger.refresh(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ ScrollTrigger.refresh(); });
+  } catch (e) {
+    gsap.set("*", { clearProps: "all" });   // any failure -> strip inline styles back to CSS
+    bail();                                  // and reveal the hero no matter what
+  }
 })();
 </script>
 </body>

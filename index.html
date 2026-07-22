@@ -251,8 +251,25 @@ a{color:inherit;text-decoration:none}
 .cap-field input:focus{outline:none;border-color:var(--gold)}
 .cap-field input::placeholder{color:var(--mute)}
 .cap-submit{margin-top:.3rem;justify-content:center}
-.cap-note{font-size:.78rem;color:var(--mute);text-align:center;margin-top:.2rem}
+  .cap-note{font-size:.78rem;color:var(--mute);text-align:center;margin-top:.2rem}
+
+  /* GSAP hero pre-paint hide: only applied when motion is allowed (class set by an inline
+     head script BEFORE paint). End state is forced via .fromTo autoAlpha:1, so content is
+     never left hidden — if JS/GSAP is missing or disabled, the class is never added and the
+     hero stays fully visible. */
+  html.gsap-hero .hero .eyebrow,
+  html.gsap-hero .hero h1,
+  html.gsap-hero .hero .lead,
+  html.gsap-hero .hero .cta-row,
+  html.gsap-hero .hero .trust-top,
+  html.gsap-hero .hero .badges{opacity:0}
 </style>
+<script>
+  /* Set the pre-paint hero-hide class ONLY when motion is allowed. Runs before <body> paints,
+     so there is no flash of fully-visible-then-hidden content. If JS is off, this never runs
+     and the hero is visible (progressive enhancement). */
+  try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('gsap-hero'); } catch (e) {}
+</script>
 </head>
 <body>
 
@@ -810,38 +827,50 @@ a{color:inherit;text-decoration:none}
 </script>
 
 <!-- GSAP motion (additive to the .reveal system; respects reduced-motion; never hides content if it fails) -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<!-- GSAP self-hosted (vendored into ./vendor/): zero third-party request, GDPR-clean, no CDN downtime risk, still zero-server. -->
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/SplitText.min.js"></script>
 <script>
 (function(){
-  if (!window.gsap || !window.ScrollTrigger) return;          // CDN failed -> leave content visible
+  var root = document.documentElement;
+  function bail(){ root.classList.remove('gsap-hero'); }   // any non-animated exit -> reveal hero
+  if (!window.gsap || !window.ScrollTrigger) { bail(); return; }   // GSAP missing -> leave content visible
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return;                                          // honour OS setting; .reveal CSS keeps things visible
+  if (reduce) { bail(); return; }                            // honour OS setting; .reveal CSS keeps things visible
   try {
     gsap.registerPlugin(ScrollTrigger, SplitText);
     var EASE = "power3.out";
-    // Hero entrance — hero is not part of the .reveal system, so this is conflict-free
-    var tl = gsap.timeline({ defaults: { ease: EASE, duration: 0.9 } });
-    tl.from(".hero .eyebrow", { y: 20, autoAlpha: 0 })
-      .from(".hero h1", { y: 40, autoAlpha: 0 }, "-=0.5")
-      .from(".hero .lead", { y: 20, autoAlpha: 0 }, "-=0.6")
-      .from(".hero .cta-row", { y: 20, autoAlpha: 0 }, "-=0.6")
-      .from(".hero .trust-top", { y: 20, autoAlpha: 0 }, "-=0.7")
-      .from(".hero .badges", { y: 20, autoAlpha: 0 }, "-=0.7");
-    // SplitText on section headlines (h2 itself carries no .reveal, so no property clash with parent fade)
+    // Hero entrance — explicit fromTo so the pre-paint (CSS) hidden state always resolves to visible
+    var tl = gsap.timeline({ defaults: { ease: EASE, duration: 0.9 }, onComplete: bail });
+    tl.fromTo(".hero .eyebrow",   { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 })
+      .fromTo(".hero h1",         { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.5")
+      .fromTo(".hero .lead",      { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.6")
+      .fromTo(".hero .cta-row",   { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.6")
+      .fromTo(".hero .trust-top", { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.7")
+      .fromTo(".hero .badges",    { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.7");
+    // SplitText on section headlines (h2 carries no .reveal, so no property clash with parent fade)
     SplitText.create("section h2", {
       type: "words,chars", mask: "chars", autoSplit: true,
       onSplit: function (self) {
         return gsap.from(self.chars, {
           yPercent: 110, opacity: 0, duration: 0.6, ease: EASE, stagger: 0.012,
-          scrollTrigger: { trigger: self.element, start: "top 85%" }
+          scrollTrigger: { trigger: self.element, start: "top 90%" }
         });
       }
     });
+    // Decorative: gentle parallax drift on the signature watermarks (additive only, no FOUC)
+    gsap.utils.toArray(".sig-watermark").forEach(function(wm){
+      var trig = wm.closest("section, header, .final") || wm;
+      gsap.to(wm, { yPercent: -18, opacity: 0.09, ease: "none",
+        scrollTrigger: { trigger: trig, start: "top bottom", end: "bottom top", scrub: true } });
+    });
+    // Refresh after layout settles AND after web fonts load (fixes SplitText reflow jump on h2)
     window.addEventListener("load", function(){ ScrollTrigger.refresh(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ ScrollTrigger.refresh(); });
   } catch (e) {
-    gsap.set("*", { clearProps: "all" });                      // any failure -> show everything
+    gsap.set("*", { clearProps: "all" });   // any failure -> strip inline styles back to CSS
+    bail();                                  // and reveal the hero no matter what
   }
 })();
 </script>
