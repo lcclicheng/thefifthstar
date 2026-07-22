@@ -270,6 +270,10 @@ a{color:inherit;text-decoration:none}
      and the hero is visible (progressive enhancement). */
   try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('gsap-hero'); } catch (e) {}
 </script>
+<noscript><style>
+  /* No JS: blocks that animate in via .reveal must still be fully visible */
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+</style></noscript>
 </head>
 <body>
 
@@ -675,6 +679,23 @@ a{color:inherit;text-decoration:none}
       </div>
     </div>
     <p class="lead reveal" style="text-align:center;margin:1.8rem auto 0;max-width:40rem">First year with a site: <strong style="color:var(--ink)">£590 + £390 = £980</strong> — less than one freelancer invoice, and the reputation side pays for itself in kept customers.</p>
+
+    <!-- HOW TO PAY -->
+    <div class="pay-note glass-card reveal" style="max-width:46rem;margin:1.8rem auto 0;padding:1.8rem 2rem">
+      <div class="sec-head" style="text-align:center;margin:0 0 .9rem">
+        <span class="eyebrow">How you pay</span>
+        <h2 style="font-size:1.6rem">Simple, secure, no surprises.</h2>
+      </div>
+      <p class="lead" style="text-align:center;margin:0 auto;max-width:40rem">Everything goes through <strong style="color:var(--ink)">PayPal</strong>. You can pay with any UK card — Visa, Mastercard — or your PayPal balance, and you don't need a PayPal account to check out. I send the invoice by email; you click pay. That's it. Your card details never touch my side — PayPal handles the whole thing.</p>
+      <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;justify-content:center;margin:1.1rem 0 0;font-size:.86rem;color:var(--mute)">
+        <li>✓ Visa &amp; Mastercard</li>
+        <li>✓ PayPal balance</li>
+        <li>✓ No account needed</li>
+        <li>✓ Pay in GBP from the UK</li>
+        <li>✓ Invoice by email</li>
+      </ul>
+      <p style="text-align:center;margin:1rem 0 0;font-size:.82rem;color:var(--mute)">Starter and Pro bill monthly and cancel anytime. The £590 build is one invoice — sent only after you've seen and liked the preview.</p>
+    </div>
 
     <!-- PAY-WHEN-HAPPY PLEDGE (prominent) -->
     <div class="pledge-banner reveal">
