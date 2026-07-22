@@ -240,6 +240,18 @@ a{color:inherit;text-decoration:none}
   .particle,.breathe-ring,.gradient-text,.reveal{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
 }
+
+/* === Lead capture (zero-server, mailto pre-fill) === */
+.capture{max-width:34rem;margin:2rem auto 0;padding:2rem 1.8rem;display:flex;flex-direction:column;gap:1.1rem}
+.cap-field{display:flex;flex-direction:column;gap:.4rem}
+.cap-field label{font-size:.85rem;font-weight:600;color:var(--ink)}
+.cap-opt{color:var(--mute);font-weight:400}
+.cap-req{color:var(--gold)}
+.cap-field input{font:inherit;font-size:.95rem;padding:.7rem .9rem;border-radius:.6rem;background:color-mix(in srgb,var(--bg) 55%,transparent);border:1px solid var(--line);color:var(--ink)}
+.cap-field input:focus{outline:none;border-color:var(--gold)}
+.cap-field input::placeholder{color:var(--mute)}
+.cap-submit{margin-top:.3rem;justify-content:center}
+.cap-note{font-size:.78rem;color:var(--mute);text-align:center;margin-top:.2rem}
 </style>
 </head>
 <body>
@@ -341,9 +353,36 @@ a{color:inherit;text-decoration:none}
     <!-- INLINE CTA after the problem -->
     <div class="cta-band glass-card reveal">
       <h3>See the gap on your own profile?</h3>
-      <p>Send me your Google Business Profile and I'll show you the three replies you're missing — free.</p>
+      <p>Send me your Google Business Profile — I'll write you three replies, free, and you decide.</p>
       <a class="btn btn-gold" href="mailto:hello@thefifthstar.site?subject=My%20free%20review%20replies">Get my 3 free replies →</a>
     </div>
+  </div>
+</section>
+
+<!-- LEAD CAPTURE — zero-server, mailto pre-fill -->
+<section class="section" id="get-free">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">Free · no signup</span>
+      <h2>Get your 3 free replies — in 30 seconds.</h2>
+      <p class="lead" style="margin:0 auto">Paste your Google Business Profile link and your email. I'll write you three replies — free, and they're yours to keep whatever you decide.</p>
+    </div>
+    <form class="capture glass-card reveal" id="captureForm" novalidate>
+      <div class="cap-field">
+        <label for="capBiz">Business name <span class="cap-opt">(optional)</span></label>
+        <input id="capBiz" name="biz" type="text" placeholder="e.g. The Copper Kettle" autocomplete="organization" />
+      </div>
+      <div class="cap-field">
+        <label for="capGbp">Your Google Business Profile link <span class="cap-req">*</span></label>
+        <input id="capGbp" name="gbp" type="url" required placeholder="https://maps.google.com/?cid=… or your profile URL" autocomplete="url" />
+      </div>
+      <div class="cap-field">
+        <label for="capEmail">Your email <span class="cap-req">*</span></label>
+        <input id="capEmail" name="email" type="email" required placeholder="you@yourbusiness.co.uk" autocomplete="email" />
+      </div>
+      <button type="submit" class="btn btn-gold cap-submit">Send me my 3 free replies →</button>
+      <p class="cap-note">Opens your email app, pre-filled to me. No account, no card, no obligation.</p>
+    </form>
   </div>
 </section>
 
@@ -512,6 +551,73 @@ a{color:inherit;text-decoration:none}
   </div>
 </section>
 
+<!-- LIVE WIDGET DEMO -->
+<section class="section alt" id="widget-demo">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">See it work</span>
+      <h2>This is the widget, live on a page.</h2>
+      <p class="lead" style="margin:0 auto">Exactly how your Google reviews would appear on your own homepage — theme-adaptive, no brand colour forced. (Shown with sample reviews.)</p>
+    </div>
+    <div class="glass-card reveal widget-stage" style="max-width:820px;margin:0 auto;padding:2rem 1.4rem">
+      <div id="fifthstar-reviews"></div>
+      <style>
+        #fifthstar-reviews.fs-rw{--fs-accent:currentColor;--fs-muted:color-mix(in srgb,currentColor 52%,transparent);--fs-line:color-mix(in srgb,currentColor 16%,transparent);--fs-bg:color-mix(in srgb,currentColor 5%,transparent);--fs-radius:14px;font-family:inherit;color:inherit;max-width:760px;margin:0 auto;line-height:1.5}
+        #fifthstar-reviews.fs-rw *{box-sizing:border-box}
+        .fs-rw-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin-bottom:18px}
+        .fs-rw-title{font-size:1.35rem;font-weight:700;letter-spacing:-.01em;margin:0}
+        .fs-rw-score{font-weight:600}
+        .fs-rw-score a{color:inherit;text-decoration:none;border-bottom:1px solid var(--fs-line)}
+        .fs-rw-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+        .fs-rw-card{border:1px solid var(--fs-line);background:var(--fs-bg);border-radius:var(--fs-radius);padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px}
+        .fs-rw-stars{font-size:1.05rem;letter-spacing:2px;line-height:1;color:var(--fs-accent)}
+        .fs-rw-stars .fs-empty{color:var(--fs-muted)}
+        .fs-rw-text{margin:0;font-size:.95rem}
+        .fs-rw-meta{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:.8rem;color:var(--fs-muted);margin-top:auto}
+        .fs-rw-meta a{color:inherit;text-decoration:none;border-bottom:1px solid var(--fs-line)}
+        .fs-rw-foot{margin-top:18px;font-size:.78rem;color:var(--fs-muted);text-align:center}
+        .fs-rw-foot a{color:inherit}
+      </style>
+      <script>
+        window.FIFTHSTAR_REVIEW_WIDGET = {
+          title: "What our customers say",
+          googleUrl: "https://www.google.com/maps",
+          maxReviews: 4,
+          showAttribution: true,
+          reviews: [
+            {author:"Sarah M.",rating:5,text:"Absolutely lovely Sunday roast — generous portions and the staff remembered our names. We'll be back.",date:"2026-03-14",url:"https://www.google.com/maps"},
+            {author:"James T.",rating:4,text:"Great coffee and a calm corner to work from. Only wish they opened an hour earlier on weekends.",date:"2026-02-02",url:"https://www.google.com/maps"},
+            {author:"Priya K.",rating:5,text:"Took my mum for her birthday and they made her a wee card on the house. Lovely touch.",date:"2025-11-20",url:"https://www.google.com/maps"},
+            {author:"Daniel O.",rating:4,text:"Solid brunch spot. Busy on Saturdays so book ahead, but worth it.",date:"2025-10-08",url:"https://www.google.com/maps"}
+          ]
+        };
+      </script>
+      <script>
+      (function(){
+        var CFG = window.FIFTHSTAR_REVIEW_WIDGET || {};
+        var EL = document.getElementById('fifthstar-reviews');
+        if(!EL) return;
+        EL.classList.add('fs-rw');
+        if(CFG.accent) EL.style.setProperty('--fs-accent', CFG.accent);
+        function stars(n){n=Math.max(0,Math.min(5,n|0));var s='';for(var i=1;i<=5;i++)s+=i<=n?'★':'<span class="fs-empty">★</span>';return s;}
+        function rel(d){if(!d)return'';var dt=new Date(d),now=new Date();if(isNaN(dt))return'';var days=Math.floor((now-dt)/86400000);if(days<1)return'today';if(days<30)return days+' day'+(days>1?'s':'')+' ago';if(days<365){var m=Math.floor(days/30);return m+' month'+(m>1?'s':'')+' ago';}var y=Math.floor(days/365);return y+' year'+(y>1?'s':'')+' ago';}
+        function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+        var reviews=(CFG.reviews||[]).slice(0,CFG.maxReviews||5);
+        var avg=reviews.length?(reviews.reduce(function(a,r){return a+(r.rating||0);},0)/reviews.length).toFixed(1):'—';
+        var html='';
+        if(CFG.title)html+='<div class="fs-rw-head"><h3 class="fs-rw-title">'+esc(CFG.title)+'</h3>'+(CFG.googleUrl?'<span class="fs-rw-score"><a href="'+esc(CFG.googleUrl)+'" target="_blank" rel="noopener">'+avg+' ★ on Google</a></span>':'')+'</div>';
+        html+='<div class="fs-rw-grid">';
+        reviews.forEach(function(r){html+='<div class="fs-rw-card"><div class="fs-rw-stars" aria-label="'+(r.rating||0)+' out of 5">'+stars(r.rating)+'</div><p class="fs-rw-text">'+esc(r.text)+'</p><div class="fs-rw-meta"><span>'+esc(r.author||'Local customer')+'</span>'+(r.url?'<a href="'+esc(r.url)+'" target="_blank" rel="noopener">'+(rel(r.date)||'on Google')+'</a>':'<span>'+(rel(r.date)||'')+'</span>')+'</div></div>';});
+        html+='</div>';
+        if(CFG.showAttribution!==false)html+='<div class="fs-rw-foot">Reputation widget by <a href="https://thefifthstar.site" target="_blank" rel="noopener">Fifth Star</a></div>';
+        EL.innerHTML=html;
+      })();
+      </script>
+    </div>
+    <p class="lead reveal" style="text-align:center;margin:1.4rem auto 0;max-width:42rem">Your best review becomes a homepage quote. The widget refreshes itself as new reviews land — no extra work from you.</p>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section class="section alt">
   <div class="wrap">
@@ -674,6 +780,32 @@ a{color:inherit;text-decoration:none}
     entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
   }, {threshold:0.12});
   els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+
+<script>
+(function(){
+  var form = document.getElementById('captureForm');
+  if(!form) return;
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var biz = (document.getElementById('capBiz').value || '').trim();
+    var gbp = document.getElementById('capGbp').value.trim();
+    var email = document.getElementById('capEmail').value.trim();
+    if(!gbp || !email){
+      if(!gbp) document.getElementById('capGbp').focus();
+      else document.getElementById('capEmail').focus();
+      return;
+    }
+    var subject = 'My 3 free review replies' + (biz ? ' — ' + biz : '');
+    var body = 'Hi Ethan,\n\nPlease could you write me my 3 free Google review replies?\n\n'
+      + 'Business: ' + (biz || '(not given)') + '\n'
+      + 'Google Business Profile: ' + gbp + '\n'
+      + 'My email: ' + email + '\n\n'
+      + 'Thanks!';
+    window.location.href = 'mailto:hello@thefifthstar.site?subject='
+      + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
 })();
 </script>
 </body>
