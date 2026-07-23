@@ -35,7 +35,7 @@
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{
   background:var(--bg);color:var(--ink);
-  font-family:"Inter",system-ui,sans-serif;line-height:1.7;
+  font-family:"Inter",system-ui,sans-serif;line-height:1.7;font-variant-numeric:oldstyle-nums
   -webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
 ::selection{background:color-mix(in srgb,var(--gold) 32%,transparent);color:var(--ink)}
@@ -129,7 +129,7 @@ a{color:inherit;text-decoration:none}
 .step{display:grid;grid-template-columns:auto 1fr;gap:1.4rem;padding:1.5rem 0;position:relative}
 .step:not(:last-child)::before{content:'';position:absolute;left:1.05rem;top:3.4rem;bottom:-1.4rem;width:1px;background:var(--line)}
 .step .node{width:2.2rem;height:2.2rem;border-radius:9999px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--gold);background:var(--bg);z-index:1;flex:none}
-.step .price{font-family:"Playfair Display",serif;font-size:1.35rem;font-weight:700;color:var(--gold)}
+.step .price{font-family:"Playfair Display",serif;font-size:1.35rem;font-weight:700;color:var(--gold);font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
 .step h3{font-size:1.15rem;margin:.1rem 0 .35rem}
 .step p{color:var(--mute);max-width:34rem}
 .tag{display:inline-block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--gold);border:1px solid var(--line);padding:.2rem .55rem;border-radius:.4rem;margin-bottom:.5rem}
@@ -164,7 +164,7 @@ a{color:inherit;text-decoration:none}
 .tier.feat{background:var(--glass);border-color:var(--gold);transform:scale(1.06);border-width:1.5px}
 .tier.feat::after{content:'Most popular';position:absolute;top:-.8rem;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .65rem;border-radius:9999px;white-space:nowrap}
 .tier .t-name{font-weight:600;font-size:.9rem;letter-spacing:.04em}
-.tier .t-price{font-family:"Playfair Display",serif;font-size:1.7rem;font-weight:700;color:var(--gold);margin:.4rem 0}
+.tier .t-price{font-family:"Playfair Display",serif;font-size:1.7rem;font-weight:700;color:var(--gold);margin:.4rem 0;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
 .tier.feat .t-price{font-size:2.1rem}
 .tier .t-price small{font-size:.8rem;color:var(--mute);font-family:"Inter",sans-serif;font-weight:400}
 .tier ul{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin:.6rem 0 1rem;font-size:.85rem;color:var(--mute)}
@@ -303,13 +303,13 @@ a{color:inherit;text-decoration:none}
   <div class="wrap hero-copy">
     <span class="eyebrow">Reputation &amp; Website — one partner</span>
     <h1>Turn your Google reviews into a <span class="gradient-text">website that wins the next customer</span>.</h1>
-    <p style="margin:.1rem 0 1rem;font-size:1.06rem;line-height:1.5;opacity:.95;max-width:44rem">Built for Manchester's independents — the cafés, trattorias and curry houses that make this city worth eating in. We help you sound like the welcoming Manc you already are.</p>
-    <p class="lead">Most local businesses lose customers in two quiet places: reviews nobody replies to, and a site that doesn't show up. We fix both — starting with your reputation, for free, then building the site that carries it.</p>
+    <p style="margin:.1rem 0 1rem;font-size:1.06rem;line-height:1.5;opacity:.95;max-width:44rem">Built for Manchester’s independents — the cafés, trattorias and curry houses that make this city worth eating in. We help you sound like the welcoming Manc you already are.</p>
+    <p class="lead">Most local businesses lose customers in two quiet places: reviews nobody replies to, and a site that doesn’t show up. We fix both — starting with your reputation, for free, then building the site that carries it.</p>
     <div class="cta-row">
       <a class="btn btn-gold" href="mailto:hello@thefifthstar.site?subject=My%20free%20review%20replies">Get my 3 free replies →</a>
       <a class="btn btn-ghost" href="#website">See the website offer</a>
     </div>
-    <div class="pledge-pill"><span class="tick">✓</span> I do the work first — you only pay once you're happy with it.</div>
+    <div class="pledge-pill"><span class="tick">✓</span> I do the work first — you only pay once you’re happy with it.</div>
     <!-- TRUST (Hero): stars + honest status + badges. Replace status copy once real ratings exist. -->
     <div class="trust-row">
       <div class="trust-top">
@@ -333,17 +333,17 @@ a{color:inherit;text-decoration:none}
   <div class="wrap">
     <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
       <span class="eyebrow">Founding clients</span>
-      <h2>I'm taking on my first handful of businesses.</h2>
-      <p class="lead" style="margin:0 auto">No wall of five-star quotes yet — I'd rather be straight with you than fake it. Here's what coming on board early actually gets you.</p>
+      <h2>I’m taking on my first handful of businesses.</h2>
+      <p class="lead" style="margin:0 auto">No wall of five-star quotes yet — I’d rather be straight with you than fake it. Here’s what coming on board early actually gets you.</p>
     </div>
     <div class="testi">
       <div class="testi-card glass-card reveal">
         <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:.55rem">You get me, personally</h3>
-        <p class="quote" style="font-style:normal">While the list is short, you're never a ticket in a queue. I read every review and write every reply myself — first-name terms, same-day answers.</p>
+        <p class="quote" style="font-style:normal">While the list is short, you’re never a ticket in a queue. I read every review and write every reply myself — first-name terms, same-day answers.</p>
       </div>
       <div class="testi-card glass-card reveal">
         <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:.55rem">Founding price, kept for good</h3>
-        <p class="quote" style="font-style:normal">Come on early and you lock in today's rate — for good. As the work fills up the price will move; yours won't.</p>
+        <p class="quote" style="font-style:normal">Come on early and you lock in today’s rate — for good. As the work fills up the price will move; yours won’t.</p>
       </div>
       <div class="testi-card glass-card reveal">
         <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:.55rem">Your story, told properly</h3>
@@ -358,25 +358,25 @@ a{color:inherit;text-decoration:none}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">The quiet leak</span>
-      <h2>You're losing customers in two places at once.</h2>
-      <p class="lead">They look connected to you. To a customer on Google, they're one decision.</p>
+      <h2>You’re losing customers in two places at once.</h2>
+      <p class="lead">They look connected to you. To a customer on Google, they’re one decision.</p>
     </div>
     <div class="leaks" style="display:grid;grid-template-columns:1fr 1fr;gap:1.4rem">
       <div class="leak glass-card reveal" style="padding:1.8rem;border-radius:1rem">
         <h3 style="font-size:1.25rem;margin-bottom:.6rem;color:var(--gold)">1 · The unreplied review</h3>
-        <p style="color:var(--mute)">Every review left hanging is a silent "we don't care" to the next person browsing. The bad one stings most — and it's the one most owners avoid.</p>
+        <p style="color:var(--mute)">Every review left hanging is a silent ‘we don’t care’ to the next person browsing. The bad one stings most — and it’s the one most owners avoid.</p>
       </div>
       <div class="leak glass-card reveal" style="padding:1.8rem;border-radius:1rem">
-        <h3 style="font-size:1.25rem;margin-bottom:.6rem;color:var(--gold)">2 · The site that doesn't close</h3>
+        <h3 style="font-size:1.25rem;margin-bottom:.6rem;color:var(--gold)">2 · The site that doesn’t close</h3>
         <p style="color:var(--mute)">A slow, missing, or dated website loses the very click your good reviews just earned. Reputation brings them; the site is supposed to catch them.</p>
       </div>
     </div>
-    <p class="lead reveal" style="margin-top:1.8rem;max-width:46rem">Here's the thing: they're the same story. <strong style="color:var(--ink)">Reputation earns the click. The site closes it.</strong> Most vendors sell you one and forget the other. We run both.</p>
+    <p class="lead reveal" style="margin-top:1.8rem;max-width:46rem">Here’s the thing: they’re the same story. <strong style="color:var(--ink)">Reputation earns the click. The site closes it.</strong> Most vendors sell you one and forget the other. We run both.</p>
 
     <!-- INLINE CTA after the problem -->
     <div class="cta-band glass-card reveal">
       <h3>See the gap on your own profile?</h3>
-      <p>Send me your Google Business Profile — I'll write you three replies, free, and you decide.</p>
+      <p>Send me your Google Business Profile — I’ll write you three replies, free, and you decide.</p>
       <a class="btn btn-gold" href="mailto:hello@thefifthstar.site?subject=My%20free%20review%20replies">Get my 3 free replies →</a>
     </div>
   </div>
@@ -388,7 +388,7 @@ a{color:inherit;text-decoration:none}
     <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
       <span class="eyebrow">Free · no signup</span>
       <h2>Get your 3 free replies — in 30 seconds.</h2>
-      <p class="lead" style="margin:0 auto">Paste your Google Business Profile link and your email. I'll write you three replies — free, and they're yours to keep whatever you decide.</p>
+      <p class="lead" style="margin:0 auto">Paste your Google Business Profile link and your email. I’ll write you three replies — free, and they’re yours to keep whatever you decide.</p>
     </div>
     <form class="capture glass-card reveal" id="captureForm" novalidate>
       <div class="cap-field">
@@ -443,7 +443,7 @@ a{color:inherit;text-decoration:none}
   <div class="wrap">
     <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
       <span class="eyebrow">How it works</span>
-      <h2>Start free. Pay only when it's working.</h2>
+      <h2>Start free. Pay only when it’s working.</h2>
       <p class="lead" style="margin:0 auto">No cold pitch for a £590 site. We earn the right to build it first.</p>
     </div>
     <!-- progress indicator: the funnel as 4 stages -->
@@ -487,7 +487,7 @@ a{color:inherit;text-decoration:none}
           <span class="tag">Website · one-off</span>
           <div class="price">£590</div>
           <h3>A fast, Google-friendly website</h3>
-          <p>Once you trust us (and we've seen your customers), we build a clean static site that loads on a phone and shows up on Google. First month of edits is on us — tell us what to change, we change it.</p>
+          <p>Once you trust us (and we’ve seen your customers), we build a clean static site that loads on a phone and shows up on Google. First month of edits is on us — tell us what to change, we change it.</p>
         </div>
       </div>
       <div class="step reveal">
@@ -526,7 +526,7 @@ a{color:inherit;text-decoration:none}
       <div class="arrow" aria-hidden="true">→</div>
       <div class="stepc glass-card reveal" style="border-color:var(--gold)">
         <span class="lbl">The reply</span>
-        <div class="body">"Thank you — Saturday got away from us and that's on us. Weekday mornings are calmer; we'd love to get it right next time." <strong>Posted in the owner's voice.</strong></div>
+        <div class="body">‘Thank you — Saturday got away from us and that’s on us. Weekday mornings are calmer; we’d love to get it right next time.’ <strong>Posted in the owner’s voice.</strong></div>
       </div>
       <div class="arrow" aria-hidden="true">→</div>
       <div class="stepc glass-card reveal">
@@ -608,7 +608,7 @@ a{color:inherit;text-decoration:none}
           maxReviews: 4,
           showAttribution: true,
           reviews: [
-            {author:"Sarah M.",rating:5,text:"Absolutely lovely Sunday roast — generous portions and the staff remembered our names. We'll be back.",date:"2026-03-14",url:"https://www.google.com/maps"},
+            {author:"Sarah M.",rating:5,text:"Absolutely lovely Sunday roast — generous portions and the staff remembered our names. We’ll be back.",date:"2026-03-14",url:"https://www.google.com/maps"},
             {author:"James T.",rating:4,text:"Great coffee and a calm corner to work from. Only wish they opened an hour earlier on weekends.",date:"2026-02-02",url:"https://www.google.com/maps"},
             {author:"Priya K.",rating:5,text:"Took my mum for her birthday and they made her a wee card on the house. Lovely touch.",date:"2025-11-20",url:"https://www.google.com/maps"},
             {author:"Daniel O.",rating:4,text:"Solid brunch spot. Busy on Saturdays so book ahead, but worth it.",date:"2025-10-08",url:"https://www.google.com/maps"}
@@ -670,7 +670,7 @@ a{color:inherit;text-decoration:none}
       <div class="tier feat reveal">
         <div class="t-name">Website · Build</div>
         <div class="t-price">£590</div>
-        <ul><li>Static site</li><li>Free hosting</li><li>First month edits</li><li>Pay only when you're happy</li></ul>
+        <ul><li>Static site</li><li>Free hosting</li><li>First month edits</li><li>Pay only when you’re happy</li></ul>
         <div class="t-cta">One-off · the payoff</div>
       </div>
       <div class="tier glass-card reveal">
@@ -688,7 +688,7 @@ a{color:inherit;text-decoration:none}
         <span class="eyebrow">How you pay</span>
         <h2 style="font-size:1.6rem">Simple, secure, no surprises.</h2>
       </div>
-      <p class="lead" style="text-align:center;margin:0 auto;max-width:40rem">Everything goes through <strong style="color:var(--ink)">PayPal</strong>. You can pay with any UK card — Visa, Mastercard — or your PayPal balance, and you don't need a PayPal account to check out. I send the invoice by email; you click pay. That's it. Your card details never touch my side — PayPal handles the whole thing.</p>
+      <p class="lead" style="text-align:center;margin:0 auto;max-width:40rem">Everything goes through <strong style="color:var(--ink)">PayPal</strong>. You can pay with any UK card — Visa, Mastercard — or your PayPal balance, and you don’t need a PayPal account to check out. I send the invoice by email; you click pay. That’s it. Your card details never touch my side — PayPal handles the whole thing.</p>
       <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;justify-content:center;margin:1.1rem 0 0;font-size:.86rem;color:var(--mute)">
         <li>✓ Visa &amp; Mastercard</li>
         <li>✓ PayPal balance</li>
@@ -696,20 +696,20 @@ a{color:inherit;text-decoration:none}
         <li>✓ Pay in GBP from the UK</li>
         <li>✓ Invoice by email</li>
       </ul>
-      <p style="text-align:center;margin:1rem 0 0;font-size:.82rem;color:var(--mute)">Starter and Pro bill monthly and cancel anytime. The £590 build is one invoice — sent only after you've seen and liked the preview.</p>
+      <p style="text-align:center;margin:1rem 0 0;font-size:.82rem;color:var(--mute)">Starter and Pro bill monthly and cancel anytime. The £590 build is one invoice — sent only after you’ve seen and liked the preview.</p>
     </div>
 
     <!-- PAY-WHEN-HAPPY PLEDGE (prominent) -->
     <div class="pledge-banner reveal">
       <span class="eyebrow">No risk, no catch</span>
-      <h3>You don't pay until you're happy.</h3>
-      <p>Here's how I work: <strong>I build your site first, then show it to you.</strong> Only when you look at it and think "yes, that's my business" do we talk about the £590. If it's not right, you owe me nothing — and I'll take the preview down, no hard feelings. The free review replies come first regardless.</p>
+      <h3>You don’t pay until you’re happy.</h3>
+      <p>Here’s how I work: <strong>I build your site first, then show it to you.</strong> Only when you look at it and think ‘yes, that’s my business’ do we talk about the £590. If it’s not right, you owe me nothing — and I’ll take the preview down, no hard feelings. The free review replies come first regardless.</p>
     </div>
 
     <!-- INLINE CTA after pricing -->
     <div class="cta-band glass-card reveal">
-      <h3>Not sure which step you're on?</h3>
-      <p>Start at £0. We'll tell you honestly what's worth the next one.</p>
+      <h3>Not sure which step you’re on?</h3>
+      <p>Start at £0. We’ll tell you honestly what’s worth the next one.</p>
       <a class="btn btn-gold" href="mailto:hello@thefifthstar.site?subject=My%20free%20review%20replies">Get my 3 free replies →</a>
     </div>
   </div>
@@ -722,7 +722,7 @@ a{color:inherit;text-decoration:none}
       <span class="eyebrow">Why one partner, not two</span>
       <h2>Cheaper, calmer, and it actually compounds.</h2>
     </div>
-    <p style="max-width:46rem;margin:.4rem 0 2rem;opacity:.92;font-size:1.04rem">Manchester invented the co‑operative in 1844 — fair pricing, honest measure, owned by the people who use it. We kept that spirit: one flat price, no lock‑in, pay when you're happy. No chain, no upsell — just fair dealing for small places like yours.</p>
+    <p style="max-width:46rem;margin:.4rem 0 2rem;opacity:.92;font-size:1.04rem">Manchester invented the co‑operative in 1844 — fair pricing, honest measure, owned by the people who use it. We kept that spirit: one flat price, no lock‑in, pay when you’re happy. No chain, no upsell — just fair dealing for small places like yours.</p>
     <div class="why">
       <div class="b glass-card reveal"><h3>No agency markup</h3><p>A rep manager and a web agency would each bill you. One person doing both means you pay for the work, not the overhead.</p></div>
       <div class="b glass-card reveal"><h3>One consistent voice</h3><p>The tone in your review replies matches the tone on your homepage. Customers feel one business, not three vendors.</p></div>
@@ -755,8 +755,8 @@ a{color:inherit;text-decoration:none}
         <img src="ethan.jpg" alt="Ethan Li" style="width:100%;height:100%;object-fit:cover;border-radius:9999px">
       </div>
       <div>
-        <h3>Hi, I'm Ethan.</h3>
-        <p>You're talking to the <strong>same person</strong> who writes your replies, builds your website, and answers your emails. No account managers, no ticket queue — just one human who's read your reviews and knows your customers. That's the whole point of FifthStar.</p>
+        <h3>Hi, I’m Ethan.</h3>
+        <p>You’re talking to the <strong>same person</strong> who writes your replies, builds your website, and answers your emails. No account managers, no ticket queue — just one human who’s read your reviews and knows your customers. That’s the whole point of FifthStar.</p>
       </div>
     </div>
   </div>
@@ -770,15 +770,15 @@ a{color:inherit;text-decoration:none}
       <h2>Things owners ask first.</h2>
     </div>
     <div class="faq">
-      <div class="q glass-card reveal"><h3>Do you post replies for me?</h3><p>No. Replies go from your own Google account — that's both the Google rule and the safe way. We write them; you approve with one paste.</p></div>
-      <div class="q glass-card reveal"><h3>Is it really free to start?</h3><p>Yes. Three replies, no card, no account. If it's useful, we talk about the next step — only when you're ready.</p></div>
-      <div class="q glass-card reveal"><h3>What if I only want the website?</h3><p>Then A + B stands on its own. The reputation side is the warm-up, not a requirement — but most owners find it's the part they didn't know they needed.</p></div>
-      <div class="q glass-card reveal"><h3>Who actually writes the replies?</h3><p>An AI draft in your tone, written by someone who's read your reviews. You stay in control and can tweak any line before posting.</p></div>
-      <div class="q glass-card reveal"><h3>What about my data?</h3><p>We only use review text that's already public on Google. You stay in control of your account the whole time. GDPR-aware by design.</p></div>
+      <div class="q glass-card reveal"><h3>Do you post replies for me?</h3><p>No. Replies go from your own Google account — that’s both the Google rule and the safe way. We write them; you approve with one paste.</p></div>
+      <div class="q glass-card reveal"><h3>Is it really free to start?</h3><p>Yes. Three replies, no card, no account. If it’s useful, we talk about the next step — only when you’re ready.</p></div>
+      <div class="q glass-card reveal"><h3>What if I only want the website?</h3><p>Then A + B stands on its own. The reputation side is the warm-up, not a requirement — but most owners find it’s the part they didn’t know they needed.</p></div>
+      <div class="q glass-card reveal"><h3>Who actually writes the replies?</h3><p>An AI draft in your tone, written by someone who’s read your reviews. You stay in control and can tweak any line before posting.</p></div>
+      <div class="q glass-card reveal"><h3>What about my data?</h3><p>We only use review text that’s already public on Google. You stay in control of your account the whole time. GDPR-aware by design.</p></div>
     </div>
     <div class="faq-close glass-card reveal">
       <h3>Still unsure?</h3>
-      <p>Skip the FAQ. Email me directly and I'll answer in plain English.</p>
+      <p>Skip the FAQ. Email me directly and I’ll answer in plain English.</p>
       <a class="btn btn-gold" href="mailto:hello@thefifthstar.site?subject=Question%20about%20FifthStar">Email me directly →</a>
     </div>
   </div>
@@ -790,7 +790,7 @@ a{color:inherit;text-decoration:none}
   <div class="wrap reveal" style="position:relative;z-index:2">
     <span class="eyebrow">Start small</span>
     <h2>Begin with your free replies. The site can wait.</h2>
-    <p class="lead">Send me your Google Business Profile and I'll return three replies within a day or two — no cost, no catch.</p>
+    <p class="lead">Send me your Google Business Profile and I’ll return three replies within a day or two — no cost, no catch.</p>
     <div class="cta-row" style="justify-content:center">
       <a class="btn btn-gold" href="mailto:hello@thefifthstar.site?subject=My%20free%20review%20replies">Get my 3 free replies →</a>
       <a class="btn btn-ghost" href="mailto:hello@thefifthstar.site?subject=Website%20enquiry">Ask about a site</a>
@@ -800,7 +800,7 @@ a{color:inherit;text-decoration:none}
       <span class="g"><span class="tick">✓</span> No signup</span>
       <span class="g"><span class="tick">✓</span> No credit card</span>
       <span class="g"><span class="tick">✓</span> No obligation</span>
-      <span class="g"><span class="tick">✓</span> Site built first — pay only when you're happy</span>
+      <span class="g"><span class="tick">✓</span> Site built first — pay only when you’re happy</span>
     </div>
   </div>
 </section>
@@ -811,7 +811,7 @@ a{color:inherit;text-decoration:none}
     Run by Ethan Li · Lift your business to its fifth star.
     <span class="foot-local">
       FifthStar runs on a static, zero‑server site — about as low‑carbon as software gets.
-      Manchester's food scene is every culture at the table; our replies are written to welcome all of them.
+      Manchester’s food scene is every culture at the table; our replies are written to welcome all of them.
     </span>
   </div>
 </footer>
