@@ -311,3 +311,17 @@ a{color:inherit;text-decoration:none}
 .cat-card .cat-why{color:var(--ink);font-size:.95rem;line-height:1.5;opacity:.94;padding-right:0}
 .cat-card .cat-value{color:var(--mute);font-size:.84rem;line-height:1.55;padding-right:0}
 .cat-card .cat-cta .arrow{position:static;right:auto;bottom:auto;font-size:1.15rem;opacity:.85}
+
+/* === cadence sub-line inside tier cards (v2.1: monthly/quarterly/6-mo/annual) === */
+.tier .t-cadence{font-size:.74rem;line-height:1.45;color:var(--mute);margin:-.15rem 0 .35rem}
+.tier .t-cadence b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums lining-nums}
+
+/* === new-business welcome offer banner (first-year discount, one-time) === */
+.welcome-banner{max-width:52rem;margin:1.9rem auto 0;padding:1.7rem 2rem;border-radius:1.1rem;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--gold) 15%,transparent),transparent);
+  border:1px solid var(--gold);text-align:center}
+.welcome-banner .eyebrow{display:block;margin-bottom:.5rem}
+.welcome-banner h3{font-size:1.45rem;margin-bottom:.5rem;color:var(--ink)}
+.welcome-banner p{color:var(--mute);font-size:.96rem;max-width:42rem;margin:0 auto;line-height:1.55}
+.welcome-banner p b{color:var(--ink);font-variant-numeric:tabular-nums lining-nums}
+@media(max-width:600px){.welcome-banner{padding:1.4rem 1.2rem}.welcome-banner h3{font-size:1.3rem}}
