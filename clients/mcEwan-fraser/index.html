@@ -11,13 +11,18 @@
 <link rel="stylesheet" href="../../assets/base.css" />
 <style>
   :root{
-    --accent:#6f7d8c;
+    --bg:#0B0C0E;                                    /* cool legal ground */
+    --accent:#B68A5E;                                /* McEwan Fraser bronze (retoned off tech-blue) */
     --accent-soft:color-mix(in srgb,var(--accent) 48%,transparent);
     --accent-line:color-mix(in srgb,var(--accent) 26%,transparent);
     --accent-glass:color-mix(in srgb,var(--accent) 10%,transparent);
     --head-font:"Playfair Display",Georgia,serif;
     --body-font:"Inter",system-ui,sans-serif;
   }
+  .eyebrow{color:var(--accent)}
+  .hero--center .hero-copy{text-align:center;margin-left:auto;margin-right:auto}
+  .hero--center .biz-stat{justify-content:center}
+  .hero--center .biz-hero h1,.hero--center h1{font-style:italic}
 </style>
 <script>
   try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('gsap-hero'); } catch (e) {}
@@ -36,9 +41,8 @@
   </div>
 </nav>
 
-<header class="hero biz-hero">
-  <div class="breathe-ring" aria-hidden="true"></div>
-  <div class="sig-watermark" aria-hidden="true"><span class="sig-wm-motif"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg></span></div>
+<header class="hero biz-hero hero--center">
+  <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap hero-copy">
     <span class="eyebrow">Edinburgh · Law firm</span>
     <h1>McEwan Fraser Legal</h1>
