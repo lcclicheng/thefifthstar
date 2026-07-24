@@ -4,92 +4,22 @@
    only the hub's own rules; base.css provides tokens, fonts, components.
    The two are kept in sync with the shared system.
    ============================================================ */
-/* === Theme (adaptive: dark default, light via prefers-color-scheme) === */
-:root{
-  --bg:#0c0a08;
-  --ink:#f2ece1;
-  --mute:#a89e8c;
-  --gold:#d8b36a;
-  --gold-soft:color-mix(in srgb,var(--gold) 40%,transparent);
-  --line:color-mix(in srgb,var(--gold) 16%,transparent);
-  --glass:color-mix(in srgb,var(--gold) 6%,transparent);
-  --maxw:68rem;
-}
-@media (prefers-color-scheme:light){
-  :root{
-    --bg:#faf8f3;
-    --ink:#1f1a12;
-    --mute:#6b6354;
-    --gold:#8a6712;
-    --gold-soft:color-mix(in srgb,var(--gold) 22%,transparent);
-    --line:color-mix(in srgb,var(--gold) 28%,transparent);
-    --glass:color-mix(in srgb,var(--gold) 9%,transparent);
-  }
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{
-  background:var(--bg);color:var(--ink);
-  font-family:"Inter",system-ui,sans-serif;line-height:1.7;font-variant-numeric:oldstyle-nums;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
-}
-::selection{background:color-mix(in srgb,var(--gold) 32%,transparent);color:var(--ink)}
-h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:700;line-height:1.08;letter-spacing:-.01em}
-a{color:inherit;text-decoration:none}
-.measure{max-width:44rem}
-.measure-lg{max-width:56rem}
-.lead{font-size:1.18rem;line-height:1.6;color:var(--mute)}
-.rule{height:1px;background:var(--line);border:0;margin:0}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.5rem}
-.eyebrow{font-family:"Inter",sans-serif;font-weight:600;letter-spacing:.22em;text-transform:uppercase;font-size:.72rem;color:var(--gold)}
+/* v1.0: tokens, resets, shared components (glass-card, btn, reveal, sig-mark,
+   sig-watermark, breathe-ring, gradient-text, hero::before, hero-glow, etc.)
+   are ALL owned by base.css. This file holds ONLY hub-specific layout & widgets. */
 
-/* === Shared visual techniques (from generate.mjs VISUAL_CSS) === */
-.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.particle{position:absolute;width:2px;height:2px;border-radius:9999px;background:var(--gold);opacity:0;animation:drift 20s linear infinite}
-.particle:nth-child(1){left:10%;top:18%;animation-delay:0s;animation-duration:17s}
-.particle:nth-child(2){left:24%;top:62%;animation-delay:3s;animation-duration:21s}
-.particle:nth-child(3){left:38%;top:30%;animation-delay:5s;animation-duration:16s}
-.particle:nth-child(4){left:55%;top:72%;animation-delay:7s;animation-duration:23s}
-.particle:nth-child(5){left:70%;top:14%;animation-delay:2s;animation-duration:19s}
-.particle:nth-child(6){left:82%;top:52%;animation-delay:6s;animation-duration:20s}
-.particle:nth-child(7){left:14%;top:82%;animation-delay:9s;animation-duration:18s}
-.particle:nth-child(8){left:60%;top:40%;animation-delay:4s;animation-duration:22s}
-.particle:nth-child(9){left:34%;top:8%;animation-delay:8s;animation-duration:15s}
-.particle:nth-child(10){left:90%;top:24%;animation-delay:1s;animation-duration:24s}
-@keyframes drift{0%{opacity:0;transform:translateY(0) translateX(0)}10%{opacity:.55}90%{opacity:.55}100%{opacity:0;transform:translateY(-90vh) translateX(40px)}}
-.breathe-ring{position:absolute;width:22rem;height:22rem;border-radius:9999px;border:1px solid var(--gold-soft);animation:breathe 6s ease-in-out infinite}
-.breathe-ring.delay{animation-delay:3s}
-@keyframes breathe{0%,100%{transform:scale(1);opacity:.35}50%{transform:scale(1.35);opacity:.1}}
-.gradient-text{background:linear-gradient(100deg,var(--ink),var(--gold),var(--ink));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;animation:shiny 6s linear infinite}
-@keyframes shiny{0%{background-position:-200% center}100%{background-position:200% center}}
-.glass-card{background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:1rem}
-.sig-mark{display:inline-flex;color:var(--gold)}
-.sig-mark svg{width:100%;height:100%;display:block}
-.sig-watermark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.sig-wm-motif{width:min(70vw,34rem);height:min(70vw,34rem);color:var(--gold);opacity:.05}
-
-/* === Layout === */
-.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:color-mix(in srgb,var(--bg) 78%,transparent);border-bottom:1px solid var(--line)}
+/* === Layout (hub-specific overrides only; nav/hero/btn/section from base.css) === */
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:4rem}
-.brand{display:flex;align-items:center;gap:.6rem;font-family:"Playfair Display",serif;font-weight:700;font-size:1.15rem}
 .brand .sig-mark{width:1.5rem;height:1.5rem}
 .nav-cta{font-size:.85rem;font-weight:600;color:var(--bg);background:var(--gold);padding:.5rem .95rem;border-radius:.6rem;letter-spacing:.01em;display:inline-flex;align-items:center;min-height:2.75rem}
 .nav-cta:hover{filter:brightness(1.08)}
 
-.hero{position:relative;overflow:hidden;padding:5.5rem 0 4.5rem}
 .hero .breathe-ring{left:50%;top:30%;transform:translateX(-50%)}
 .hero-copy{position:relative;z-index:2;max-width:54rem}
 .hero h1{font-size:clamp(2.3rem,5.4vw,4rem);margin:1.1rem 0 1.4rem}
 .hero .lead{max-width:40rem}
 .cta-row{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
-.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem;padding:.85rem 1.4rem;border-radius:.7rem;transition:filter .2s,transform .2s}
-.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
-.btn-gold{background:var(--gold);color:var(--bg)}
-.btn-ghost{border:1px solid var(--line);color:var(--ink)}
-.btn-ghost:hover{border-color:var(--gold)}
 
-.section{padding:4.5rem 0;position:relative}
-.section.alt{background:color-mix(in srgb,var(--gold) 4%,transparent)}
 .sec-head{max-width:46rem;margin-bottom:2.6rem}
 .sec-head h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin:.8rem 0 .9rem}
 
@@ -229,11 +159,9 @@ a{color:inherit;text-decoration:none}
 .foot a{color:var(--gold)}
 .foot-local{display:block;margin-top:1rem;max-width:38rem;margin-left:auto;margin-right:auto;font-size:.8rem;line-height:1.55;opacity:.8}
 
-/* reveal */
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
-.reveal.in{opacity:1;transform:none}
+/* reveal: owned by base.css (with stagger). Keep reduced-motion guard for hub-only animations. */
 @media (prefers-reduced-motion:reduce){
-  .particle,.breathe-ring,.gradient-text,.reveal{animation:none!important;transition:none!important}
+  .breathe-ring,.gradient-text,.reveal{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
 }
 
@@ -292,9 +220,6 @@ a{color:inherit;text-decoration:none}
         .fs-rw-meta a{color:inherit;text-decoration:none;border-bottom:1px solid var(--fs-line)}
         .fs-rw-foot{margin-top:18px;font-size:.78rem;color:var(--fs-muted);text-align:center}
         .fs-rw-foot a{color:inherit}
-
-/* Neutralize the base.css-only .hero::before radial glow so the hub keeps its current look */
-.hero::before{content:none}
 
 /* ============================================================
    OVERRIDE GUARD — neutralize base.css icon-version .cat-card collision.
