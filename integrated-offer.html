@@ -159,7 +159,7 @@ a{color:inherit;text-decoration:none}
 .integ-note strong{color:var(--ink)}
 
 /* === Pricing === */
-.tiers{display:grid;grid-template-columns:repeat(5,1fr);gap:.9rem;align-items:stretch}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;align-items:stretch}
 .tier{padding:1.4rem 1.1rem;border-radius:1rem;display:flex;flex-direction:column;position:relative}
 .tier.feat{background:var(--glass);border-color:var(--gold);transform:scale(1.06);border-width:1.5px}
 .tier.feat::after{content:'Most popular';position:absolute;top:-.8rem;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bg);font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .65rem;border-radius:9999px;white-space:nowrap}
@@ -319,13 +319,13 @@ a{color:inherit;text-decoration:none}
   <div class="wrap hero-copy">
     <span class="eyebrow">Reputation &amp; Website — one partner</span>
     <h1>Your reputation, website and local growth — <span class="gradient-text">managed in one place</span>.</h1>
-    <p style="margin:.1rem 0 1rem;font-size:1.06rem;line-height:1.5;opacity:.95;max-width:44rem">Built for Manchester’s independents — the cafés, trattorias and curry houses that make this city worth eating in. We help you sound like the welcoming Manc you already are.</p>
+    <p style="margin:.1rem 0 1rem;font-size:1.06rem;line-height:1.5;opacity:.95;max-width:44rem">Built for the UK’s independents — the cafés, trattorias and curry houses that make local high streets worth eating in. We help you sound like the welcoming local you already are.</p>
     <p class="lead">Build your online presence without upfront website costs. Most local businesses lose customers in two quiet places: reviews nobody replies to, and a site that doesn’t show up. We fix both — starting with your reputation, for free, then building the site that carries it.</p>
     <div class="cta-row">
       <a class="btn btn-gold" href="mailto:hello@thefifthstar.site?subject=My%20free%20review%20replies">Get my 3 free replies →</a>
       <a class="btn btn-ghost" href="#website">See the website offer</a>
     </div>
-    <div class="pledge-pill"><span class="tick">✓</span> I do the work first — you only pay once you’re happy with it.</div>
+    <div class="pledge-pill"><span class="tick">✓</span> I write the replies first — you only pay once you’re happy with it.</div>
     <!-- TRUST (Hero): stars + honest status + badges. Replace status copy once real ratings exist. -->
     <div class="trust-row">
       <div class="trust-top">
@@ -519,7 +519,7 @@ a{color:inherit;text-decoration:none}
 <section class="section" id="start">
   <div class="wrap">
     <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
-      <span class="eyebrow">How it works</span>
+        <span class="eyebrow">How you start</span>
       <h2>Start free. Pay only when it’s working.</h2>
       <p class="lead" style="margin:0 auto">No cold pitch for a £590 site. We earn the right to build it first.</p>
     </div>
@@ -582,7 +582,7 @@ a{color:inherit;text-decoration:none}
 <section class="section alt">
   <div class="wrap">
     <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
-      <span class="eyebrow">How it works</span>
+        <span class="eyebrow">A worked example</span>
       <h2>From a review, to a reply, to the homepage.</h2>
       <p class="lead" style="margin:0 auto">A worked example — this is exactly what the loop looks like, step by step.</p>
     </div>
@@ -700,7 +700,7 @@ a{color:inherit;text-decoration:none}
         html+='<div class="fs-rw-grid">';
         reviews.forEach(function(r){html+='<div class="fs-rw-card"><div class="fs-rw-stars" aria-label="'+(r.rating||0)+' out of 5">'+stars(r.rating)+'</div><p class="fs-rw-text">'+esc(r.text)+'</p><div class="fs-rw-meta"><span>'+esc(r.author||'Local customer')+'</span>'+(r.url?'<a href="'+esc(r.url)+'" target="_blank" rel="noopener">'+(rel(r.date)||'on Google')+'</a>':'<span>'+(rel(r.date)||'')+'</span>')+'</div></div>';});
         html+='</div>';
-        if(CFG.showAttribution!==false)html+='<div class="fs-rw-foot">Reputation widget by <a href="https://thefifthstar.site" target="_blank" rel="noopener">Fifth Star</a></div>';
+        if(CFG.showAttribution!==false)html+='<div class="fs-rw-foot">Reputation widget by <a href="https://thefifthstar.site" target="_blank" rel="noopener">FifthStar</a></div>';
         EL.innerHTML=html;
       })();
       </script>
@@ -765,7 +765,7 @@ a{color:inherit;text-decoration:none}
     <div class="pledge-banner reveal">
       <span class="eyebrow">No risk, no catch</span>
       <h3>You don’t pay until you’re happy.</h3>
-      <p>Here’s how I work: <strong>I build your site first, then show it to you.</strong> Only when you look at it and think ‘yes, that’s my business’ do we talk about the £590. If it’s not right, you owe me nothing — and I’ll take the preview down, no hard feelings. The free review replies come first regardless.</p>
+      <p>Here’s how I work: <strong>I build your site first, then show it to you.</strong> Only when you look at it and think ‘yes, that’s my business’ do we talk about the plan — and you only start the monthly once you’ve seen and liked the preview. If it’s not right, you owe me nothing — and I’ll take the preview down, no hard feelings. The free review replies come first regardless.</p>
     </div>
 
     <!-- INLINE CTA after pricing -->
@@ -784,7 +784,7 @@ a{color:inherit;text-decoration:none}
       <span class="eyebrow">Why one partner, not two</span>
       <h2>Cheaper, calmer, and it actually compounds.</h2>
     </div>
-    <p style="max-width:46rem;margin:.4rem 0 2rem;opacity:.92;font-size:1.04rem">Manchester invented the co‑operative in 1844 — fair pricing, honest measure, owned by the people who use it. We kept that spirit: one flat price, no lock‑in, pay when you’re happy. No chain, no upsell — just fair dealing for small places like yours.</p>
+    <p style="max-width:46rem;margin:.4rem 0 2rem;opacity:.92;font-size:1.04rem">Britain invented the co‑operative in 1844 — fair pricing, honest measure, owned by the people who use it. We kept that spirit: one flat price, no lock‑in, pay when you’re happy. No chain, no upsell — just fair dealing for small places like yours.</p>
     <div class="why">
       <div class="b glass-card reveal"><h3>No agency markup</h3><p>A rep manager and a web agency would each bill you. One person doing both means you pay for the work, not the overhead.</p></div>
       <div class="b glass-card reveal"><h3>One consistent voice</h3><p>The tone in your review replies matches the tone on your homepage. Customers feel one business, not three vendors.</p></div>
@@ -834,7 +834,7 @@ a{color:inherit;text-decoration:none}
     <div class="faq">
       <div class="q glass-card reveal"><h3>Do you post replies for me?</h3><p>No. Replies go from your own Google account — that’s both the Google rule and the safe way. We write them; you approve with one paste.</p></div>
       <div class="q glass-card reveal"><h3>Is it really free to start?</h3><p>Yes. Three replies, no card, no account. If it’s useful, we talk about the next step — only when you’re ready.</p></div>
-      <div class="q glass-card reveal"><h3>What if I only want the website?</h3><p>Then A + B stands on its own. The reputation side is the warm-up, not a requirement — but most owners find it’s the part they didn’t know they needed.</p></div>
+      <div class="q glass-card reveal"><h3>What if I only want the website?</h3><p>Then the website stands on its own. The reputation side is the warm-up, not a requirement — but most owners find it’s the part they didn’t know they needed.</p></div>
       <div class="q glass-card reveal"><h3>Who actually writes the replies?</h3><p>An AI draft in your tone, written by someone who’s read your reviews. You stay in control and can tweak any line before posting.</p></div>
       <div class="q glass-card reveal"><h3>What about my data?</h3><p>We only use review text that’s already public on Google. You stay in control of your account the whole time. GDPR-aware by design.</p></div>
     </div>
@@ -873,7 +873,7 @@ a{color:inherit;text-decoration:none}
     Run by Ethan Li · Lift your business to its fifth star.
     <span class="foot-local">
       FifthStar runs on a static, zero‑server site — about as low‑carbon as software gets.
-      Manchester’s food scene is every culture at the table; our replies are written to welcome all of them.
+      The UK’s food scene is every culture at the table; our replies are written to welcome all of them.
     </span>
   </div>
 </footer>
