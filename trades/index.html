@@ -3,21 +3,46 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Trades &amp; skilled work on FifthStar — reputation &amp; website for tradespeople</title>
-<meta name="description" content="For plumbers, electricians and fitters: when something breaks, your reviews are the first thing checked. Turn them into replies that sound like you, then a site that wins the call-out." />
+<title>Mercer &amp; Son — plumbing &amp; heating in Leeds</title>
+<meta name="description" content="Father-and-son plumbing and heating across Leeds. Boilers, leaks and bathrooms — turned up on time, fixed properly, and the floor's cleaner than we found it." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../assets/base.css" />
 <style>
+  /* Industry personality (20%): ONE trust-building accent only.
+     Typography stays unified Playfair Display + Inter (no per-family serif). */
   :root{
-    --accent:#b5532e;
-    --accent-soft:color-mix(in srgb,var(--accent) 42%,transparent);
-    --accent-line:color-mix(in srgb,var(--accent) 20%,transparent);
-    --accent-glass:color-mix(in srgb,var(--accent) 9%,transparent);
-    --head-font:"Archivo",system-ui,sans-serif;
-    --body-font:"Inter",system-ui,sans-serif;
+    --bg:#0F0A08;                                       /* warm shell */
+    --accent:#C2703F;                                   /* trades rust / terracotta */
+    --accent-soft:color-mix(in srgb,var(--accent) 52%,transparent);
+    --accent-line:color-mix(in srgb,var(--accent) 26%,transparent);
+    --accent-glass:color-mix(in srgb,var(--accent) 12%,transparent);
+    --hero-align:left;
+    --display-weight:700;
+    --display-spacing:-.015em;
   }
+  /* Step columns on the Solution section */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:64rem;margin:2rem auto 0}
+  @media(max-width:820px){.steps{grid-template-columns:1fr}}
+  .step-num{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:1.1rem;color:var(--gold);letter-spacing:.04em}
+  /* Visit-us block (merchant info: address / hours / phone / signature services / photo) */
+  .visit-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:1.4rem;max-width:64rem;margin:2.2rem auto 0}
+  @media(max-width:820px){.visit-grid{grid-template-columns:1fr}}
+  .visit-info{padding:2rem 1.8rem}
+  .visit-name{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:1.7rem;margin:0 0 1.2rem;letter-spacing:-.01em;color:var(--ink)}
+  .visit-label{font-family:"Inter",sans-serif;font-weight:600;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:inline-block;min-width:5.2rem}
+  .visit-line{color:var(--mute);font-size:.98rem;line-height:1.75;margin:.5rem 0}
+  .visit-photo{aspect-ratio:4/5;border-radius:var(--radius);background:color-mix(in srgb,var(--accent) 14%,var(--bg));box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid var(--accent-line)}
+  .visit-photo-mark{width:3rem;height:3rem;color:var(--gold);opacity:.55}
+  .services{margin-top:2.4rem;text-align:center}
+  .service-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:1rem}
+  .chip{display:inline-block;padding:.55rem 1.05rem;border:1px solid var(--accent-line);border-radius:999px;color:var(--ink);font-size:.88rem;background:var(--accent-glass);transition:border-color .2s,background .2s}
+  .chip:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+  /* === Per-page personality (Blueprint B differentiation) === */
+  .eyebrow{color:var(--accent)}
+  .step-num{color:var(--accent)}
+  .hero-glow{opacity:.92}
 </style>
 <script>
   try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('gsap-hero'); } catch (e) {}
@@ -32,86 +57,176 @@
       <span class="sig-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg></span>
       FifthStar
     </a>
-    <a class="nav-cta" href="mailto:hello@thefifthstar.site?subject=My%20free%20review%20replies">Get my 3 free replies</a>
+    <a class="nav-cta" href="tel:+441132457788">Call the team</a>
   </div>
 </nav>
 
+<!-- 01 · HERO (dark shell) -->
 <header class="hero">
   <div class="breathe-ring" aria-hidden="true"></div>
-  <div class="sig-watermark" aria-hidden="true"><span class="sig-wm-motif"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg></span></div>
-  <span class="hero-word" aria-hidden="true">Trade</span>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="sig-watermark" aria-hidden="true"><span class="sig-wm-motif"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 00-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 005.4-5.4l-2.6 2.6-2-2z"/></svg></span></div>
+  <span class="sig-focal sweep" aria-hidden="true" style="top:1.4rem;right:1.8rem;width:4.6rem;height:4.6rem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 00-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 005.4-5.4l-2.6 2.6-2-2z"/></svg></span>
+  <span class="hero-word" aria-hidden="true">Mercer &amp; Son</span>
   <div class="wrap hero-copy">
-    <span class="eyebrow">For trades &amp; skilled work</span>
-    <h1>When something breaks, your reviews are the first thing checked.</h1>
-    <p class="lead">Plumbers, electricians, fitters — a panicked homeowner Googles you at 9pm. We turn your reviews into replies that sound like you, then a site that wins the call-out.</p>
+    <span class="eyebrow">Leeds · Est. 1999 · Gas Safe registered</span>
+    <h1>No call-out drama. Just the job, done.</h1>
+    <p class="lead">Father-and-son plumbing and heating across Leeds. Boilers, leaks, bathrooms — turned up on time, fixed properly, and the floor's cleaner than we found it.</p>
     <div class="cta-row">
-      <a class="btn btn-gold" href="mailto:hello@thefifthstar.site?subject=My%20free%20review%20replies">Get my 3 free replies →</a>
-      <a class="btn btn-ghost" href="#examples">See what’s coming</a>
+      <a class="btn btn-gold" href="tel:+441132457788">Call the team →</a>
+      <a class="btn btn-ghost" href="#work">What clients say</a>
+    </div>
+    <div class="trust-row">
+      <div class="trust-top">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span class="score">4.9 on Google · 341 reviews · Gas Safe registered</span>
+      </div>
     </div>
   </div>
 </header>
 
-<section class="section">
+<!-- 02 · THE VAN (dark shell) -->
+<section class="section" id="van">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Why it matters for trades</span>
-      <h2>Trust wins the job before you arrive.</h2>
+      <span class="eyebrow">The van</span>
+      <h2>Why people rebook us.</h2>
     </div>
     <div class="stack">
-      <div class="svc reveal" style="padding:.5rem 0 .5rem 1.5rem">
-        <h3 style="font-size:1.3rem;margin-bottom:.45rem">Reviews beat the directory</h3>
-        <p style="color:var(--mute);font-size:1rem;line-height:1.62">“Fixed it same day, fair price” outranks any paid listing. Answered, it books the next job.</p>
+      <div class="stack-item reveal">
+        <h3>01 · On time, or we'll say</h3>
+        <p>We text before we set off. If we're held up, you hear from us before you start wondering where we are.</p>
       </div>
-      <div class="svc reveal" style="padding:.5rem 0 .5rem 1.5rem">
-        <h3 style="font-size:1.3rem;margin-bottom:.45rem">A site that says “call me”</h3>
-        <p style="color:var(--mute);font-size:1rem;line-height:1.62">Services, area, a big tap-to-call button. The worried customer acts in seconds.</p>
+      <div class="stack-item reveal">
+        <h3>02 · Fixed before you panic</h3>
+        <p>Most jobs done in one visit. We stock the common parts so a leak doesn't become a saga.</p>
       </div>
-      <div class="svc reveal" style="padding:.5rem 0 .5rem 1.5rem">
-        <h3 style="font-size:1.3rem;margin-bottom:.45rem">Plain-English replies</h3>
-        <p style="color:var(--mute);font-size:1rem;line-height:1.62">We draft, you post. Honest, local, the tone your customers already like.</p>
+      <div class="stack-item reveal">
+        <h3>03 · Honest, itemised</h3>
+        <p>You get a plain invoice: labour, parts, VAT. No "while we were here" extras bolted on at the end.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section alt" id="examples">
+<!-- 03 · WHAT TO EXPECT (dark shell) -->
+<section class="section" id="expect">
   <div class="wrap">
     <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
-      <span class="eyebrow">Showcase opening</span>
-      <h2>We’re building our first trades showcase.</h2>
-      <p class="lead" style="margin:0 auto">Founding partners get their page built free and featured as the example — and keep it. Here’s what it will show.</p>
+      <span class="eyebrow">What to expect</span>
+      <h2>Call. Quote. Fixed.</h2>
+      <p class="lead" style="margin:0 auto">Three steps, a price you approve first, and a job that stays fixed.</p>
     </div>
-    <div class="grid-2">
-      <div class="ex-card glass-card reveal">
-        <span class="ex-city">Showcase · opening</span>
-        <h3>Your trade here</h3>
-        <div class="ex-ph">Built free as the founding example. We feature it across FifthStar and you keep the page.</div>
-        <p class="ex-desc">What it shows: your real Google reviews, a FifthStar reply to each, and a no-nonsense site with tap-to-call.</p>
-        <a class="ex-link" href="mailto:hello@thefifthstar.site?subject=Be%20the%20first%20trades%20showcase">Be the first →</a>
+    <div class="steps">
+      <div class="glass-card reveal" style="padding:1.8rem 1.6rem">
+        <div class="step-num">Call</div>
+        <div class="accent-rule"></div>
+        <p style="color:var(--mute);font-size:.98rem;line-height:1.65">Phone or message. We triage on the spot and book the earliest slot that suits you.</p>
       </div>
-      <div class="ex-card glass-card reveal">
-        <span class="ex-city">Design direction</span>
-        <h3>Honest, fast, useful</h3>
-        <div class="ex-ph">Bold type, your real job photos, gold-on-dark accent. Loads on a phone in under two seconds.</div>
-        <p class="ex-desc">One consistent voice from the review reply to the homepage — so the next caller already trusts you.</p>
-        <a class="ex-link" href="mailto:hello@thefifthstar.site?subject=Trades%20page%20design">Ask about the design →</a>
+      <div class="glass-card reveal" style="padding:1.8rem 1.6rem">
+        <div class="step-num">Quote</div>
+        <div class="accent-rule"></div>
+        <p style="color:var(--mute);font-size:.98rem;line-height:1.65">A clear price before we touch a wrench. Emergency or planned, you approve it first.</p>
+      </div>
+      <div class="glass-card reveal" style="padding:1.8rem 1.6rem">
+        <div class="step-num">Fixed</div>
+        <div class="accent-rule"></div>
+        <p style="color:var(--mute);font-size:.98rem;line-height:1.65">Job done, tested, and tidied. We show you what we did and how to avoid it next time.</p>
       </div>
     </div>
   </div>
 </section>
 
-<div class="wrap">
-  <div class="cta-band glass-card reveal">
-    <h3>Want your trade to be the example?</h3>
-    <p>Send your Google Business Profile — three free replies, and a page built on us.</p>
-    <a class="btn btn-gold" href="mailto:hello@thefifthstar.site?subject=My%20free%20review%20replies">Get my 3 free replies →</a>
+<!-- 04 · WORDS FROM THE VAN (dark shell) -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">Words from the van</span>
+      <h2>What our customers say.</h2>
+    </div>
+    <div class="steps">
+      <div class="glass-card reveal" style="padding:1.8rem 1.6rem">
+        <div class="step-num" style="color:var(--gold)">★★★★★</div>
+        <div class="accent-rule"></div>
+        <p style="color:var(--ink);font-size:1.02rem;line-height:1.65;font-style:italic">"Boiler died on Christmas Eve. They came out same day and refused to charge the call-out. Proper local firm."</p>
+        <p style="color:var(--mute);font-size:.86rem;margin-top:1rem">— Karen L., Leeds</p>
+      </div>
+      <div class="glass-card reveal" style="padding:1.8rem 1.6rem">
+        <div class="step-num" style="color:var(--gold)">★★★★★</div>
+        <div class="accent-rule"></div>
+        <p style="color:var(--ink);font-size:1.02rem;line-height:1.65;font-style:italic">"Replaced our bathroom start to finish in four days. Tidy, polite, and the tiling's better than the original."</p>
+        <p style="color:var(--mute);font-size:.86rem;margin-top:1rem">— Tom &amp; Raj, homeowners</p>
+      </div>
+      <div class="glass-card reveal" style="padding:1.8rem 1.6rem">
+        <div class="step-num" style="color:var(--gold)">★★★★★</div>
+        <div class="accent-rule"></div>
+        <p style="color:var(--ink);font-size:1.02rem;line-height:1.65;font-style:italic">"I'm a landlord — they've bailed me out at 8pm more times than I'll admit. Always fair, always fast."</p>
+        <p style="color:var(--mute);font-size:.86rem;margin-top:1rem">— D. Whitfield, landlord</p>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat reveal"><div class="num" data-count="341">0</div><div class="lbl">Google reviews</div></div>
+      <div class="stat reveal"><div class="num" data-count="4.9" data-decimals="1">0</div><div class="lbl">average rating</div></div>
+      <div class="stat reveal"><div class="num" data-count="25" data-suffix=" yrs">0</div><div class="lbl">in Leeds</div></div>
+    </div>
+    <p class="lead reveal" style="text-align:center;margin:1.6rem auto 0;font-size:.82rem;opacity:.7">Sample data — for template preview only. Replace with the live merchant's own Google profile stats when used as a real client showcase.</p>
   </div>
-</div>
+</section>
+
+<!-- 05 · VISIT US (merchant info: address / hours / phone / photo / signature services) -->
+<section class="section" id="visit">
+  <div class="wrap">
+    <div class="sec-head reveal" style="text-align:center;margin-left:auto;margin-right:auto">
+      <span class="eyebrow">Visit us</span>
+      <h2>Find Mercer &amp; Son.</h2>
+    </div>
+    <div class="visit-grid">
+      <div class="glass-card visit-info reveal">
+        <h3 class="visit-name">Mercer &amp; Son</h3>
+        <p class="visit-line"><span class="visit-label">Address</span>14 Kirkstall Road, Leeds LS3 1HL</p>
+        <p class="visit-line"><span class="visit-label">Hours</span>Mon – Sat · 7:30 – 18:00</p>
+        <p class="visit-line"><span class="visit-label">Phone</span>0113 245 7788</p>
+        <p class="visit-line" style="margin-top:1rem;font-size:.82rem;opacity:.7">Sample data — replace with the live merchant's details when used as a real client showcase.</p>
+        <a class="btn btn-gold" style="margin-top:1.4rem" href="tel:+441132457788">Call the team →</a>
+      </div>
+      <div class="visit-photo reveal" role="img" aria-label="Mercer &amp; Son van and workshop — placeholder for the business's photo.">
+        <span class="visit-photo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg></span>
+      </div>
+    </div>
+    <div class="services reveal">
+      <span class="visit-label">What we do</span>
+      <div class="service-chips">
+        <span class="chip">Boiler repair</span>
+        <span class="chip">Heating install</span>
+        <span class="chip">Bathroom fit</span>
+        <span class="chip">Leak detection</span>
+        <span class="chip">Emergency call-out</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA (dark shell) -->
+<section class="final">
+  <div class="wrap">
+    <h2>Call the team, or book online.</h2>
+    <p class="lead">Emergency? Phone any time — we pick up. Planned work? Book a slot and we'll confirm by text.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a class="btn btn-gold" href="tel:+441132457788">Call 0113 245 7788</a>
+      <a class="btn btn-ghost" href="mailto:hello@mercerson.co.uk">Email us</a>
+    </div>
+    <div class="guarantee">
+      <span class="g"><span class="tick">✓</span> Gas Safe registered</span>
+      <span class="g"><span class="tick">✓</span> Fixed price before we start</span>
+      <span class="g"><span class="tick">✓</span> Tidy or it's free</span>
+    </div>
+  </div>
+</section>
 
 <footer class="foot">
   <div class="wrap">
-    Part of <a href="../index.html">FifthStar</a> — reputation &amp; website, one partner.<br/>
-    Questions? <a href="mailto:hello@thefifthstar.site">hello@thefifthstar.site</a>
+    Mercer &amp; Son · 14 Kirkstall Road, Leeds LS3 1HL · 0113 245 7788<br/>
+    Built with care by <a href="../index.html">FifthStar</a> — the local business partner behind this site.
   </div>
 </footer>
 

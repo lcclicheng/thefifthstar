@@ -22,12 +22,74 @@
       els.forEach(function (e) { e.classList.add('in'); });
       return;
     }
+    // Stagger: within each section/hero/final, reveal children in sequence
+    // (gives the page a composed, premium rhythm instead of one flat fade).
+    var bySec = {};
+    els.forEach(function (e) {
+      var s = e.closest('section,header,.final') || document.body;
+      (bySec[s] = bySec[s] || []).push(e);
+    });
+    Object.keys(bySec).forEach(function (k) {
+      bySec[k].forEach(function (e, i) {
+        if (i > 0) e.style.transitionDelay = (i * 0.09) + 's';
+      });
+    });
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
       });
     }, { threshold: 0.12 });
     els.forEach(function (e) { io.observe(e); });
+  })();
+
+  // --- Count-up numbers (Proof stats) ---
+  (function () {
+    var nums = document.querySelectorAll('[data-count]');
+    if (!nums.length) return;
+    if (reduce) {
+      nums.forEach(function (n) {
+        var d = parseInt(n.getAttribute('data-decimals') || '0', 10);
+        n.textContent = parseFloat(n.getAttribute('data-count')).toFixed(d) + (n.getAttribute('data-suffix') || '');
+      });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target; io.unobserve(el);
+        var target = parseFloat(el.getAttribute('data-count'));
+        var suffix = el.getAttribute('data-suffix') || '';
+        var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        var dur = 1500, start = null;
+        function step(ts) {
+          if (start === null) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = (target * eased).toFixed(decimals) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = target.toFixed(decimals) + suffix;
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.4 });
+    nums.forEach(function (n) { io.observe(n); });
+  })();
+
+  // --- Hero soft-glow follows pointer (Apple/Linear style ambient light) ---
+  (function () {
+    if (reduce) return;
+    var hero = document.querySelector('.hero');
+    var glow = document.querySelector('.hero-glow');
+    if (!hero || !glow) return;
+    hero.addEventListener('mousemove', function (e) {
+      var r = hero.getBoundingClientRect();
+      glow.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      glow.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+    hero.addEventListener('mouseleave', function () {
+      glow.style.setProperty('--mx', '50%');
+      glow.style.setProperty('--my', '26%');
+    });
   })();
 
   // --- GSAP additive motion (optional) ---
