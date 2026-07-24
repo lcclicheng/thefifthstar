@@ -17,3 +17,7 @@ python -m http.server 8000   # then visit http://localhost:8000
 ## Repo
 
 `lcclicheng/thefifthstar`
+
+## Design system
+
+Visual + voice spec for every FifthStar-owned page: [`docs/DESIGN-LANGUAGE-v1.0.md`](docs/DESIGN-LANGUAGE-v1.0.md).
