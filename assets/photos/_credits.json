@@ -1,0 +1,58 @@
+{
+  "salon": {
+    "file": "d:/workbuddy项目/2026-07-07-09-02-15/gh-pages-build/products/fifthstar/assets/photos\\_cand\\salon_1.jpg",
+    "url": "https://live.staticflickr.com/2722/4455409908_a73a92d908_b.jpg",
+    "license": "by",
+    "creator": "ell brown",
+    "title": "Structures - Hair & Beauty - 193 High Street, Henley-in-Arden - scissors sign",
+    "source": "flickr",
+    "foreign": "https://www.flickr.com/photos/39415781@N06/4455409908"
+  },
+  "restaurant": {
+    "file": "d:/workbuddy项目/2026-07-07-09-02-15/gh-pages-build/products/fifthstar/assets/photos\\_cand\\restaurant_0.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Guevarra%E2%80%99s_restaurant_interior_dining_San_Juan_City_02.jpg",
+    "license": "by-sa",
+    "creator": "P1898",
+    "title": "Guevarra’s restaurant interior dining San Juan City 02",
+    "source": "wikimedia",
+    "foreign": "https://commons.wikimedia.org/w/index.php?curid=181808463"
+  },
+  "law": {
+    "file": "d:/workbuddy项目/2026-07-07-09-02-15/gh-pages-build/products/fifthstar/assets/photos\\_cand\\law_r0.jpg",
+    "url": "https://live.staticflickr.com/3071/2673492425_08cc20d350_b.jpg",
+    "license": "by",
+    "creator": "markhillary",
+    "title": "Lucy and Shelley from Buffalo",
+    "source": "flickr",
+    "foreign": "https://www.flickr.com/photos/56087830@N00/2673492425"
+  },
+  "trades": {
+    "file": "d:/workbuddy项目/2026-07-07-09-02-15/gh-pages-build/products/fifthstar/assets/photos\\_cand\\trades_wm_0.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Ridgid_10%22_pipe_wrench.jpg",
+    "license": "CC BY-SA 3.0",
+    "creator": "J.C. Fields (Talk) (Uploads)",
+    "title": "Ridgid 10\" pipe wrench.jpg",
+    "source": "wikimedia",
+    "foreign": "https://commons.wikimedia.org/wiki/File:Ridgid_10\"_pipe_wrench.jpg",
+    "query": "plumber pipe wrench"
+  },
+  "yoga": {
+    "file": "d:/workbuddy项目/2026-07-07-09-02-15/gh-pages-build/products/fifthstar/assets/photos\\_cand\\yoga_r0.jpg",
+    "url": "https://live.staticflickr.com/4052/4440278392_ed5325c9e2_b.jpg",
+    "license": "by",
+    "creator": "GoToVan",
+    "title": "Hatha yoga in Japanese @ Semperviva",
+    "source": "flickr",
+    "foreign": "https://www.flickr.com/photos/47022937@N03/4440278392"
+  },
+  "hotel": {
+    "file": "d:/workbuddy项目/2026-07-07-09-02-15/gh-pages-build/products/fifthstar/assets/photos\\_cand\\hotel_wmc_0.jpg",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Child_plays_in_a_hotel_room_with_a_couch_and_small_tables.jpg",
+    "license": "CC BY 2.0",
+    "creator": "Shixart1985",
+    "title": "Child plays in a hotel room with a couch and small tables.jpg",
+    "source": "wikimedia",
+    "foreign": "https://commons.wikimedia.org/wiki/File:Child_plays_in_a_hotel_room_with_a_couch_and_small_tables.jpg",
+    "query": "category:Hotel_rooms"
+  }
+}

@@ -33,8 +33,9 @@
   .visit-name{font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:1.7rem;margin:0 0 1.2rem;letter-spacing:-.01em;color:var(--ink)}
   .visit-label{font-family:"Inter",sans-serif;font-weight:600;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:inline-block;min-width:5.2rem}
   .visit-line{color:var(--mute);font-size:.98rem;line-height:1.75;margin:.5rem 0}
-  .visit-photo{aspect-ratio:4/5;border-radius:var(--radius);background:color-mix(in srgb,var(--accent) 14%,var(--bg));box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid var(--accent-line)}
-  .visit-photo-mark{width:3rem;height:3rem;color:var(--gold);opacity:.55}
+  .visit-photo{aspect-ratio:4/5;border-radius:var(--radius);background:color-mix(in srgb,var(--accent) 14%,var(--bg));box-shadow:var(--shadow);position:relative;overflow:hidden;border:1px solid var(--accent-line);margin:0}
+  .visit-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .visit-photo-cap{position:absolute;left:.6rem;bottom:.5rem;font-size:.6rem;color:var(--mute);background:rgba(0,0,0,.5);padding:.2rem .5rem;border-radius:.3rem;letter-spacing:.05em;backdrop-filter:blur(4px)}
   .services{margin-top:2.4rem;text-align:center}
   .service-chips{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:1rem}
   .chip{display:inline-block;padding:.55rem 1.05rem;border:1px solid var(--accent-line);border-radius:999px;color:var(--ink);font-size:.88rem;background:var(--accent-glass);transition:border-color .2s,background .2s}
@@ -189,9 +190,10 @@
         <p class="visit-line" style="margin-top:1rem;font-size:.82rem;opacity:.7">Sample data — replace with the live merchant's details when used as a real client showcase.</p>
         <a class="btn btn-gold" style="margin-top:1.4rem" href="tel:+442078372200">Book a table →</a>
       </div>
-      <div class="visit-photo reveal" role="img" aria-label="The Anchor &amp; Vine dining room — placeholder for the restaurant's photo.">
-        <span class="visit-photo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg></span>
-      </div>
+      <figure class="visit-photo reveal">
+        <img src="../assets/photos/restaurant.jpg" alt="Restaurant interior — example image" loading="lazy" />
+        <figcaption class="visit-photo-cap">Example · Wikimedia · CC BY-SA</figcaption>
+      </figure>
     </div>
     <div class="services reveal">
       <span class="visit-label">Signature dishes</span>
