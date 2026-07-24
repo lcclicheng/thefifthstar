@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FifthStar · Review Widget Preview</title>
+<style>
+  /* ── Demo page chrome only (NOT part of the embed) ───────────────────────
+     This wrapper exists so you (Ethan) can open the file, toggle light/dark,
+     and screenshot the widget to show a merchant where it sits on a page.
+     Everything between the EMBED SNIPPET markers below is what the merchant
+     pastes. Nothing in this <head> is shipped. ───────────────────────────── */
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  .demo-stage { padding: 48px 24px; transition: background .3s, color .3s; }
+  .demo-stage.light { background: #faf8f4; color: #1c1a17; }
+  .demo-stage.dark  { background: #14120f; color: #f3efe7; }
+  .demo-bar { position: sticky; top: 0; z-index: 9; display: flex; gap: 12px; align-items: center;
+              padding: 12px 24px; font-size: 13px; backdrop-filter: blur(8px);
+              background: color-mix(in srgb, currentColor 8%, transparent); border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent); }
+  .demo-bar button { font: inherit; cursor: pointer; padding: 6px 14px; border-radius: 999px;
+              border: 1px solid color-mix(in srgb, currentColor 22%, transparent); background: transparent; color: inherit; }
+  .demo-bar button:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
+  .demo-note { max-width: 720px; margin: 0 auto 28px; font-size: 13px; opacity: .7; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="demo-bar">
+  <strong>FifthStar review widget</strong>
+  <span style="opacity:.6">· preview</span>
+  <button onclick="document.getElementById('stage').className='demo-stage light'">Light site</button>
+  <button onclick="document.getElementById('stage').className='demo-stage dark'">Dark site</button>
+</div>
+
+<div id="stage" class="demo-stage light">
+  <p class="demo-note">This is how the widget renders on a merchant's own homepage. It follows
+  the page's own text colour (theme-adaptive) — no brand colour is hard-coded. The snippet the
+  merchant pastes is delimited below.</p>
+
+<!-- ═════════════════════ EMBED SNIPPET START ═════════════════════ -->
+<!--
+  FIFTH STAR REVIEW WIDGET
+  ───────────────────────────────────────────────────────────────────
+  COMPLIANCE (read before editing):
+  • Only paste REAL, PUBLIC Google reviews you can link to. Never invent,
+    reword, or translate a review's meaning.
+  • Do NOT delete or hide low-star reviews. Show the honest mix.
+  • Do NOT offer rewards/discounts for reviews (against Google's policy).
+  • Keep the "on Google" link pointing at the source review / Business Profile.
+  • You may change `title`, `businessName`, and the `reviews` array only.
+  ───────────────────────────────────────────────────────────────────
+-->
+<div id="fifthstar-reviews"></div>
+<style>
+  #fifthstar-reviews.fs-rw {
+    --fs-accent: currentColor;                       /* override via JS config if you want a fixed star colour */
+    --fs-muted:  color-mix(in srgb, currentColor 52%, transparent);
+    --fs-line:   color-mix(in srgb, currentColor 16%, transparent);
+    --fs-bg:     color-mix(in srgb, currentColor 5%,  transparent);
+    --fs-radius: 14px;
+    font-family: inherit;
+    color: inherit;
+    max-width: 760px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+  #fifthstar-reviews.fs-rw * { box-sizing: border-box; }
+  .fs-rw-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; margin-bottom: 18px; }
+  .fs-rw-title { font-size: 1.35rem; font-weight: 700; letter-spacing: -.01em; margin: 0; }
+  .fs-rw-score { font-weight: 600; }
+  .fs-rw-score a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--fs-line); }
+  .fs-rw-score a:hover { border-color: var(--fs-muted); }
+  .fs-rw-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .fs-rw-card {
+    border: 1px solid var(--fs-line);
+    background: var(--fs-bg);
+    border-radius: var(--fs-radius);
+    padding: 18px 18px 16px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .fs-rw-stars { font-size: 1.05rem; letter-spacing: 2px; line-height: 1; color: var(--fs-accent); }
+  .fs-rw-stars .fs-empty { color: var(--fs-muted); }
+  .fs-rw-text { margin: 0; font-size: .95rem; }
+  .fs-rw-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+                font-size: .8rem; color: var(--fs-muted); margin-top: auto; }
+  .fs-rw-meta a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--fs-line); }
+  .fs-rw-meta a:hover { border-color: var(--fs-muted); }
+  .fs-rw-foot { margin-top: 18px; font-size: .78rem; color: var(--fs-muted); text-align: center; }
+  .fs-rw-foot a { color: inherit; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script>
+(function () {
+  var CFG = window.FIFTHSTAR_REVIEW_WIDGET || {};
+  var EL = document.getElementById('fifthstar-reviews');
+  if (!EL) return;
+  EL.classList.add('fs-rw');
+  if (CFG.accent) EL.style.setProperty('--fs-accent', CFG.accent);
+
+  function stars(n) {
+    n = Math.max(0, Math.min(5, n | 0));
+    var s = '';
+    for (var i = 1; i <= 5; i++) s += i <= n ? '★' : '<span class="fs-empty">★</span>';
+    return s;
+  }
+  function rel(dateStr) {
+    if (!dateStr) return '';
+    var d = new Date(dateStr), now = new Date();
+    if (isNaN(d)) return '';
+    var days = Math.floor((now - d) / 86400000);
+    if (days < 1) return 'today';
+    if (days < 30) return days + ' day' + (days > 1 ? 's' : '') + ' ago';
+    if (days < 365) { var m = Math.floor(days / 30); return m + ' month' + (m > 1 ? 's' : '') + ' ago'; }
+    var y = Math.floor(days / 365); return y + ' year' + (y > 1 ? 's' : '') + ' ago';
+  }
+  function esc(t) { return String(t == null ? '' : t).replace(/[&<>"]/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  var reviews = (CFG.reviews || []).slice(0, CFG.maxReviews || 5);
+  var avg = reviews.length
+    ? (reviews.reduce(function (a, r) { return a + (r.rating || 0); }, 0) / reviews.length).toFixed(1)
+    : '—';
+
+  var html = '';
+  if (CFG.title) html += '<div class="fs-rw-head"><h3 class="fs-rw-title">' + esc(CFG.title) + '</h3>'
+    + (CFG.googleUrl ? '<span class="fs-rw-score"><a href="' + esc(CFG.googleUrl) + '" target="_blank" rel="noopener">'
+      + avg + ' ★ on Google</a></span>' : '') + '</div>';
+  html += '<div class="fs-rw-grid">';
+  reviews.forEach(function (r) {
+    html += '<div class="fs-rw-card">'
+      + '<div class="fs-rw-stars" aria-label="' + (r.rating || 0) + ' out of 5">' + stars(r.rating) + '</div>'
+      + '<p class="fs-rw-text">' + esc(r.text) + '</p>'
+      + '<div class="fs-rw-meta"><span>' + esc(r.author || 'Local customer') + '</span>'
+      + (r.url ? '<a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + (rel(r.date) || 'on Google') + '</a>'
+               : '<span>' + (rel(r.date) || '') + '</span>')
+      + '</div></div>';
+  });
+  html += '</div>';
+  if (CFG.showAttribution !== false)
+    html += '<div class="fs-rw-foot">Reputation widget by <a href="https://thefifthstar.site" target="_blank" rel="noopener">FifthStar</a></div>';
+  EL.innerHTML = html;
+})();
+</script>
+<!-- ═════════════════════ EMBED SNIPPET END ═════════════════════ -->
+
+<!-- ── CONFIG: place this script BEFORE the snippet above, or anywhere on the page.
+     Replace the sample data with the merchant's REAL public Google reviews. ── -->
+<script>
+  window.FIFTHSTAR_REVIEW_WIDGET = {
+    title: "What our customers say",
+    businessName: "The Copper Kettle",
+    googleUrl: "https://www.google.com/maps/place/?q=place_id:REPLACE_WITH_REAL_PLACE_ID",
+    accent: "",                       // optional fixed star colour, e.g. "#c9a227". Leave "" to follow page text.
+    maxReviews: 4,                    // show 3–5
+    showAttribution: true,
+    reviews: [
+      {
+        author: "Sarah M.",
+        rating: 5,
+        text: "Absolutely lovely Sunday roast — generous portions and the staff remembered our names. We'll be back.",
+        date: "2026-03-14",
+        url: "https://www.google.com/maps/place/?q=place_id:REPLACE_WITH_REAL_PLACE_ID"
+      },
+      {
+        author: "James T.",
+        rating: 4,
+        text: "Great coffee and a calm corner to work from. Only wish they opened an hour earlier on weekends.",
+        date: "2026-02-02",
+        url: "https://www.google.com/maps/place/?q=place_id:REPLACE_WITH_REAL_PLACE_ID"
+      },
+      {
+        author: "Priya K.",
+        rating: 5,
+        text: "Took my mum for her birthday and they made her a wee card on the house. Lovely touch.",
+        date: "2025-11-20",
+        url: "https://www.google.com/maps/place/?q=place_id:REPLACE_WITH_REAL_PLACE_ID"
+      },
+      {
+        author: "Daniel O.",
+        rating: 4,
+        text: "Solid brunch spot. Busy on Saturdays so book ahead, but worth it.",
+        date: "2025-10-08",
+        url: "https://www.google.com/maps/place/?q=place_id:REPLACE_WITH_REAL_PLACE_ID"
+      }
+    ]
+  };
+</script>
+
+</div>
+</body>
+</html>
