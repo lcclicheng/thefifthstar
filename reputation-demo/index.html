@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Copper Kettle · Reviews &amp; FifthStar (DEMO)</title>
+<style>
+  /* ── Simulated merchant-site chrome (NOT part of the FifthStar embed) ──
+     This page fakes "The Copper Kettle" restaurant website so we can prove
+     the review widget + reply-loop genuinely drop into a real merchant page.
+     Only the blocks delimited EMBED SNIPPET / REPLY-LOOP are FifthStar code. ── */
+  :root { --ink:#2a2521; --paper:#faf8f4; --warm:#b9772f; --line:rgba(42,37,33,.14); }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+         color:var(--ink); background:var(--paper); line-height:1.6; }
+  a { color:inherit; }
+  .demo-banner { background:#2a2521; color:#f3efe7; font-size:.8rem; padding:.55rem 1rem; text-align:center; letter-spacing:.02em; }
+  .demo-banner b { color:#f0c987; }
+  .mk-header { display:flex; align-items:center; justify-content:space-between; padding:1.1rem 1.5rem; max-width:980px; margin:0 auto; }
+  .mk-logo { font-weight:800; font-size:1.2rem; letter-spacing:-.01em; }
+  .mk-nav a { margin-left:1.2rem; text-decoration:none; font-size:.9rem; opacity:.8; }
+  .mk-hero { max-width:980px; margin:0 auto; padding:3rem 1.5rem 2.4rem; }
+  .mk-hero h1 { font-size:clamp(2rem,5vw,3rem); margin:0 0 .6rem; letter-spacing:-.02em; }
+  .mk-hero p { max-width:34rem; font-size:1.05rem; opacity:.85; margin:0 0 1.4rem; }
+  .mk-cta { display:inline-block; background:var(--warm); color:#fff; padding:.7rem 1.4rem; border-radius:999px; text-decoration:none; font-weight:600; }
+  .mk-section { max-width:980px; margin:0 auto; padding:2.6rem 1.5rem; border-top:1px solid var(--line); }
+  .mk-section h2 { font-size:1.6rem; letter-spacing:-.01em; margin:0 0 .4rem; }
+  .mk-section .mk-sub { opacity:.7; margin:0 0 1.8rem; max-width:40rem; }
+
+  /* ── Reply-loop (FifthStar B-track demo, theme-adaptive via currentColor) ── */
+  .fs-loop { display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); margin-top:.4rem; }
+  .fs-card { border:1px solid var(--line); border-radius:14px; padding:18px; background:rgba(42,37,33,.03); display:flex; flex-direction:column; gap:10px; }
+  .fs-tag { display:inline-block; font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; font-weight:700;
+            padding:.2rem .55rem; border-radius:999px; background:rgba(185,119,47,.14); color:var(--warm); align-self:flex-start; }
+  .fs-stars { color:var(--warm); letter-spacing:2px; font-size:1rem; }
+  .fs-stars .fs-empty { opacity:.3; }
+  .fs-quote { margin:0; font-size:.95rem; }
+  .fs-meta { font-size:.78rem; opacity:.6; margin-top:auto; }
+  .fs-draft-label { font-size:.72rem; font-weight:700; color:var(--warm); text-transform:uppercase; letter-spacing:.06em; }
+  .fs-draft { margin:0; font-size:.92rem; background:#fff; border:1px dashed var(--line); border-radius:10px; padding:12px; flex:1; }
+  .fs-draft textarea { width:100%; min-height:96px; border:1px solid var(--line); border-radius:8px; padding:10px; font:inherit; font-size:.92rem; resize:vertical; }
+  .fs-actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:auto; }
+  .fs-btn { font:inherit; font-size:.82rem; cursor:pointer; padding:.45rem .9rem; border-radius:999px; border:1px solid var(--line); background:transparent; }
+  .fs-btn.primary { background:var(--warm); color:#fff; border-color:var(--warm); }
+  .fs-btn:hover { opacity:.85; }
+  .fs-status { font-size:.8rem; font-weight:600; padding:.4rem .7rem; border-radius:8px; display:none; }
+  .fs-status.ok { display:block; background:rgba(46,125,50,.12); color:#2e7d32; }
+  .fs-status.skip { display:block; background:rgba(120,120,120,.14); color:#555; }
+  .fs-note { font-size:.76rem; opacity:.6; margin-top:1.4rem; line-height:1.5; }
+  .mk-foot { text-align:center; font-size:.82rem; opacity:.6; padding:2rem 1.5rem 3rem; }
+  .mk-foot a { text-decoration:none; border-bottom:1px solid var(--line); }
+  @media (prefers-reduced-motion: reduce) { * { transition:none !important; } }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">
+  <b>DEMO</b> · This is a simulated merchant website (The Copper Kettle) showing the real FifthStar review widget + AI-reply loop embedded as a Track-B customer would receive them. Sample data only — not a real client.
+</div>
+
+<header class="mk-header">
+  <div class="mk-logo">The Copper Kettle</div>
+  <nav class="mk-nav"><a href="#reviews">Reviews</a><a href="#fifthstar">FifthStar</a><a href="#book">Book</a></nav>
+</header>
+
+<section class="mk-hero">
+  <h1>Sunday roasts &amp; proper coffee in Manchester</h1>
+  <p>Family-run since 2014. Generous plates, a calm corner to work from, and the staff still remember your name.</p>
+  <a class="mk-cta" href="#book">Book a table</a>
+</section>
+
+<!-- ═════════════════════ REVIEWS · real embed ═════════════════════ -->
+<section class="mk-section" id="reviews">
+  <h2>What our customers say</h2>
+  <p class="mk-sub">Pulled live from our Google Business Profile and shown on this page with the FifthStar review widget.</p>
+
+<!-- CONFIG: must run BEFORE the widget snippet — the IIFE reads window.FIFTHSTAR_REVIEW_WIDGET synchronously.
+     Real merchant sets their own public reviews here. Demo data shown. -->
+<script>
+  window.FIFTHSTAR_REVIEW_WIDGET = {
+    title: "What our customers say",
+    businessName: "The Copper Kettle",
+    googleUrl: "https://www.google.com/maps/place/?q=place_id:COPPER_KETTLE_DEMO_PLACE_ID",
+    accent: "#b9772f",
+    maxReviews: 4,
+    showAttribution: true,
+    reviews: [
+      { author:"Sarah M.", rating:5, text:"Absolutely lovely Sunday roast — generous portions and the staff remembered our names. We'll be back.", date:"2026-03-14", url:"https://www.google.com/maps/place/?q=place_id:COPPER_KETTLE_DEMO_PLACE_ID" },
+      { author:"James T.", rating:4, text:"Great coffee and a calm corner to work from. Only wish they opened an hour earlier on weekends.", date:"2026-02-02", url:"https://www.google.com/maps/place/?q=place_id:COPPER_KETTLE_DEMO_PLACE_ID" },
+      { author:"Priya K.", rating:5, text:"Took my mum for her birthday and they made her a wee card on the house. Lovely touch.", date:"2025-11-20", url:"https://www.google.com/maps/place/?q=place_id:COPPER_KETTLE_DEMO_PLACE_ID" },
+      { author:"Daniel O.", rating:4, text:"Solid brunch spot. Busy on Saturdays so book ahead, but worth it.", date:"2025-10-08", url:"https://www.google.com/maps/place/?q=place_id:COPPER_KETTLE_DEMO_PLACE_ID" }
+    ]
+  };
+</script>
+
+<!-- ── FIFTHSTAR REVIEW WIDGET · EMBED SNIPPET START ──
+     (Verbatim from products/fifthstar/widget/review-widget.html — paste as-is into any merchant page) -->
+<div id="fifthstar-reviews"></div>
+<style>
+  #fifthstar-reviews.fs-rw {
+    --fs-accent: currentColor;
+    --fs-muted:  color-mix(in srgb, currentColor 52%, transparent);
+    --fs-line:   color-mix(in srgb, currentColor 16%, transparent);
+    --fs-bg:     color-mix(in srgb, currentColor 5%,  transparent);
+    --fs-radius: 14px;
+    font-family: inherit; color: inherit; max-width: 760px; margin: 0 auto; line-height: 1.5;
+  }
+  #fifthstar-reviews.fs-rw * { box-sizing: border-box; }
+  .fs-rw-head { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 14px; margin-bottom:18px; }
+  .fs-rw-title { font-size:1.35rem; font-weight:700; letter-spacing:-.01em; margin:0; }
+  .fs-rw-score { font-weight:600; }
+  .fs-rw-score a { color:inherit; text-decoration:none; border-bottom:1px solid var(--fs-line); }
+  .fs-rw-score a:hover { border-color:var(--fs-muted); }
+  .fs-rw-grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+  .fs-rw-card { border:1px solid var(--fs-line); background:var(--fs-bg); border-radius:var(--fs-radius); padding:18px 18px 16px; display:flex; flex-direction:column; gap:10px; }
+  .fs-rw-stars { font-size:1.05rem; letter-spacing:2px; line-height:1; color:var(--fs-accent); }
+  .fs-rw-stars .fs-empty { color:var(--fs-muted); }
+  .fs-rw-text { margin:0; font-size:.95rem; }
+  .fs-rw-meta { display:flex; justify-content:space-between; align-items:baseline; gap:10px; font-size:.8rem; color:var(--fs-muted); margin-top:auto; }
+  .fs-rw-meta a { color:inherit; text-decoration:none; border-bottom:1px solid var(--fs-line); }
+  .fs-rw-meta a:hover { border-color:var(--fs-muted); }
+  .fs-rw-foot { margin-top:18px; font-size:.78rem; color:var(--fs-muted); text-align:center; }
+  .fs-rw-foot a { color:inherit; }
+</style>
+<script>
+(function () {
+  var CFG = window.FIFTHSTAR_REVIEW_WIDGET || {};
+  var EL = document.getElementById('fifthstar-reviews');
+  if (!EL) return;
+  EL.classList.add('fs-rw');
+  if (CFG.accent) EL.style.setProperty('--fs-accent', CFG.accent);
+  function stars(n){ n=Math.max(0,Math.min(5,n|0)); var s=''; for(var i=1;i<=5;i++) s+= i<=n?'★':'<span class="fs-empty">★</span>'; return s; }
+  function rel(d){ if(!d) return ''; var t=new Date(d), now=new Date(); if(isNaN(t)) return ''; var days=Math.floor((now-t)/86400000);
+    if(days<1) return 'today'; if(days<30) return days+' day'+(days>1?'s':'')+' ago';
+    if(days<365){ var m=Math.floor(days/30); return m+' month'+(m>1?'s':'')+' ago'; }
+    var y=Math.floor(days/365); return y+' year'+(y>1?'s':'')+' ago'; }
+  function esc(t){ return String(t==null?'':t).replace(/[&<>"]/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  var reviews=(CFG.reviews||[]).slice(0,CFG.maxReviews||5);
+  var avg=reviews.length?(reviews.reduce(function(a,r){return a+(r.rating||0);},0)/reviews.length).toFixed(1):'—';
+  var html='';
+  if(CFG.title) html+='<div class="fs-rw-head"><h3 class="fs-rw-title">'+esc(CFG.title)+'</h3>'
+    +(CFG.googleUrl?'<span class="fs-rw-score"><a href="'+esc(CFG.googleUrl)+'" target="_blank" rel="noopener">'+avg+' ★ on Google</a></span>':'')+'</div>';
+  html+='<div class="fs-rw-grid">';
+  reviews.forEach(function(r){ html+='<div class="fs-rw-card">'
+    +'<div class="fs-rw-stars" aria-label="'+(r.rating||0)+' out of 5">'+stars(r.rating)+'</div>'
+    +'<p class="fs-rw-text">'+esc(r.text)+'</p>'
+    +'<div class="fs-rw-meta"><span>'+esc(r.author||'Local customer')+'</span>'
+    +(r.url?'<a href="'+esc(r.url)+'" target="_blank" rel="noopener">'+(rel(r.date)||'on Google')+'</a>':'<span>'+(rel(r.date)||'')+'</span>')
+    +'</div></div>'; });
+  html+='</div>';
+  if(CFG.showAttribution!==false) html+='<div class="fs-rw-foot">Reputation widget by <a href="https://thefifthstar.site" target="_blank" rel="noopener">FifthStar</a></div>';
+  EL.innerHTML=html;
+})();
+</script>
+<!-- ── FIFTHSTAR REVIEW WIDGET · EMBED SNIPPET END ── -->
+
+</section>
+
+<!-- ═════════════════════ REPLY LOOP · B-track demo ═════════════════════ -->
+<section class="mk-section" id="fifthstar">
+  <h2>How FifthStar answers reviews for you</h2>
+  <p class="mk-sub">This is the Track-B loop a Reputation plan runs in the background. A new Google review lands → FifthStar drafts a reply in your tone → you tap to approve. No login, no writing.</p>
+
+  <div class="fs-loop">
+    <!-- incoming review -->
+    <div class="fs-card">
+      <span class="fs-tag">New review · 2 days ago</span>
+      <div class="fs-stars" aria-label="4 out of 5">★★★★<span class="fs-empty">★</span></div>
+      <p class="fs-quote">"Really enjoyed the brunch but the wait was a bit long on Sunday. Still, the food made up for it."</p>
+      <div class="fs-meta">— Marcus R. · Google · 4★</div>
+    </div>
+
+    <!-- AI draft -->
+    <div class="fs-card">
+      <span class="fs-tag">FifthStar AI draft</span>
+      <span class="fs-draft-label">Suggested reply (in your tone)</span>
+      <p class="fs-draft" id="draftText">Hi Marcus — thanks so much for coming by, and fair point on the Sunday wait. We're nudging up morning cover at weekends so it's quicker next time. Glad the brunch hit the spot — we'd love to have you back.</p>
+      <div class="fs-actions">
+        <button class="fs-btn primary" id="approveBtn">Approve &amp; post</button>
+        <button class="fs-btn" id="editBtn">Edit</button>
+        <button class="fs-btn" id="skipBtn">Skip</button>
+      </div>
+      <div class="fs-status ok" id="statusOk">✓ Approved — queued to post to your Google profile (demo)</div>
+      <div class="fs-status skip" id="statusSkip">Skipped — kept in your FifthStar inbox for later</div>
+    </div>
+  </div>
+
+  <p class="fs-note">Demo only. In production the draft is generated per-review from your business tone, shown in the FifthStar dashboard, and posted to Google after your one-tap approval. Replies are a separate FifthStar service — the widget above only displays reviews.</p>
+</section>
+
+<footer class="mk-foot">
+  Demo page · Reputation widget &amp; reply loop by <a href="../index.html">FifthStar</a>
+</footer>
+
+<script>
+(function () {
+  var draft = document.getElementById('draftText');
+  var approve = document.getElementById('approveBtn');
+  var edit = document.getElementById('editBtn');
+  var skip = document.getElementById('skipBtn');
+  var ok = document.getElementById('statusOk');
+  var skipStatus = document.getElementById('statusSkip');
+  var original = draft.textContent;
+  function reset() { ok.style.display='none'; skipStatus.style.display='none'; draft.outerHTML = '<p class="fs-draft" id="draftText">'+original.replace(/</g,'&lt;')+'</p>'; draft = document.getElementById('draftText'); bindEdit(); }
+  function bindEdit(){
+    edit.onclick = function(){
+      var ta = document.createElement('textarea'); ta.value = draft.textContent;
+      draft.replaceWith(ta);
+      var save = document.createElement('button'); save.className='fs-btn primary'; save.textContent='Save';
+      save.onclick = function(){ var p=document.createElement('p'); p.className='fs-draft'; p.id='draftText'; p.textContent=ta.value; ta.replaceWith(p); save.remove(); draft=p; bindEdit(); };
+      edit.replaceWith(save);
+    };
+  }
+  approve.onclick = function(){ ok.style.display='block'; skipStatus.style.display='none'; };
+  skip.onclick = function(){ skipStatus.style.display='block'; ok.style.display='none'; };
+  bindEdit();
+})();
+</script>
+</body>
+</html>
