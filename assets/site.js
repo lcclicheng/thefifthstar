@@ -81,10 +81,19 @@
     var hero = document.querySelector('.hero');
     var glow = document.querySelector('.hero-glow');
     if (!hero || !glow) return;
+    var lastX = 50, lastY = 26, ticking = false;
     hero.addEventListener('mousemove', function (e) {
       var r = hero.getBoundingClientRect();
-      glow.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
-      glow.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+      lastX = (e.clientX - r.left) / r.width * 100;
+      lastY = (e.clientY - r.top) / r.height * 100;
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(function () {
+          glow.style.setProperty('--mx', lastX + '%');
+          glow.style.setProperty('--my', lastY + '%');
+          ticking = false;
+        });
+      }
     });
     hero.addEventListener('mouseleave', function () {
       glow.style.setProperty('--mx', '50%');
@@ -107,7 +116,7 @@
       .fromTo(".hero .badges", { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1 }, "-=0.7");
     // SplitText on section headlines (h2 carries no .reveal, so no property clash with parent fade)
     SplitText.create("section h2, .biz-hero h1, .final h2", {
-      type: "words,chars", mask: "chars", autoSplit: true,
+      type: "words,chars", mask: "chars",
       onSplit: function (self) {
         return gsap.from(self.chars, {
           yPercent: 110, opacity: 0, duration: 0.6, ease: EASE, stagger: 0.012,
@@ -115,12 +124,10 @@
         });
       }
     });
-    // Decorative: gentle parallax drift on the signature watermarks (additive only, no FOUC)
-    gsap.utils.toArray(".sig-watermark").forEach(function (wm) {
-      var trig = wm.closest("section, header, .final") || wm;
-      gsap.to(wm, { yPercent: -18, opacity: 0.09, ease: "none",
-        scrollTrigger: { trigger: trig, start: "top bottom", end: "bottom top", scrub: true } });
-    });
+    // Decorative: signature watermark stays static (opacity set in CSS).
+    // NOTE: the previous scrub:true parallax re-painted this large absolute SVG on
+    // every scroll frame — the main source of scroll jank. Removed for smoothness;
+    // the watermark reads identically at rest (.07 opacity, no motion needed).
     // Refresh after layout settles AND after web fonts load (fixes SplitText reflow jump on h2)
     window.addEventListener("load", function () { ScrollTrigger.refresh(); });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
