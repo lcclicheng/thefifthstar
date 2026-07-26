@@ -1,0 +1,86 @@
+/* ============================================================
+   FifthStar — legal pages (Privacy / Terms)
+   Long-form prose on the dark shell. Reuses DL v1.0 tokens.
+   ============================================================ */
+
+.legal-hero{
+  padding:5rem 0 2.6rem;
+  text-align:center;
+  background:
+    radial-gradient(120% 90% at 50% -10%, var(--gold-soft), transparent 60%),
+    var(--bg);
+  border-bottom:1px solid var(--line);
+}
+.legal-hero .eyebrow{
+  display:inline-block;
+  font-family:var(--body-font);
+  font-weight:600;
+  font-size:.8rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:1rem;
+}
+.legal-hero h1{
+  font-family:var(--head-font);
+  font-weight:700;
+  font-size:var(--h1);
+  line-height:1.05;
+  color:var(--ink);
+  margin:0 0 1rem;
+}
+.legal-hero .tagline{
+  max-width:46rem;
+  margin:0 auto;
+  color:var(--mute);
+  font-size:1.1rem;
+  line-height:1.6;
+}
+.legal-updated{
+  margin-top:1.1rem;
+  font-size:.85rem;
+  color:var(--mute);
+  opacity:.8;
+}
+
+.legal-prose{
+  max-width:46rem;
+  margin:0 auto;
+  padding:3rem 0 1rem;
+  color:var(--ink);
+  font-size:1.05rem;
+  line-height:1.8;
+}
+.legal-prose h2{
+  font-family:var(--head-font);
+  font-weight:700;
+  font-size:1.6rem;
+  line-height:1.2;
+  color:var(--ink);
+  margin:2.6rem 0 .8rem;
+  padding-top:.6rem;
+}
+.legal-prose h2:first-child{margin-top:0}
+.legal-prose p{margin:0 0 1.1rem;color:var(--ink)}
+.legal-prose ul{
+  margin:0 0 1.2rem;
+  padding-left:1.3rem;
+  display:flex;
+  flex-direction:column;
+  gap:.6rem;
+}
+.legal-prose li{color:var(--ink)}
+.legal-prose a{
+  color:var(--gold);
+  text-decoration:underline;
+  text-underline-offset:2px;
+  text-decoration-thickness:1px;
+}
+.legal-prose a:hover{opacity:.82}
+.legal-prose strong{color:var(--ink);font-weight:700}
+
+@media (max-width:640px){
+  .legal-hero{padding:3.6rem 0 2rem}
+  .legal-prose{font-size:1rem;line-height:1.72}
+  .legal-prose h2{font-size:1.4rem}
+}
