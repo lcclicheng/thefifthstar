@@ -77,6 +77,34 @@
 .entry-card .meta { color: var(--mute); font-size: var(--small); }
 .entry-card .plan { margin-top: 14px; color: var(--accent); font-weight: 600; font-size: var(--small); }
 
+/* --- Button micro-interactions (portal-only interactive feedback; no page/scroll motion) --- */
+.nav-cta {
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+  will-change: transform;
+}
+.nav-cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--gold) 55%, transparent);
+}
+.nav-cta:active { transform: translateY(0) scale(.97); }
+
+/* text links inside portal (e.g. "View live →") */
+.sec-title .hint[href] {
+  display: inline-flex; align-items: center; gap: 4px;
+  transition: transform .18s ease, color .18s ease;
+}
+.sec-title .hint[href]:hover { color: var(--gold); transform: translateX(3px); }
+
+/* merchant picker cards — add press feedback on top of existing hover lift */
+.entry-card:active { transform: translateY(-2px) scale(.99); }
+
+/* respect reduced-motion: keep instant, no transform */
+@media (prefers-reduced-motion: reduce) {
+  .nav-cta, .sec-title .hint[href], .entry-card { transition: none; }
+  .nav-cta:hover, .nav-cta:active, .entry-card:active { transform: none; }
+}
+
 /* --- Loading / error --- */
 .portal-note { color: var(--mute); font-size: var(--small); padding: 24px 0; }
 .portal-error { color: #E8973A; border: 1px solid color-mix(in srgb,#E8973A 30%,transparent); background: color-mix(in srgb,#E8973A 8%,transparent); border-radius: 12px; padding: 16px 18px; }
