@@ -2,10 +2,11 @@
    FifthStar — shared reveal/motion system
    Loaded at end of <body> on every page (hub, category, client).
    Motion is OFF by design (2026-07-26): content is shown directly via CSS
-   (.reveal{opacity:1}); this script only marks .reveal elements and renders
-   [data-count] proof stats at their final value. No entrance/scroll animation,
-   no GSAP usage. The inline head script's `gsap-hero` class is stripped so the
-   hero is never left hidden.
+   (.reveal{opacity:1}); this script only marks .reveal elements, renders
+   [data-count] proof stats at their final value, and adds a lightweight
+   hero ambient-glow pointer-follow. No entrance/scroll animation, no GSAP.
+   The inline head script's `gsap-hero` class is stripped so the hero is
+   never left hidden.
    ============================================================ */
 (function () {
   var root = document.documentElement;
@@ -33,10 +34,32 @@
     });
   })();
 
-  // --- Hero soft-glow (pointer-follow) disabled: motion off by design (2026-07-26) ---
+  // --- Hero ambient glow: pointer-follow (lightweight, no scroll/entrance motion) ---
+  (function () {
+    if (reduce) return;
+    var hero = document.querySelector('.hero');
+    var glow = document.querySelector('.hero-glow');
+    if (!hero || !glow) return;
+    var lastX = 50, lastY = 26, ticking = false;
+    function update() {
+      glow.style.setProperty('--mx', lastX + '%');
+      glow.style.setProperty('--my', lastY + '%');
+      ticking = false;
+    }
+    hero.addEventListener('mousemove', function (e) {
+      var r = hero.getBoundingClientRect();
+      lastX = (e.clientX - r.left) / r.width * 100;
+      lastY = (e.clientY - r.top) / r.height * 100;
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    });
+    hero.addEventListener('mouseleave', function () {
+      lastX = 50; lastY = 26;
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    });
+  })();
 
   // --- GSAP additive motion: disabled by design (2026-07-26) ---
   // No hero entrance, no SplitText headline reveal, no scroll triggers.
-  // Content is shown directly via CSS; this keeps GSAP scripts inert.
+  // Content is shown directly via CSS; GSAP vendor scripts have been removed.
   bail(); return;
 })();

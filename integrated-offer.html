@@ -14,7 +14,7 @@
   /* Set the pre-paint hero-hide class ONLY when motion is allowed. Runs before <body> paints,
      so there is no flash of fully-visible-then-hidden content. If JS is off, this never runs
      and the hero is visible (progressive enhancement). */
-  try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('gsap-hero'); } catch (e) {}
+  
 </script>
 <noscript><style>
   /* No JS: blocks that animate in via .reveal must still be fully visible */
@@ -563,10 +563,7 @@
 <script src="assets/hub.js"></script>
 
 <!-- GSAP motion (additive to the .reveal system; respects reduced-motion; never hides content if it fails) -->
-<!-- GSAP self-hosted (vendored into ./vendor/): zero third-party request, GDPR-clean, no CDN downtime risk, still zero-server. -->
-<script src="vendor/gsap.min.js"></script>
-<script src="vendor/ScrollTrigger.min.js"></script>
-<script src="vendor/SplitText.min.js"></script>
+
 <script src="assets/site.js"></script>
 </body>
 </html>

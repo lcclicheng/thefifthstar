@@ -14,11 +14,11 @@
      Typography stays unified Playfair Display + Inter (no per-family serif). */
   :root{
     --bg:#0B0C0E;                                       /* cool charcoal shell */
-    --accent:#B68A5E;                                   /* law bronze (retoned off tech-blue) */
+    --accent:#3F5A73;                                   /* law deep slate (SSoT v1.0) */
     --accent-soft:color-mix(in srgb,var(--accent) 40%,transparent);
     --accent-line:color-mix(in srgb,var(--accent) 20%,transparent);
     --accent-glass:color-mix(in srgb,var(--accent) 8%,transparent);
-    --hero-align:center;
+    --hero-align:left;
     --display-weight:700;
     --display-spacing:-.02em;
   }
@@ -44,13 +44,8 @@
   .eyebrow{color:var(--accent)}
   .step-num{color:var(--accent)}
   .hero h1{font-style:italic}
-  .hero--center .hero-copy{text-align:center}
-  .hero--center .cta-row{justify-content:center}
-  .hero--center .trust-row{margin-left:auto;margin-right:auto;align-items:center;text-align:center}
 </style>
-<script>
-  try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('gsap-hero'); } catch (e) {}
-</script>
+
 <noscript><style>.reveal{opacity:1!important;transform:none!important;transition:none!important}</style></noscript>
 </head>
 <body>
@@ -66,7 +61,7 @@
 </nav>
 
 <!-- 01 · HERO (dark shell) -->
-<header class="hero hero--center">
+<header class="hero">
   <div class="breathe-ring" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="sig-watermark" aria-hidden="true"><span class="sig-wm-motif"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-2.5 5h5z"/><path d="M19 7l-2.5 5h5z"/><path d="M8 21h8"/></svg></span></div>
@@ -235,9 +230,6 @@
   </div>
 </footer>
 
-<script src="../vendor/gsap.min.js"></script>
-<script src="../vendor/ScrollTrigger.min.js"></script>
-<script src="../vendor/SplitText.min.js"></script>
 <script src="../assets/site.js"></script>
 </body>
 </html>

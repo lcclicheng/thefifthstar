@@ -14,11 +14,11 @@
      Typography stays unified Playfair Display + Inter (no per-family serif). */
   :root{
     --bg:#0C0B0A;                                       /* neutral deep shell */
-    --accent:#C9A77C;                                   /* yoga sand */
+    --accent:#6F9A78;                                   /* yoga sage (SSoT v1.0) */
     --accent-soft:color-mix(in srgb,var(--accent) 30%,transparent);
     --accent-line:color-mix(in srgb,var(--accent) 16%,transparent);
     --accent-glass:color-mix(in srgb,var(--accent) 6%,transparent);
-    --hero-align:center;
+    --hero-align:left;
     --display-weight:600;
     --display-spacing:.005em;
   }
@@ -44,14 +44,9 @@
   .eyebrow{color:var(--accent);letter-spacing:.26em}
   .step-num{color:var(--accent)}
   .hero h1{font-weight:600;letter-spacing:.005em}
-  .hero--center .hero-copy{text-align:center}
-  .hero--center .cta-row{justify-content:center}
-  .hero--center .trust-row{margin-left:auto;margin-right:auto;align-items:center;text-align:center}
   .hero-glow{opacity:.6}
 </style>
-<script>
-  try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('gsap-hero'); } catch (e) {}
-</script>
+
 <noscript><style>.reveal{opacity:1!important;transform:none!important;transition:none!important}</style></noscript>
 </head>
 <body>
@@ -67,7 +62,7 @@
 </nav>
 
 <!-- 01 · HERO (dark shell) -->
-<header class="hero hero--center">
+<header class="hero">
   <div class="breathe-ring" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="sig-watermark" aria-hidden="true"><span class="sig-wm-motif"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4c1.5 2 1.5 5 0 7-1.5-2-1.5-5 0-7z"/><path d="M6 9c2 1.5 5 1.5 7 0-2-1.5-5-1.5-7 0z"/><path d="M18 9c-2 1.5-5 1.5-7 0 2-1.5 5-1.5 7 0z"/><path d="M5 20c2-4 12-4 14 0"/></svg></span></div>
@@ -236,9 +231,6 @@
   </div>
 </footer>
 
-<script src="../vendor/gsap.min.js"></script>
-<script src="../vendor/ScrollTrigger.min.js"></script>
-<script src="../vendor/SplitText.min.js"></script>
 <script src="../assets/site.js"></script>
 </body>
 </html>

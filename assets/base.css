@@ -1,6 +1,6 @@
 /* ============================================================
    FifthStar — shared brand system (Design Language v1.0)
-   Pages link this + assets/site.js (+ vendor/ GSAP).
+   Pages link this + assets/site.js (zero external dependencies).
 
    COLOUR MODEL: fixed hybrid (no OS theme toggle).
    - Dark shell (--bg #0C0A08): nav / hero / footer / final CTA / all body sections.

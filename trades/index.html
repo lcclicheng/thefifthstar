@@ -14,7 +14,7 @@
      Typography stays unified Playfair Display + Inter (no per-family serif). */
   :root{
     --bg:#0F0A08;                                       /* warm shell */
-    --accent:#C2703F;                                   /* trades rust / terracotta */
+    --accent:#C0572C;                                   /* trades rust (SSoT v1.0) */
     --accent-soft:color-mix(in srgb,var(--accent) 52%,transparent);
     --accent-line:color-mix(in srgb,var(--accent) 26%,transparent);
     --accent-glass:color-mix(in srgb,var(--accent) 12%,transparent);
@@ -45,9 +45,7 @@
   .step-num{color:var(--accent)}
   .hero-glow{opacity:.92}
 </style>
-<script>
-  try { if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('gsap-hero'); } catch (e) {}
-</script>
+
 <noscript><style>.reveal{opacity:1!important;transform:none!important;transition:none!important}</style></noscript>
 </head>
 <body>
@@ -232,9 +230,6 @@
   </div>
 </footer>
 
-<script src="../vendor/gsap.min.js"></script>
-<script src="../vendor/ScrollTrigger.min.js"></script>
-<script src="../vendor/SplitText.min.js"></script>
 <script src="../assets/site.js"></script>
 </body>
 </html>
