@@ -24,8 +24,8 @@
 /* --- Stat strip --- */
 .stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 36px; }
 .stat-strip .glass-card { padding: 22px 24px; }
-.stat-strip .k { font-size: var(--small); color: var(--mute); letter-spacing: .04em; text-transform: uppercase; }
-.stat-strip .v { font-family: var(--head-font); font-size: 1.9rem; color: var(--ink); margin-top: 6px; }
+.stat-strip .k { font-size: .8rem; color: var(--mute); letter-spacing: .04em; text-transform: uppercase; }
+.stat-strip .v { font-family: var(--head-font); font-weight: 700; font-size: clamp(2rem, 3vw, 2.3rem); color: var(--gold); line-height: 1; margin-top: 6px; font-variant-numeric: tabular-nums lining-nums; }
 .stat-strip .v small { font-size: .95rem; color: var(--mute); font-family: var(--body-font); }
 
 /* --- Three-view grid --- */
@@ -36,7 +36,7 @@
 /* --- Cards / sections --- */
 .glass-card { background: var(--glass); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px; }
 .sec-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-.sec-title h2 { font-size: 1.4rem; margin: 0; }
+.sec-title h2 { font-size: 1.6rem; margin: 0; }
 .sec-title .hint { font-size: var(--small); color: var(--mute); }
 
 /* --- Review calendar --- */
