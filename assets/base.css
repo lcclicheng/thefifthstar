@@ -3,10 +3,10 @@
    Pages link this + assets/site.js (+ vendor/ GSAP).
 
    COLOUR MODEL: fixed hybrid (no OS theme toggle).
-     - Dark shell (--bg #0C0A08): nav / hero / footer / final CTA.
-       Uses light text --ink / --mute.
-     - Warm Ivory body sections (.section.ivory #F7F3EB):
-       rescope --ink/--mute to dark via --ink-dark / --mute-dark.
+   - Dark shell (--bg #0C0A08): nav / hero / footer / final CTA / all body sections.
+     Uses light text --ink / --mute. (DL v1.0 revised 2026-07-24: no ivory body sections.)
+   - Warm Ivory (#F7F3EB): reserved for in-card surfaces only (per DL v1.0 revised
+     2026-07-24). The .section.ivory rule is retained but currently unused.
 
    BRAND GOLD #D8B36A is CONSTANT across every page (nav CTA,
    btn-gold, eyebrow, stars, badges, sig-mark, footer links,
@@ -22,7 +22,9 @@
    See products/fifthstar/DESIGN-LANGUAGE-v1.0.md for the full system.
    ============================================================ */
 
-/* === Theme: FIXED hybrid (dark shell + Warm Ivory body). No OS toggle. === */
+/* === Theme: FIXED all-dark (FifthStar Black shell throughout, no ivory body sections —
+   revised DL v1.0 2026-07-24). Warm Ivory (#F7F3EB) reserved for in-card surfaces only.
+   No OS theme toggle. === */
 :root{
   /* Brand base — FifthStar constant */
   --bg:#0C0A08;            /* FifthStar Black — shell (header/hero/footer/final) */
@@ -258,9 +260,14 @@ a{color:inherit;text-decoration:none}
 .foot a{color:var(--gold)}
 .foot-local{display:block;margin-top:1rem;max-width:38rem;margin-left:auto;margin-right:auto;font-size:.8rem;line-height:1.55;opacity:.8}
 
-/* reveal */
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+/* reveal — direct display (no scroll animation; motion off by design, 2026-07-26) */
+.reveal{opacity:1;transform:none}
 .reveal.in{opacity:1;transform:none}
+/* Motion disabled by design: the page shows all content immediately — no
+   entrance / scroll-reveal transitions, no decorative keyframe loops.
+   This also fixes images wrapped in .reveal figures staying invisible. */
+.breathe-ring,.gradient-text,.reveal,.sig-focal{animation:none!important;transition:none!important}
+.sig-focal{opacity:.5}
 @media (prefers-reduced-motion:reduce){
   .breathe-ring,.gradient-text,.reveal,.sig-focal{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
@@ -276,4 +283,4 @@ html.gsap-hero .hero h1,
 html.gsap-hero .hero .lead,
 html.gsap-hero .hero .cta-row,
 html.gsap-hero .hero .trust-top,
-html.gsap-hero .hero .badges{opacity:0}
+html.gsap-hero .hero .badges{opacity:1}
