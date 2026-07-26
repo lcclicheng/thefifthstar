@@ -250,3 +250,8 @@
 .welcome-banner p{color:var(--mute);font-size:.96rem;max-width:42rem;margin:0 auto;line-height:1.55}
 .welcome-banner p b{color:var(--ink);font-variant-numeric:tabular-nums lining-nums}
 @media(max-width:600px){.welcome-banner{padding:1.4rem 1.2rem}.welcome-banner h3{font-size:1.3rem}}
+
+/* === hub service grid: 5 cards wrap cleanly (centered, no lone stretched card) === */
+.svc-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:1.2rem;max-width:90rem;margin:2.2rem auto 0}
+.svc-card{flex:1 1 230px;max-width:290px}
+@media(max-width:720px){.svc-card{flex:1 1 100%;max-width:none}}

@@ -1,0 +1,17 @@
+/* Listings Care Plan — layout overrides.
+   Loaded AFTER base.css + hub.css, so these win on equal specificity.
+   Only changes what's needed to fit 3 pricing tiers on this page. */
+
+/* hub.css sets .tiers to 4 columns (for the 4-step ladder). We have 3 plans. */
+.tiers{grid-template-columns:repeat(3,1fr)}
+
+/* Don't scale the featured tier on a 3-col grid (it overflowed at 1.06).
+   The gold border already marks it as "most popular". */
+.tier.feat{transform:none}
+.tier.feat:hover{transform:translateY(-7px)}
+
+/* Single column on small screens (hub.css's 2-col breakpoint left a gap). */
+@media(max-width:860px){
+  .tiers{grid-template-columns:1fr}
+  .tier.feat{transform:none}
+}
