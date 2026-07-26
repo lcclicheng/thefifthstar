@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FifthStar — Missed-Call & Chat Care Quote</title>
+<meta name="description" content="FifthStar Missed-Call & Chat Care — plan quote. Three monthly plans, what's included, welcome rate and terms." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --gold:#D8B36A;
+    --gold-deep:#b8914f;
+    --ink:#211c14;
+    --mute:#6b6353;
+    --line:#e7e0d2;
+    --paper:#fffdf8;
+    --head:"Playfair Display",Georgia,serif;
+    --body:"Inter",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#efe9dc;color:var(--ink);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .sheet{max-width:820px;margin:2rem auto;background:var(--paper);padding:3rem 3.2rem;box-shadow:0 18px 50px rgba(0,0,0,.14);border-radius:6px}
+  .top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;border-bottom:2px solid var(--gold);padding-bottom:1.3rem}
+  .brand{display:flex;align-items:center;gap:.6rem;font-family:var(--head);font-weight:700;font-size:1.5rem;color:var(--ink)}
+  .brand svg{width:1.6rem;height:1.6rem;color:var(--gold)}
+  .brand small{display:block;font-family:var(--body);font-weight:500;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-top:.15rem}
+  .qt{text-align:right;font-size:.8rem;color:var(--mute);line-height:1.7}
+  .qt b{color:var(--ink);font-weight:600}
+  h1{font-family:var(--head);font-weight:700;font-size:1.9rem;margin:1.8rem 0 .3rem}
+  .sub{color:var(--mute);margin:0 0 1.6rem;font-size:.95rem}
+  .client{display:grid;grid-template-columns:1fr 1fr;gap:.7rem 2rem;border:1px solid var(--line);border-radius:8px;padding:1.1rem 1.4rem;margin-bottom:2rem;background:#fcf9f1}
+  .client div{font-size:.88rem}
+  .client span{display:inline-block;min-width:7.5rem;color:var(--mute);font-weight:600}
+  .client .val{border-bottom:1px solid var(--line);padding:0 .2rem;min-width:11rem;display:inline-block}
+  h2{font-family:var(--head);font-size:1.25rem;margin:0 0 1rem;color:var(--ink)}
+  table{width:100%;border-collapse:collapse;font-size:.86rem;margin-bottom:1.8rem}
+  th,td{text-align:left;padding:.7rem .8rem;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{font-family:var(--body);font-weight:700;font-size:.82rem;letter-spacing:.02em;color:var(--ink);border-bottom:2px solid var(--gold)}
+  thead th.plan{text-align:center;font-family:var(--head);font-size:1.05rem}
+  thead th.feat{color:var(--gold-deep)}
+  td.feat{background:#fbf6ea}
+  td.plan{text-align:center;font-weight:600;font-variant-numeric:tabular-nums lining-nums}
+  td.plan.feat{background:#fbf6ea;color:var(--gold-deep)}
+  .yes{color:var(--gold-deep);font-weight:700}
+  .no{color:#c9c1b0}
+  tbody td:first-child{color:var(--mute)}
+  .price-row td{border-top:2px solid var(--gold);border-bottom:none;padding-top:1rem}
+  .price-row .plan{font-family:var(--head);font-size:1.7rem;color:var(--gold-deep);font-weight:700;font-variant-numeric:tabular-nums lining-nums;line-height:1}
+  .price-row td small{display:block;font-family:var(--body);font-size:.72rem;color:var(--mute);font-weight:400;margin-top:.2rem}
+  .price-row td.plan small{font-size:.72rem}
+  .terms{border:1px solid var(--line);border-radius:8px;padding:1.2rem 1.4rem;background:#fcf9f1;margin-bottom:1.6rem}
+  .terms h2{margin-bottom:.7rem}
+  .terms ul{margin:0;padding-left:1.1rem;font-size:.88rem;color:var(--mute)}
+  .terms li{margin:.35rem 0}
+  .terms b{color:var(--ink);font-variant-numeric:tabular-nums lining-nums}
+  .accept{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:.5rem}
+  .accept p{font-size:.88rem;color:var(--mute);margin:0;max-width:30rem}
+  .accept .sign{border-top:1px solid var(--ink);min-width:14rem;padding-top:.4rem;font-size:.78rem;color:var(--mute)}
+  .btns{position:sticky;bottom:0;display:flex;gap:.8rem;justify-content:center;padding:1.2rem;background:var(--paper);border-top:1px solid var(--line);margin-top:1rem}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.9rem;padding:.7rem 1.3rem;border-radius:.6rem;text-decoration:none;cursor:pointer;border:0}
+  .btn-gold{background:var(--gold);color:#1c160c}
+  .btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+  .foot{text-align:center;font-size:.78rem;color:var(--mute);margin-top:1.4rem}
+  a{color:var(--gold-deep)}
+  @media print{
+    body{background:#fff}
+    .sheet{box-shadow:none;margin:0;max-width:none;border-radius:0;padding:1.5rem 1.8rem}
+    .btns{display:none}
+    thead th.plan{position:static}
+  }
+  @media(max-width:600px){
+    .sheet{padding:1.6rem 1.3rem;margin:.5rem}
+    .client{grid-template-columns:1fr}
+    .top{flex-direction:column}
+    .qt{text-align:left}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="top">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg>
+      <div>FifthStar<small>Missed-Call &amp; Chat Care</small></div>
+    </div>
+    <div class="qt">
+      <div><b>Quote</b> · MISSEDCALL-CARE-001</div>
+      <div>Date: <b>____ / ____ / 2026</b></div>
+      <div>Valid for 30 days</div>
+    </div>
+  </div>
+
+  <h1>Missed-Call &amp; Chat Care — Quote</h1>
+  <p class="sub">No enquiry slips through — missed-call text-back, a managed chat on your site, and a weekly report of what we caught. One partner, one monthly plan.</p>
+
+  <div class="client">
+    <div><span>Business</span><span class="val">&nbsp;</span></div>
+    <div><span>Contact</span><span class="val">&nbsp;</span></div>
+    <div><span>Trade</span><span class="val">&nbsp;</span></div>
+    <div><span>City</span><span class="val">&nbsp;</span></div>
+    <div><span>Phone</span><span class="val">&nbsp;</span></div>
+    <div><span>Email</span><span class="val">&nbsp;</span></div>
+  </div>
+
+  <h2>Plans &amp; what's included</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>What you get, every month</th>
+        <th class="plan">Starter</th>
+        <th class="plan feat">Growth</th>
+        <th class="plan">Pro</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Missed-call text-back (same-day)</td><td class="plan yes">✓</td><td class="plan feat yes">✓</td><td class="plan yes">✓</td></tr>
+      <tr><td>Weekly missed-call report</td><td class="plan yes">✓</td><td class="plan feat yes">✓</td><td class="plan yes">✓</td></tr>
+      <tr><td>Setup on your number &amp; profile</td><td class="plan yes">✓</td><td class="plan feat yes">✓</td><td class="plan yes">✓</td></tr>
+      <tr><td>Managed site chat (your tone)</td><td class="plan no">—</td><td class="plan feat yes">✓</td><td class="plan yes">✓</td></tr>
+      <tr><td>FAQ auto-replies</td><td class="plan no">—</td><td class="plan feat yes">✓</td><td class="plan yes">✓</td></tr>
+      <tr><td>Out-of-hours chat (till 9pm)</td><td class="plan no">—</td><td class="plan feat yes">✓</td><td class="plan yes">✓</td></tr>
+      <tr><td>24/7 chat cover</td><td class="plan no">—</td><td class="plan feat no">—</td><td class="plan yes">✓</td></tr>
+      <tr><td>Escalation for hot leads</td><td class="plan no">—</td><td class="plan feat no">—</td><td class="plan yes">✓</td></tr>
+      <tr><td>Monthly recovery &amp; follow-up report</td><td class="plan no">—</td><td class="plan feat no">—</td><td class="plan yes">✓</td></tr>
+      <tr class="price-row">
+        <td><b>Monthly</b></td>
+        <td class="plan"><b>£79</b><small>or £790/yr</small></td>
+        <td class="plan feat"><b>£149</b><small>or £1,490/yr</small></td>
+        <td class="plan"><b>£199</b><small>or £1,990/yr</small></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="terms">
+    <h2>Terms</h2>
+    <ul>
+      <li><b>No setup fee.</b> We start after your free calls check — you only pay the monthly plan.</li>
+      <li><b>Cancel anytime.</b> Month-to-month, no contract, no exit fee. Email to stop at month end.</li>
+      <li><b>You keep ownership.</b> You grant FifthStar access to your business number / chat widget; you stay the owner and can remove us anytime.</li>
+      <li><b>Welcome rate.</b> First 12 months at <b>Starter £69 · Growth £129 · Pro £169</b> per month. Standard rates apply after year one (£79/£149/£199/mo).</li>
+      <li><b>Pay by PayPal.</b> Invoice by email; pay with any UK card or PayPal balance — no account needed.</li>
+      <li><b>GDPR-aware.</b> Only business enquiry data is used; your accounts stay in your control.</li>
+    </ul>
+  </div>
+
+  <div class="accept">
+    <p>To accept, email <a href="mailto:hello@thefifthstar.site?subject=Missed-Call%20Care%20quote%20accept">hello@thefifthstar.site</a> with your chosen plan — or sign below and return this sheet.</p>
+    <div class="sign">Authorised signature &amp; date</div>
+  </div>
+
+  <p class="foot">FifthStar · Run by Ethan Li · Lift your business to its fifth star · hello@thefifthstar.site</p>
+</div>
+
+<div class="btns">
+  <button class="btn btn-gold" onclick="window.print()">Print / Save as PDF</button>
+  <a class="btn btn-ghost" href="index.html">← Back to Missed-Call &amp; Chat Care</a>
+</div>
+</body>
+</html>
