@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Client Portal — McEwan Fraser Legal | FifthStar</title>
+<meta name="description" content="McEwan Fraser Legal — FifthStar client portal: review replies, website status, billing." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../../assets/base.css" />
+<link rel="stylesheet" href="../portal.css" />
+<style>
+  :root{ --accent:#3F5A73; }
+  .eyebrow{color:var(--accent)}
+</style>
+
+<noscript><style>.reveal{opacity:1!important;transform:none!important;transition:none!important}</style></noscript>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="../../index.html">
+      <span class="sig-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg></span>
+      FifthStar
+    </a>
+    <a class="nav-cta" href="../index.html">All portals</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="wrap hero-copy">
+    <span class="eyebrow" id="eyebrow">Loading…</span>
+    <h1 id="m-name">Client Portal</h1>
+    <p class="lead" id="m-tag">Fetching your FifthStar dashboard…</p>
+  </div>
+</header>
+
+<main class="section portal-main">
+  <div class="wrap">
+    <div id="app">
+      <div class="portal-note">Loading your portal…</div>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <span class="sig-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg></span>
+    <span>FifthStar — built for Britain's independents.</span>
+    <a href="mailto:hello@thefifthstar.site">hello@thefifthstar.site</a>
+  </div>
+</footer>
+
+<script src="../portal.js"></script>
+<script id="portal-data" type="application/json">
+{
+  "schema": "fifthstar/client-portal@1",
+  "token": "mcEwan-fraser",
+  "sample": true,
+  "merchant": {
+    "name": "McEwan Fraser Legal",
+    "city": "Edinburgh",
+    "industry": "Family law firm",
+    "plan": "Growth Plus",
+    "planMonthly": 149,
+    "accent": "#3F5A73",
+    "googleRating": 4.7,
+    "googleReviews": 934,
+    "since": "2008"
+  },
+  "subscription": {
+    "status": "active",
+    "tier": "Growth Plus",
+    "monthlyGbp": 149,
+    "nextBilling": "2026-08-15",
+    "firstYearWelcome": true,
+    "welcomeMonthly": 119,
+    "welcomeUntil": "2027-07-15",
+    "paymentMethod": "PayPal invoice (email)",
+    "cancelAnytime": true
+  },
+  "reviewCalendar": [
+    { "date": "2026-07-23", "author": "Susan M.", "rating": 5, "status": "replied", "tone": "praise", "snippet": "Helped me through a difficult divorce with real compassion and clear advice." },
+    { "date": "2026-07-19", "author": "James L.", "rating": 3, "status": "pending", "tone": "mixed", "snippet": "Good legal work but communication lagged between meetings. Would like tighter updates." },
+    { "date": "2026-07-16", "author": "Aisha B.", "rating": 5, "status": "replied", "tone": "praise", "snippet": "Transparent on fees from day one. Rare in this field." },
+    { "date": "2026-07-11", "author": "Robert K.", "rating": 4, "status": "replied", "tone": "mixed", "snippet": "Solid outcome on my will. Took a little longer than quoted but thorough." },
+    { "date": "2026-07-08", "author": "Anonymous", "rating": 2, "status": "pending", "tone": "complaint", "snippet": "Initial consult felt rushed. Hoping the actual service is better than the intake." }
+  ],
+  "website": {
+    "status": "live",
+    "url": "https://thefifthstar.site/clients/mcEwan-fraser/",
+    "pages": 5,
+    "lastUpdate": "2026-07-20",
+    "pendingRequests": [
+      { "id": "CHG-098", "type": "add new solicitor bio", "requested": "2026-07-18", "status": "in_progress" },
+      { "id": "CHG-099", "type": "update service-area page copy", "requested": "2026-07-21", "status": "queued" }
+    ]
+  },
+  "insights": {
+    "month": "July 2026",
+    "reviewsReplied": 19,
+    "avgResponseDays": 0.9,
+    "ratingTrend": "+0.2 vs last month",
+    "newReviews": 24,
+    "replyRatePct": 96
+  }
+}
+</script>
+</body>
+</html>

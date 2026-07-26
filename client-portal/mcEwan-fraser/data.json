@@ -1,0 +1,52 @@
+{
+  "schema": "fifthstar/client-portal@1",
+  "token": "mcEwan-fraser",
+  "sample": true,
+  "merchant": {
+    "name": "McEwan Fraser Legal",
+    "city": "Edinburgh",
+    "industry": "Family law firm",
+    "plan": "Growth Plus",
+    "planMonthly": 149,
+    "accent": "#3F5A73",
+    "googleRating": 4.7,
+    "googleReviews": 934,
+    "since": "2008"
+  },
+  "subscription": {
+    "status": "active",
+    "tier": "Growth Plus",
+    "monthlyGbp": 149,
+    "nextBilling": "2026-08-15",
+    "firstYearWelcome": true,
+    "welcomeMonthly": 119,
+    "welcomeUntil": "2027-07-15",
+    "paymentMethod": "PayPal invoice (email)",
+    "cancelAnytime": true
+  },
+  "reviewCalendar": [
+    { "date": "2026-07-23", "author": "Susan M.", "rating": 5, "status": "replied", "tone": "praise", "snippet": "Helped me through a difficult divorce with real compassion and clear advice." },
+    { "date": "2026-07-19", "author": "James L.", "rating": 3, "status": "pending", "tone": "mixed", "snippet": "Good legal work but communication lagged between meetings. Would like tighter updates." },
+    { "date": "2026-07-16", "author": "Aisha B.", "rating": 5, "status": "replied", "tone": "praise", "snippet": "Transparent on fees from day one. Rare in this field." },
+    { "date": "2026-07-11", "author": "Robert K.", "rating": 4, "status": "replied", "tone": "mixed", "snippet": "Solid outcome on my will. Took a little longer than quoted but thorough." },
+    { "date": "2026-07-08", "author": "Anonymous", "rating": 2, "status": "pending", "tone": "complaint", "snippet": "Initial consult felt rushed. Hoping the actual service is better than the intake." }
+  ],
+  "website": {
+    "status": "live",
+    "url": "https://thefifthstar.site/clients/mcEwan-fraser/",
+    "pages": 5,
+    "lastUpdate": "2026-07-20",
+    "pendingRequests": [
+      { "id": "CHG-098", "type": "add new solicitor bio", "requested": "2026-07-18", "status": "in_progress" },
+      { "id": "CHG-099", "type": "update service-area page copy", "requested": "2026-07-21", "status": "queued" }
+    ]
+  },
+  "insights": {
+    "month": "July 2026",
+    "reviewsReplied": 19,
+    "avgResponseDays": 0.9,
+    "ratingTrend": "+0.2 vs last month",
+    "newReviews": 24,
+    "replyRatePct": 96
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "fifthstar/client-portal@1",
+  "token": "delhi-wala",
+  "sample": true,
+  "merchant": {
+    "name": "Delhi Wala Food",
+    "city": "Leeds",
+    "industry": "Indian restaurant",
+    "plan": "Growth Partner",
+    "planMonthly": 79,
+    "accent": "#E8973A",
+    "googleRating": 4.8,
+    "googleReviews": 1017,
+    "since": "2019"
+  },
+  "subscription": {
+    "status": "active",
+    "tier": "Growth Partner",
+    "monthlyGbp": 79,
+    "nextBilling": "2026-08-23",
+    "firstYearWelcome": true,
+    "welcomeMonthly": 59,
+    "welcomeUntil": "2027-07-23",
+    "paymentMethod": "PayPal invoice (email)",
+    "cancelAnytime": true
+  },
+  "reviewCalendar": [
+    { "date": "2026-07-22", "author": "Priya R.", "rating": 5, "status": "replied", "tone": "praise", "snippet": "Best Rogan Josh off the bone I've had outside Delhi. The team remembered our anniversary." },
+    { "date": "2026-07-20", "author": "Marcus T.", "rating": 4, "status": "replied", "tone": "mixed", "snippet": "Lovely food, but the wait on a Saturday was long. Worth it once seated." },
+    { "date": "2026-07-18", "author": "Anonymous", "rating": 2, "status": "pending", "tone": "complaint", "snippet": "Order was wrong and took 40 minutes to correct. Needs better kitchen communication." },
+    { "date": "2026-07-15", "author": "Helen K.", "rating": 5, "status": "replied", "tone": "praise", "snippet": "The jackfruit biryani is vegetarian heaven. We drive from York for it." },
+    { "date": "2026-07-12", "author": "Dev S.", "rating": 4, "status": "replied", "tone": "mixed", "snippet": "Great flavours, slightly pricey for the naan but quality shows." }
+  ],
+  "website": {
+    "status": "live",
+    "url": "https://thefifthstar.site/clients/delhi-wala/",
+    "pages": 4,
+    "lastUpdate": "2026-07-19",
+    "pendingRequests": [
+      { "id": "CHG-114", "type": "menu price update", "requested": "2026-07-21", "status": "in_progress" },
+      { "id": "CHG-115", "type": "add Diwali opening hours", "requested": "2026-07-22", "status": "queued" }
+    ]
+  },
+  "insights": {
+    "month": "July 2026",
+    "reviewsReplied": 23,
+    "avgResponseDays": 1.2,
+    "ratingTrend": "+0.1 vs last month",
+    "newReviews": 31,
+    "replyRatePct": 94
+  }
+}

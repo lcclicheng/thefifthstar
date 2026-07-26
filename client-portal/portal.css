@@ -1,0 +1,89 @@
+/* ============================================================
+   FifthStar Client Portal — extension layer
+   Reuses assets/base.css tokens (FifthStar Black shell, brand gold,
+   Playfair Display + Inter). This file adds dashboard-only layout.
+   Design Language v1.0 compliant: all-dark shell, gold constant,
+   accent carries 20% personality (per-merchant).
+   ============================================================ */
+
+/* --- Portal shell --- */
+.portal-main { padding: 56px 0 96px; }
+.portal-head {
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+  gap: 16px; margin-bottom: 36px;
+}
+.portal-head h1 { font-size: clamp(2rem, 4vw, 3rem); margin: 0; }
+.portal-head .tag { color: var(--mute); font-size: var(--small); }
+.sample-flag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: var(--small); color: var(--accent);
+  border: 1px solid var(--accent-line); border-radius: 999px;
+  padding: 4px 12px; background: var(--accent-glass);
+}
+
+/* --- Stat strip --- */
+.stat-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 36px; }
+.stat-strip .glass-card { padding: 22px 24px; }
+.stat-strip .k { font-size: var(--small); color: var(--mute); letter-spacing: .04em; text-transform: uppercase; }
+.stat-strip .v { font-family: var(--head-font); font-size: 1.9rem; color: var(--ink); margin-top: 6px; }
+.stat-strip .v small { font-size: .95rem; color: var(--mute); font-family: var(--body-font); }
+
+/* --- Three-view grid --- */
+.view-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; align-items: start; }
+.view-col { display: flex; flex-direction: column; gap: 24px; }
+@media (max-width: 900px) { .view-grid { grid-template-columns: 1fr; } .stat-strip { grid-template-columns: repeat(2,1fr); } }
+
+/* --- Cards / sections --- */
+.glass-card { background: var(--glass); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px; }
+.sec-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.sec-title h2 { font-size: 1.4rem; margin: 0; }
+.sec-title .hint { font-size: var(--small); color: var(--mute); }
+
+/* --- Review calendar --- */
+.review-item { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; background: rgba(255,255,255,.02); }
+.review-item:last-child { margin-bottom: 0; }
+.review-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.review-author { font-weight: 600; color: var(--ink); }
+.review-date { font-size: var(--small); color: var(--mute); }
+.review-stars { color: var(--gold); letter-spacing: 2px; font-size: .95rem; }
+.review-snippet { color: var(--mute); font-size: var(--small); line-height: 1.6; margin: 0; }
+.badge { font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; padding: 3px 10px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+.badge.replied { color: #7FD1A6; border-color: color-mix(in srgb,#7FD1A6 30%,transparent); background: color-mix(in srgb,#7FD1A6 10%,transparent); }
+.badge.pending { color: #E8B96A; border-color: color-mix(in srgb,#E8B96A 30%,transparent); background: color-mix(in srgb,#E8B96A 10%,transparent); }
+.badge.in_progress { color: #8FB6E8; border-color: color-mix(in srgb,#8FB6E8 30%,transparent); background: color-mix(in srgb,#8FB6E8 10%,transparent); }
+.badge.queued { color: var(--mute); border-color: var(--line); background: rgba(255,255,255,.02); }
+.tone-praise { border-left: 3px solid #7FD1A6; }
+.tone-mixed { border-left: 3px solid #E8B96A; }
+.tone-complaint { border-left: 3px solid #E8973A; }
+
+/* --- Billing --- */
+.bill-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.bill-row:last-child { border-bottom: none; }
+.bill-row .lbl { color: var(--mute); font-size: var(--small); }
+.bill-row .val { color: var(--ink); font-weight: 600; font-family: var(--head-font); font-size: 1.05rem; font-variant-numeric: tabular-nums lining-nums; }
+.bill-cta { margin-top: 18px; }
+
+/* --- Website --- */
+.chg-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: var(--small); }
+.chg-item:last-child { border-bottom: none; }
+.chg-item .id { color: var(--mute); font-family: ui-monospace, monospace; }
+
+/* --- Portal entry (index) --- */
+.entry-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+@media (max-width: 700px) { .entry-grid { grid-template-columns: 1fr; } }
+.entry-card { display: block; text-decoration: none; color: inherit; transition: transform .2s, border-color .2s; }
+.entry-card:hover { transform: translateY(-6px); border-color: var(--accent-line); }
+.entry-card .name { font-family: var(--head-font); font-size: 1.5rem; margin: 0 0 4px; }
+.entry-card .meta { color: var(--mute); font-size: var(--small); }
+.entry-card .plan { margin-top: 14px; color: var(--accent); font-weight: 600; font-size: var(--small); }
+
+/* --- Loading / error --- */
+.portal-note { color: var(--mute); font-size: var(--small); padding: 24px 0; }
+.portal-error { color: #E8973A; border: 1px solid color-mix(in srgb,#E8973A 30%,transparent); background: color-mix(in srgb,#E8973A 8%,transparent); border-radius: 12px; padding: 16px 18px; }
+
+/* --- Footer (base.css defines .foot, not .footer — mirror its style here) --- */
+.footer { padding: 2.4rem 0; border-top: 1px solid var(--line); color: var(--mute); font-size: var(--small); }
+.footer-in { max-width: var(--maxw); margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: center; gap: .6rem; flex-wrap: wrap; }
+.footer-in .sig-mark { width: 1.1rem; height: 1.1rem; }
+.footer-in a { color: var(--gold); }
+.footer-in a:hover { filter: brightness(1.1); }
