@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Page not found — FifthStar</title>
+<meta name="description" content="The page you were looking for isn't here. Head back to FifthStar's home or get in touch." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/base.css" />
+<style>
+  .nf{ min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center;
+       background:radial-gradient(120% 90% at 50% -10%, var(--gold-soft), transparent 60%), var(--bg); padding:4rem 1.5rem }
+  .nf .wrap{ max-width:34rem }
+  .nf .sig{ width:54px; height:54px; color:var(--gold); margin:0 auto 1.4rem; display:block }
+  .nf h1{ font-family:var(--head-font); font-weight:700; font-size:clamp(3rem,9vw,5.5rem); line-height:1; color:var(--ink); margin:0 0 .6rem }
+  .nf .code{ font-family:var(--head-font); color:var(--gold); letter-spacing:.12em; font-size:.95rem; margin-bottom:1.4rem }
+  .nf p{ color:var(--mute); font-size:1.1rem; line-height:1.6; margin:0 0 2rem }
+  .nf .cta-row{ display:flex; gap:1rem; justify-content:center; flex-wrap:wrap }
+  .nf .btn{ display:inline-block; padding:.85rem 1.5rem; border-radius:999px; font-weight:600; font-size:.95rem; text-decoration:none }
+  .nf .btn-gold{ background:var(--gold); color:var(--bg) }
+  .nf .btn-ghost{ border:1px solid var(--line); color:var(--ink) }
+  .nf a.home{ color:var(--gold); text-decoration:underline; text-underline-offset:2px }
+</style>
+</head>
+<body>
+<main class="nf">
+  <div class="wrap">
+    <svg class="sig" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.6 6.6L21 9.3l-5 4.6 1.4 7L12 17.8 6.6 21l1.4-7-5-4.6 6.4-.7z"/></svg>
+    <div class="code">ERROR 404</div>
+    <h1>Lost a star?</h1>
+    <p>The page you were after isn't here — it may have moved or never existed. Let's get you back on track.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="/">Back to FifthStar →</a>
+      <a class="btn btn-ghost" href="/contact/">Get in touch</a>
+    </div>
+    <p style="margin-top:2rem;font-size:.9rem">Or email <a class="home" href="mailto:hello@thefifthstar.site">hello@thefifthstar.site</a> — Ethan replies to every note.</p>
+  </div>
+</main>
+</body>
+</html>
