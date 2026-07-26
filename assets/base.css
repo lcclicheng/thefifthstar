@@ -114,6 +114,8 @@ a{color:inherit;text-decoration:none}
 .brand .sig-mark{width:1.5rem;height:1.5rem}
 .nav-cta{font-size:.85rem;font-weight:600;color:var(--bg);background:var(--gold);padding:.5rem .95rem;border-radius:.6rem;letter-spacing:.01em;display:inline-flex;align-items:center;min-height:2.75rem}
 .nav-cta:hover{filter:brightness(1.08)}
+.nav-link{font-size:.85rem;font-weight:600;color:var(--mute);transition:color .2s}
+.nav-link:hover{color:var(--gold)}
 
 .hero{position:relative;overflow:hidden;padding:var(--section-pad) 0 6rem}
 .hero::before{content:"";position:absolute;left:50%;top:15%;width:40rem;height:40rem;transform:translate(-50%,-50%);background:radial-gradient(circle,var(--accent-soft),transparent 62%);opacity:.5;pointer-events:none;z-index:0}

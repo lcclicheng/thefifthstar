@@ -141,7 +141,7 @@
 .faq-close{margin-top:1.4rem;padding:1.4rem 1.6rem;border-radius:1rem;text-align:center}
 .faq-close h3{font-size:1.2rem;margin-bottom:.4rem}
 .faq-close p{color:var(--mute);margin-bottom:1rem}
-.faq-close a{color:var(--gold);font-weight:600}
+.faq-close a:not(.btn){color:var(--gold);font-weight:600}
 
 /* === Inline CTA band === */
 .cta-band{text-align:center;padding:2.6rem 1.5rem;border-radius:1.2rem;max-width:60rem;margin:2.6rem auto 0}
