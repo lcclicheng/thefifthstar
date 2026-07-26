@@ -58,6 +58,26 @@
     });
   })();
 
+  // --- Responsive nav: mobile hamburger toggle (open/close + close on link tap) ---
+  (function () {
+    var toggles = document.querySelectorAll('.nav-toggle');
+    toggles.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var nav = btn.closest('.nav');
+        if (!nav) return;
+        var open = nav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+    });
+    document.querySelectorAll('.nav-menu a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        var nav = a.closest('.nav');
+        if (nav) { nav.classList.remove('open'); var t = nav.querySelector('.nav-toggle'); if (t) t.setAttribute('aria-expanded', 'false'); }
+      });
+    });
+  })();
+
   // --- GSAP additive motion: disabled by design (2026-07-26) ---
   // No hero entrance, no SplitText headline reveal, no scroll triggers.
   // Content is shown directly via CSS; GSAP vendor scripts have been removed.
