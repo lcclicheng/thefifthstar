@@ -78,6 +78,20 @@
     });
   })();
 
+  // --- Privacy-friendly analytics: Plausible (no cookies, no personal identifiers).
+  //   Currently DISABLED. To enable: sign up at https://plausible.io, add the
+  //   domain "thefifthstar.site" to your account, then set ANALYTICS: true below.
+  (function () {
+    var CONFIG = { ANALYTICS: false, ANALYTICS_DOMAIN: 'thefifthstar.site' };
+    if (!CONFIG.ANALYTICS || !CONFIG.ANALYTICS_DOMAIN) return;
+    if (document.querySelector('script[data-domain="' + CONFIG.ANALYTICS_DOMAIN + '"]')) return;
+    var s = document.createElement('script');
+    s.defer = true;
+    s.setAttribute('data-domain', CONFIG.ANALYTICS_DOMAIN);
+    s.src = 'https://plausible.io/js/script.js';
+    document.head.appendChild(s);
+  })();
+
   // --- GSAP additive motion: disabled by design (2026-07-26) ---
   // No hero entrance, no SplitText headline reveal, no scroll triggers.
   // Content is shown directly via CSS; GSAP vendor scripts have been removed.
