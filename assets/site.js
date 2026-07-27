@@ -95,11 +95,12 @@
   // --- Social links: centralised config, filled site-wide (avoids per-page edits).
   //   Platforms left blank keep their graceful fallthrough to the contact page.
   (function () {
+    // Active channels: Facebook, Instagram, WhatsApp only.
+    // LinkedIn was dropped at the client's request (2026-07-27).
     var SOCIALS = {
       facebook: 'https://www.facebook.com/thefifthstarbuilds/',
       instagram: 'https://www.instagram.com/thefifthstarbuilds/',
-      whatsapp: 'https://wa.me/8619056142535',
-      linkedin: ''    // provide URL when available
+      whatsapp: 'https://wa.me/8619056142535'
     };
     var labels = { facebook: 'Facebook', instagram: 'Instagram', whatsapp: 'WhatsApp', linkedin: 'LinkedIn' };
     document.querySelectorAll('.foot-social a').forEach(function (a) {
@@ -108,7 +109,7 @@
       for (var k in labels) { if (t.indexOf(labels[k]) !== -1) { key = k; break; } }
       if (!key) return;
       var url = SOCIALS[key];
-      if (!url) return; // no real link yet → keep fallthrough to contact page
+      if (!url) { a.remove(); return; } // dropped channel → remove from footer entirely
       a.setAttribute('href', url);
       a.setAttribute('title', 'FifthStar on ' + labels[key]);
       a.setAttribute('target', '_blank');
