@@ -98,7 +98,7 @@
     var SOCIALS = {
       facebook: 'https://www.facebook.com/thefifthstarbuilds/',
       instagram: 'https://www.instagram.com/thefifthstarbuilds/',
-      whatsapp: '',   // provide intl phone, e.g. https://wa.me/447xxxxxxxxx
+      whatsapp: 'https://wa.me/8619056142535',
       linkedin: ''    // provide URL when available
     };
     var labels = { facebook: 'Facebook', instagram: 'Instagram', whatsapp: 'WhatsApp', linkedin: 'LinkedIn' };
