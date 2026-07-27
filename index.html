@@ -89,6 +89,55 @@
   </div>
 </header>
 
+<!-- FREE REPLIES CAPTURE -->
+<section class="section capture-band">
+  <div class="wrap">
+    <div class="capture-card glass-card reveal">
+      <div class="capture-copy">
+        <span class="eyebrow">Free — no card, no catch</span>
+        <h2>Get your 3 free review replies.</h2>
+        <p class="lead">Drop your email and Google Business Profile link. Ethan writes three replies in your tone within a day or two — yours to keep, whatever you decide.</p>
+      </div>
+      <form id="captureForm" class="capture-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="5319145c-9671-4dcf-8866-47854644764e" />
+        <input type="hidden" name="subject" value="FifthStar — free replies request" />
+        <input type="hidden" name="from_name" value="FifthStar website" />
+        <input class="cap-hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <div class="cap-field">
+          <label for="cap-email">Your email <span class="cap-req">*</span></label>
+          <input id="cap-email" name="email" type="email" placeholder="you@yourbusiness.co.uk" required />
+        </div>
+        <div class="cap-field">
+          <label for="cap-gbp">Google Business Profile link <span class="cap-opt">(optional)</span></label>
+          <input id="cap-gbp" name="gbp" type="url" placeholder="google.com/maps/..." />
+        </div>
+        <button class="btn btn-gold cap-submit" type="submit" id="cap-submit"><span class="btn-text">Send my profile</span></button>
+        <p class="cap-note" id="cap-status">Prefer email? Write to <a href="mailto:hello@thefifthstar.site">hello@thefifthstar.site</a>.</p>
+        <div class="form-ok" id="cap-ok" aria-live="polite"><div class="ok-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><h3>Request sent</h3><p>Thanks — Ethan will reply within a day or two.</p></div>
+        <div class="form-err" id="cap-err" aria-live="assertive"><div class="err-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div><h3>Couldn't send automatically</h3><p id="cap-err-msg">No problem — click below to send from your email app.</p><a class="btn btn-ghost" id="cap-fallback" href="mailto:hello@thefifthstar.site">Send via email app</a></div>
+      </form>
+    </div>
+  </div>
+  <style>
+    .capture-card{display:grid;grid-template-columns:1.1fr 1fr;gap:2.4rem;align-items:center;padding:2.4rem}
+    .capture-copy h2{margin:.3rem 0 .6rem}
+    .capture-form{display:flex;flex-direction:column;gap:.8rem}
+    .capture-form .cap-field{display:flex;flex-direction:column;gap:.3rem}
+    .capture-form label{font-size:.9rem;font-weight:600;color:var(--ink)}
+    .capture-form input{width:100%;padding:.7rem .8rem;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);color:var(--ink);font:inherit}
+    .capture-form input:focus{outline:2px solid var(--gold);outline-offset:1px}
+    .cap-req{color:var(--gold)}.cap-opt{opacity:.6;font-weight:400}
+    .cap-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+    .cap-note{font-size:.85rem;opacity:.8;margin:.1rem 0 0}
+    .capture-form .form-ok,.capture-form .form-err{display:none;margin-top:.4rem}
+    .capture-form .form-ok.show,.capture-form .form-err.show{display:block}
+    .capture-form .ok-mark svg,.capture-form .err-mark svg{width:34px;height:34px;color:var(--gold)}
+    .capture-form .form-err .err-mark svg{color:#ff8a8a}
+    .capture-form .form-ok h3,.capture-form .form-err h3{margin:.3rem 0 .2rem;font-family:var(--head-font)}
+    @media(max-width:760px){.capture-card{grid-template-columns:1fr;gap:1.4rem;padding:1.6rem}}
+  </style>
+</section>
+
 <!-- SERVICES -->
 <section class="section" id="services">
   <div class="wrap">
@@ -293,6 +342,37 @@
   </div>
 </section>
 
+<!-- EXAMPLE REPLY -->
+<section class="section" id="example">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">See it work</span>
+      <h2>One reply, the FifthStar way.</h2>
+      <p class="lead">Here's an example of how we'd answer a real review — in your voice, turning a complaint into a regular.</p>
+    </div>
+    <div class="example glass-card reveal">
+      <div class="ex-review">
+        <span class="ex-stars" aria-hidden="true">★★★☆☆</span>
+        <p class="ex-q">"Food was lovely but we waited 25 minutes for a table we'd booked. Bit disappointing on a Saturday." — a Google review</p>
+      </div>
+      <div class="ex-reply">
+        <span class="ex-tag">FifthStar reply · example</span>
+        <p>"Thank you for the honest note — and I'm sorry Saturday let you down. A booked table shouldn't mean a 25-minute wait, and that's on us, not you. The kitchen's glad the food landed, but the welcome should match it. Next time you book, ask for me (Priya) and I'll have your table ready the moment you walk in. — The Curry House team"</p>
+      </div>
+    </div>
+    <p class="ex-note">Example shown for illustration. Your replies are written from your real reviews, in your real voice — you approve every line before it goes live.</p>
+  </div>
+  <style>
+    .example{display:grid;grid-template-columns:1fr 1.4fr;gap:1.6rem;padding:2rem}
+    .ex-stars{color:var(--gold);font-size:1.1rem;letter-spacing:.1em}
+    .ex-q{margin:.4rem 0 0;font-style:italic;opacity:.92}
+    .ex-tag{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+    .ex-reply p{margin:0;line-height:1.6}
+    .ex-note{margin-top:1rem;font-size:.85rem;opacity:.7}
+    @media(max-width:760px){.example{grid-template-columns:1fr;gap:1rem;padding:1.4rem}}
+  </style>
+</section>
+
 <!-- FAQ -->
 <section class="section alt" id="faq">
   <div class="wrap">
@@ -355,6 +435,72 @@
 <script src="vendor/ScrollTrigger.min.js"></script>
 <script src="vendor/SplitText.min.js"></script>
 <script src="assets/site.js"></script>
+
+<!-- P1-3: structured data for local SEO (rich results) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "FifthStar",
+  "image": "https://thefifthstar.site/og-image.png",
+  "description": "FifthStar is one partner for UK small businesses' Google reviews, website care and accessibility — free review replies first, then monthly Care Plans.",
+  "url": "https://thefifthstar.site/",
+  "email": "hello@thefifthstar.site",
+  "founder": {"@type": "Person", "name": "Ethan Li"},
+  "areaServed": {"@type": "Country", "name": "United Kingdom"},
+  "priceRange": "£49–£149 per month",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "FifthStar Care Plans",
+    "itemListElement": [
+      {"@type": "Offer", "price": "49", "priceCurrency": "GBP", "unitText": "month", "itemOffered": {"@type": "Service", "name": "GBP Care", "description": "Google Business Profile management with drafted review replies in your tone."}},
+      {"@type": "Offer", "price": "149", "priceCurrency": "GBP", "unitText": "month", "itemOffered": {"@type": "Service", "name": "Website Care", "description": "A website that stays fast, safe and yours — updates, monitoring and a monthly report."}},
+      {"@type": "Offer", "price": "129", "priceCurrency": "GBP", "unitText": "month", "itemOffered": {"@type": "Service", "name": "Accessibility Care", "description": "WCAG 2.2 AA audit and fixes, monthly scans and a signed accessibility statement."}},
+      {"@type": "Offer", "price": "59", "priceCurrency": "GBP", "unitText": "month", "itemOffered": {"@type": "Service", "name": "Listings Care", "description": "Name, address and phone matched across 8+ UK directories, claimed and audited monthly."}},
+      {"@type": "Offer", "price": "79", "priceCurrency": "GBP", "unitText": "month", "itemOffered": {"@type": "Service", "name": "Missed-Call & Chat Care", "description": "Missed-call text-back within minutes, managed site chat and a weekly lead report."}}
+    ]
+  }
+}
+</script>
+
+<!-- P1-1: homepage free-replies capture (Web3Forms, progressive enhancement) -->
+<script>
+(function () {
+  var f = document.getElementById('captureForm'); if (!f) return;
+  var ok = f.querySelector('#cap-ok'), err = f.querySelector('#cap-err'), errMsg = f.querySelector('#cap-err-msg'),
+      fb = f.querySelector('#cap-fallback'), status = f.querySelector('#cap-status'), btn = f.querySelector('#cap-submit'),
+      btnText = btn ? btn.querySelector('.btn-text') : null;
+  var KEY = '5319145c-9671-4dcf-8866-47854644764e';
+  function mailtoHref() {
+    return 'mailto:hello@thefifthstar.site?subject=' + encodeURIComponent('FifthStar — free replies request') +
+      '&body=' + encodeURIComponent('Email: ' + (f.email.value || '') + '\nGoogle Business Profile: ' + (f.gbp.value || ''));
+  }
+  function showErr(msg, mh) {
+    if (btn) { btn.disabled = false; if (btnText) btnText.textContent = 'Send my profile'; }
+    if (err) { if (errMsg) errMsg.textContent = msg + ' Tap below to send via your email app.'; if (fb) fb.setAttribute('href', mh); err.classList.add('show'); }
+    if (status) status.style.display = 'none';
+  }
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!f.email.value.trim()) { if (status) { status.innerHTML = 'Please add your <b>email</b> so Ethan can reply.'; status.style.color = 'var(--gold)'; } return; }
+    if (status) status.style.color = '';
+    var data = { email: f.email.value.trim(), gbp: f.gbp.value.trim(), subject: 'FifthStar — free replies request', from_name: 'FifthStar website', botcheck: f.botcheck ? f.botcheck.value : '' };
+    var mh = mailtoHref();
+    if (btn) { btn.disabled = true; if (btnText) btnText.textContent = 'Sending…'; }
+    if (KEY) {
+      var p = Object.assign({ access_key: KEY }, data);
+      fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(p) })
+        .then(function (r) { return r.json().then(function (res) { return { ok: r.ok, res: res }; }); })
+        .then(function (o) {
+          if (o.res && o.res.success) { f.style.display = 'none'; if (ok) ok.classList.add('show'); }
+          else { showErr((o.res && (o.res.message || o.res.error)) || 'Server error', mh); }
+        }).catch(function () { showErr("The network request failed. Send via your email app instead.", mh); });
+      return;
+    }
+    window.location.href = mh; if (ok) ok.classList.add('show');
+  });
+})();
+</script>
 <footer class="foot">
   <div class="wrap">
     FifthStar — your Google Business Profile &amp; website, looked after. Questions? <a href="mailto:hello@thefifthstar.site">hello@thefifthstar.site</a><br/>
