@@ -65,7 +65,7 @@
       <div class="form-card">
         <h2>Send a message</h2>
         <p class="form-intro">Tell me a little about your business and what you need. No form-filling pressure — a few lines is plenty.</p>
-        <form id="contactForm" action="mailto:hello@thefifthstar.site?subject=FifthStar%20enquiry" method="post" enctype="text/plain" novalidate>
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
           <div class="cap-row">
             <div class="cap-field">
               <label for="cf-name">Your name <span class="cap-req">*</span></label>
@@ -102,8 +102,11 @@
             <label for="cf-msg">Message <span class="cap-req">*</span></label>
             <textarea id="cf-msg" name="message" placeholder="A sentence or two about your business and what you'd like help with…" required></textarea>
           </div>
-          <!-- Spam honeypot: leave empty. Formspree reads _gotcha; hidden from real users. -->
-          <input class="cap-hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <!-- Anti-spam honeypot: real users leave it blank; Web3Forms flags a filled one as a bot. -->
+          <input class="cap-hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="hidden" name="access_key" value="5319145c-9671-4dcf-8866-47854644764e" />
+          <input type="hidden" name="subject" value="FifthStar enquiry" />
+          <input type="hidden" name="from_name" value="FifthStar website" />
           <button class="btn btn-gold cap-submit" type="submit">Send message</button>
           <p class="cap-note" id="cf-status">Prefer email? Write to <a href="mailto:hello@thefifthstar.site">hello@thefifthstar.site</a>.</p>
           <!-- Success panel (shown after a real submit) -->
@@ -118,7 +121,7 @@
       <!-- CONTACT METHODS -->
       <div class="methods">
         <div class="panel-h">Other ways to reach me</div>
-        <p class="panel-sub">Email works right now. The rest are being set up — I'll switch them on as soon as they're live.</p>
+        <p class="panel-sub">Email, WhatsApp, Facebook or Instagram — pick whatever's easiest. Ethan replies to all of them.</p>
 
         <!-- Email: LIVE now -->
         <a class="method" href="mailto:hello@thefifthstar.site">
@@ -129,27 +132,23 @@
           </span>
         </a>
 
-        <!-- WhatsApp: PLACEHOLDER — replace with:
-             <a class="method" href="https://wa.me/44XXXXXXX"> ... </a>  and remove class "method--off" -->
-        <div class="method method--off">
+        <!-- WhatsApp: LIVE -->
+        <a class="method" href="https://wa.me/8619056142535" target="_blank" rel="noopener noreferrer">
           <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H8l-4 4z"/></svg></span>
           <span class="m-body">
             <span class="m-name">WhatsApp</span>
-            <span class="m-val">Your number — tap to set up</span>
+            <span class="m-val">Message Ethan</span>
           </span>
-          <span class="m-tag">Set up</span>
-        </div>
+        </a>
 
-        <!-- Facebook: PLACEHOLDER — replace with:
-             <a class="method" href="https://facebook.com/yourpage"> ... </a>  and remove class "method--off" -->
-        <div class="method method--off">
+        <!-- Facebook: LIVE -->
+        <a class="method" href="https://www.facebook.com/thefifthstarbuilds/" target="_blank" rel="noopener noreferrer">
           <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 19v-1a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v1"/><circle cx="9" cy="7" r="3"/><path d="M22 19v-1a4 4 0 0 0-3-3.9"/><path d="M16 4.1A4 4 0 0 1 16 11.9"/></svg></span>
           <span class="m-body">
             <span class="m-name">Facebook</span>
-            <span class="m-val">Your page — tap to set up</span>
+            <span class="m-val">@thefifthstarbuilds</span>
           </span>
-          <span class="m-tag">Set up</span>
-        </div>
+        </a>
 
         <!-- Phone: PLACEHOLDER (optional) -->
         <div class="method method--off">
@@ -161,15 +160,14 @@
           <span class="m-tag">Set up</span>
         </div>
 
-        <!-- Instagram: PLACEHOLDER (extra channel) -->
-        <div class="method method--off">
+        <!-- Instagram: LIVE -->
+        <a class="method" href="https://www.instagram.com/thefifthstarbuilds/" target="_blank" rel="noopener noreferrer">
           <span class="m-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><path d="M16.5 7.5v.01"/></svg></span>
           <span class="m-body">
             <span class="m-name">Instagram</span>
-            <span class="m-val">Your handle — tap to set up</span>
+            <span class="m-val">@thefifthstarbuilds</span>
           </span>
-          <span class="m-tag">Set up</span>
-        </div>
+        </a>
 
         <!-- Location note -->
         <div class="method">
@@ -248,18 +246,19 @@
 <script>
 /* ============================================================
    Contact form — zero-server, progressive enhancement.
-   - Works WITHOUT JS: the <form> posts natively via mailto (enctype text/plain).
-   - WITH JS: submits to Formspree if configured, else opens a tidy mailto.
-   TO ACTIVATE REAL SUBMISSIONS (no email-app step):
-     1. Sign up free at https://formspree.io  →  create a form  →  copy its endpoint.
-     2. Paste it between the quotes below (replace the placeholder).
+   - Works WITHOUT JS: the <form> posts natively to Web3Forms
+     (action + hidden access_key field submitted as form-urlencoded).
+   - WITH JS: intercepts submit and POSTs to Web3Forms via fetch
+     (seamless, no email-app step), falling back to a mailto draft
+     if the network request fails.
+   CONFIG holds the Web3Forms access key (no account password needed).
    Everything else (email, reply copy) needs no change.
    ============================================================ */
 (function () {
   var CONFIG = {
     EMAIL: 'hello@thefifthstar.site',
-    // Placeholder until you paste your Formspree endpoint, e.g. 'https://formspree.io/f/abcdwxyz'
-    FORMSPREE: ''
+    WEB3FORMS_KEY: '5319145c-9671-4dcf-8866-47854644764e',
+    ENDPOINT: 'https://api.web3forms.com/submit'
   };
   var form = document.getElementById('contactForm');
   if (!form) return;
@@ -290,24 +289,26 @@
     var data = {
       name: name, business: form.business.value.trim(), email: email,
       phone: form.phone.value.trim(), topic: form.topic.value, message: msg,
-      _subject: 'FifthStar enquiry — ' + (form.topic.value || 'contact'),
-      _gotcha: form._gotcha ? form._gotcha.value : ''
+      subject: 'FifthStar enquiry — ' + (form.topic.value || 'contact'),
+      from_name: 'FifthStar website',
+      botcheck: form.botcheck ? form.botcheck.value : ''
     };
     var body = buildBody(data);
-    var subject = encodeURIComponent(data._subject);
+    var subject = encodeURIComponent(data.subject);
 
-    // Real endpoint configured → POST to Formspree (seamless, no email app)
-    if (CONFIG.FORMSPREE && CONFIG.FORMSPREE.indexOf('formspree.io') !== -1) {
-      fetch(CONFIG.FORMSPREE, {
+    // Access key configured → POST to Web3Forms (seamless, no email app)
+    if (CONFIG.WEB3FORMS_KEY) {
+      var payload = Object.assign({ access_key: CONFIG.WEB3FORMS_KEY }, data);
+      fetch(CONFIG.ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
-      }).then(function (r) {
-        if (r.ok) { showOk(); } else { fallbackMail(subject, body); }
+        body: JSON.stringify(payload)
+      }).then(function (r) { return r.json(); }).then(function (res) {
+        if (res && res.success) { showOk(); } else { fallbackMail(subject, body); }
       }).catch(function () { fallbackMail(subject, body); });
       return;
     }
-    // No endpoint yet → open the visitor's email app pre-filled (works day one)
+    // No key → open the visitor's email app pre-filled (works day one)
     fallbackMail(subject, body);
   });
 
