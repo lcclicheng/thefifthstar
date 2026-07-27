@@ -76,3 +76,28 @@ a.method:hover{border-color:var(--gold);transform:translateY(-2px);filter:bright
 .next-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:64rem;margin:2.8rem auto 0}
 @media(max-width:760px){.next-steps{grid-template-columns:1fr}}
 .stepc .body{color:var(--mute);font-size:.98rem;line-height:1.6}
+
+/* === Submit button states === */
+.cap-submit{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3rem}
+.cap-submit .btn-spinner{display:none;width:1.2rem;height:1.2rem;color:currentColor;animation:spin 1s linear infinite}
+.cap-submit .btn-spinner svg{display:block;width:100%;height:100%}
+.cap-submit.is-loading .btn-spinner{display:inline-block}
+.cap-submit:disabled{opacity:.85;cursor:not-allowed}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* === Success / error panels === */
+.form-ok,.form-err{display:none;flex-direction:column;gap:.8rem;align-items:center;text-align:center;padding:1.5rem 1rem;animation:cfPanelIn .45s cubic-bezier(.2,.8,.2,1) both}
+.form-ok.show,.form-err.show{display:flex}
+@keyframes cfPanelIn{
+  from{opacity:0;transform:translateY(12px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.form-ok .ok-mark,.form-err .err-mark{width:3rem;height:3rem;border-radius:9999px;border:1.5px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center}
+.form-ok .ok-mark svg,.form-err .err-mark svg{width:1.5rem;height:1.5rem}
+.form-ok h3,.form-err h3{font-size:1.4rem;font-family:var(--head-font)}
+.form-ok p,.form-err p{color:var(--mute);font-size:.98rem;line-height:1.6;max-width:30rem}
+
+/* Error panel uses a softer amber/red tone */
+.form-err .err-mark{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 12%,transparent)}
+.form-err h3{color:var(--gold)}
+.form-err .btn{margin-top:.4rem}

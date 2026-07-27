@@ -107,13 +107,29 @@
           <input type="hidden" name="access_key" value="5319145c-9671-4dcf-8866-47854644764e" />
           <input type="hidden" name="subject" value="FifthStar enquiry" />
           <input type="hidden" name="from_name" value="FifthStar website" />
-          <button class="btn btn-gold cap-submit" type="submit">Send message</button>
+          <button class="btn btn-gold cap-submit" type="submit" id="cf-submit">
+            <span class="btn-text">Send message</span>
+            <span class="btn-spinner" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </span>
+          </button>
           <p class="cap-note" id="cf-status">Prefer email? Write to <a href="mailto:hello@thefifthstar.site">hello@thefifthstar.site</a>.</p>
           <!-- Success panel (shown after a real submit) -->
           <div class="form-ok" id="cf-ok" aria-live="polite">
-            <div class="ok-mark">✓</div>
-            <h3>Message on its way</h3>
-            <p>Thanks — your note is with me. I'll reply by email, usually within a day or two. If your email app didn't open, just write to <a href="mailto:hello@thefifthstar.site">hello@thefifthstar.site</a>.</p>
+            <div class="ok-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <h3>Message sent</h3>
+            <p>Thanks — your note is with me. I'll reply by email, usually within a day or two.</p>
+          </div>
+          <!-- Error panel -->
+          <div class="form-err" id="cf-err" aria-live="assertive">
+            <div class="err-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+            </div>
+            <h3>Couldn't send automatically</h3>
+            <p id="cf-err-msg">No problem — click below to send your message from your email app instead.</p>
+            <a class="btn btn-ghost" id="cf-fallback-link" href="mailto:hello@thefifthstar.site">Send via email app</a>
           </div>
         </form>
       </div>
@@ -264,6 +280,11 @@
   if (!form) return;
   var status = document.getElementById('cf-status');
   var ok = document.getElementById('cf-ok');
+  var err = document.getElementById('cf-err');
+  var errMsg = document.getElementById('cf-err-msg');
+  var fallbackLink = document.getElementById('cf-fallback-link');
+  var submitBtn = document.getElementById('cf-submit');
+  var submitText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
 
   function buildBody(d) {
     return [
@@ -277,6 +298,45 @@
     ].join('\n');
   }
 
+  function buildMailto(d) {
+    return 'mailto:' + CONFIG.EMAIL + '?subject=' + encodeURIComponent(d.subject) + '&body=' + encodeURIComponent(buildBody(d));
+  }
+
+  function setLoading(isLoading) {
+    if (!submitBtn) return;
+    submitBtn.disabled = isLoading;
+    submitBtn.classList.toggle('is-loading', isLoading);
+    if (submitText) submitText.textContent = isLoading ? 'Sending…' : 'Send message';
+  }
+
+  function showOk() {
+    setLoading(false);
+    if (form) form.style.display = 'none';
+    if (ok) ok.classList.add('show');
+    if (err) err.classList.remove('show');
+    if (status) status.style.display = 'none';
+  }
+
+  function showErr(message, mailtoHref) {
+    setLoading(false);
+    if (form) form.style.display = 'none';
+    if (ok) ok.classList.remove('show');
+    if (err) err.classList.add('show');
+    if (status) status.style.display = 'none';
+    if (errMsg) errMsg.textContent = message || "We couldn't send your message automatically. Tap the button below to send it from your email app instead.";
+    if (fallbackLink && mailtoHref) fallbackLink.setAttribute('href', mailtoHref);
+  }
+
+  function resetForm() {
+    if (form) {
+      form.reset();
+      form.style.display = '';
+    }
+    if (ok) ok.classList.remove('show');
+    if (err) err.classList.remove('show');
+    if (status) status.style.display = '';
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var name = form.name.value.trim();
@@ -286,6 +346,8 @@
       if (status) { status.innerHTML = 'Please add your <b>name</b>, <b>email</b> and a short <b>message</b> — the rest is optional.'; status.style.color = 'var(--gold)'; }
       return;
     }
+    if (status) status.style.color = '';
+
     var data = {
       name: name, business: form.business.value.trim(), email: email,
       phone: form.phone.value.trim(), topic: form.topic.value, message: msg,
@@ -293,8 +355,9 @@
       from_name: 'FifthStar website',
       botcheck: form.botcheck ? form.botcheck.value : ''
     };
-    var body = buildBody(data);
-    var subject = encodeURIComponent(data.subject);
+    var mailtoHref = buildMailto(data);
+
+    setLoading(true);
 
     // Access key configured → POST to Web3Forms (seamless, no email app)
     if (CONFIG.WEB3FORMS_KEY) {
@@ -303,23 +366,27 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload)
-      }).then(function (r) { return r.json(); }).then(function (res) {
-        if (res && res.success) { showOk(); } else { fallbackMail(subject, body); }
-      }).catch(function () { fallbackMail(subject, body); });
+      }).then(function (r) { return r.json().then(function (res) { return { ok: r.ok, res: res }; }); })
+        .then(function (out) {
+          if (out.res && out.res.success) {
+            showOk();
+          } else {
+            var reason = (out.res && (out.res.message || out.res.error)) || 'The server returned an error.';
+            showErr('Web3Forms says: ' + reason + ' Tap below to send via your email app instead.', mailtoHref);
+          }
+        }).catch(function () {
+          showErr("The network request failed. Tap below to send your message from your email app instead.", mailtoHref);
+        });
       return;
     }
     // No key → open the visitor's email app pre-filled (works day one)
-    fallbackMail(subject, body);
+    window.location.href = mailtoHref;
+    showOk();
   });
 
-  function fallbackMail(subject, body) {
-    window.location.href = 'mailto:' + CONFIG.EMAIL + '?subject=' + subject + '&body=' + encodeURIComponent(body);
-    showOk();
-  }
-  function showOk() {
-    if (form) form.style.display = 'none';
-    if (ok) ok.classList.add('show');
-  }
+  // Optional: double-click the success/error panel to re-open the form (handy if visitor wants to resend)
+  if (ok) ok.addEventListener('dblclick', resetForm);
+  if (err) err.addEventListener('dblclick', resetForm);
 })();
 </script>
 </body>
