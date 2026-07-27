@@ -102,7 +102,7 @@
       instagram: 'https://www.instagram.com/thefifthstarbuilds/',
       whatsapp: 'https://wa.me/8619056142535'
     };
-    var labels = { facebook: 'Facebook', instagram: 'Instagram', whatsapp: 'WhatsApp', linkedin: 'LinkedIn' };
+    var labels = { facebook: 'Facebook', instagram: 'Instagram', whatsapp: 'WhatsApp' };
     document.querySelectorAll('.foot-social a').forEach(function (a) {
       var t = a.getAttribute('title') || '';
       var key = null;
