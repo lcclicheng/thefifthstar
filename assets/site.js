@@ -92,6 +92,30 @@
     document.head.appendChild(s);
   })();
 
+  // --- Social links: centralised config, filled site-wide (avoids per-page edits).
+  //   Platforms left blank keep their graceful fallthrough to the contact page.
+  (function () {
+    var SOCIALS = {
+      facebook: 'https://www.facebook.com/thefifthstarbuilds/',
+      instagram: 'https://www.instagram.com/thefifthstarbuilds/',
+      whatsapp: '',   // provide intl phone, e.g. https://wa.me/447xxxxxxxxx
+      linkedin: ''    // provide URL when available
+    };
+    var labels = { facebook: 'Facebook', instagram: 'Instagram', whatsapp: 'WhatsApp', linkedin: 'LinkedIn' };
+    document.querySelectorAll('.foot-social a').forEach(function (a) {
+      var t = a.getAttribute('title') || '';
+      var key = null;
+      for (var k in labels) { if (t.indexOf(labels[k]) !== -1) { key = k; break; } }
+      if (!key) return;
+      var url = SOCIALS[key];
+      if (!url) return; // no real link yet → keep fallthrough to contact page
+      a.setAttribute('href', url);
+      a.setAttribute('title', 'FifthStar on ' + labels[key]);
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    });
+  })();
+
   // --- GSAP additive motion: disabled by design (2026-07-26) ---
   // No hero entrance, no SplitText headline reveal, no scroll triggers.
   // Content is shown directly via CSS; GSAP vendor scripts have been removed.
